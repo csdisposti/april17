@@ -11,16 +11,16 @@ import java.util.Properties;
 public class Credentials {
 
     private String userName;
-	private String pass;
-	
-	//constructor
+    private String pass;
+
+    //constructor
     public Credentials(String userName, String pass) {
         this.userName = userName;
-        this.pass = pass; 
+        this.pass = pass;
     }
 
     //empty constructor
-    public Credentials() {
+    Credentials() {
         this.userName = null;
         this.pass = null;
     }
@@ -32,7 +32,6 @@ public class Credentials {
 
     //set User Name
     public void setUserName(String UserName) {
-        this.userName = userName;
     }
 
     //get password
@@ -42,7 +41,6 @@ public class Credentials {
 
     //set Account Type
     public void setPassword(String password) {
-        this.pass = pass;
     }
 
     protected String readFromDatabase(String user, String pwd) throws Exception {
@@ -69,12 +67,20 @@ public class Credentials {
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
+
         return "na";
     }
 
 
-    protected void addToDatabase(String user, String pwd) throws Exception {
+    void addToDatabase(String user, String pwd) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -96,6 +102,12 @@ public class Credentials {
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

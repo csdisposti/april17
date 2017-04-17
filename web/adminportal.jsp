@@ -50,7 +50,6 @@
         <hr>
         </div>
             <div class="col-sm-2">
-
             </div>
         </div>
            <div class="row text-center">

@@ -35,7 +35,7 @@
         <h2>Flight Club Scheduling</h2>
         <h4>Login or sign up below to access the power of Ascend and begin <em>Soaring to New Heights</em>.</h4>
         <hr>
-        <h2>ERROR - Username and Password do not match, please try again</h2>
+        <h2>ERROR - Username and Password do not match or Username is not registered, please try again.</h2>
         <div class="col-sm-6">
             <h3>Existing Members</h3>
             <p>If you are an existing member, please login.</p>
