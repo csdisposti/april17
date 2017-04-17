@@ -32,12 +32,7 @@
     </header>
     <!--begin main text-->
     <div class="row gray text-center">
-        <h2>Flight Club Scheduling</h2>
-        <h4>Login or sign up below to access the power of Ascend and begin <em>Soaring to New Heights</em>.</h4>
-        <hr>
-        <div class="col-sm-6">
-            <h3>Existing Members</h3>
-            <p>If you are an existing member, please login.</p>
+
 <form action="Test" method="post">
 
     <input type="submit" class="btn btn-default btn-sp" value="Login"/>
@@ -45,14 +40,7 @@
 </form>
         </div>
         <div class="col-sm-6">
-            <h3>New Members</h3>
-            <p>If you are new to Ascend, please enter your email to begin the sign up process.</p>
-            <form action="SignupOne" method="post">
-                <label for="email">Email:</label><br />
-                <input type="text" id="email" name="email" title="Signup-Email" required/><br />
-                <input type="submit" class="btn btn-default btn-sp" value="Sign Up"/>
 
-            </form>
         </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
