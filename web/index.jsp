@@ -35,6 +35,7 @@
         <h2>Flight Club Scheduling</h2>
         <h4>Login or sign up below to access the power of Ascend and begin <em>Soaring to New Heights</em>.</h4>
         <hr>
+        <div class="row gray text-center">
         <div class="col-sm-6">
             <h3>Existing Members</h3>
             <p>If you are an existing member, please login.</p>
@@ -56,6 +57,24 @@
                 <input type="submit" class="btn btn-default btn-sp" value="Sign Up"/>
 
             </form>
+        </div>
+        </div>
+        <div class="row gray text-center">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+                <h3>Admin Login</h3>
+                <form action="AdminPortal" method="post">
+                    <label for="usra">Username:</label><br />
+                    <input type="text" id="usra" name="usra" title="Login-Username" required/><br />
+                    <label for="pwda">Password:</label><br />
+                    <input type="text" id="pwda" name="pwda" title="Login-Password" required/><br />
+                    <input type="submit" class="btn btn-default btn-sp" value="Login"/>
+
+                </form>
+            </div>
+            <div class="col-sm-4">
+            </div>
         </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
@@ -80,7 +99,7 @@
         <p>Copyright 2017 Ascend, Inc.<br>All rights reserved</p>
     </footer>
     <hr>
-</div>
+
 </div>
 <!--end main text-->
 </body>

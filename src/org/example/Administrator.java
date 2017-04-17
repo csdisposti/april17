@@ -18,7 +18,7 @@ public class Administrator extends Member {
 
     //constructor
     public Administrator(int adminId, int memNo, String adminLev, Date dateSetAdmin, Date dateRevAdmin, String adminCom) {
-        super();
+        //super();
         this.adminId = adminId;
         this.memNo = memNo;
         this.adminLev = adminLev;
@@ -30,7 +30,7 @@ public class Administrator extends Member {
     //empty constructor
     public Administrator()
     {
-        super();
+        //super();
         this.adminId = 0;
         this.memNo = 0;
         this.adminLev = null;
@@ -99,7 +99,7 @@ public class Administrator extends Member {
         this.adminCom = adminCom;
     }
 
-    public void readFromDatabase(String usr) throws Exception
+    public void readFromDatabase(int mn) throws Exception
     {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -113,15 +113,10 @@ public class Administrator extends Member {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User="+usr+";");
 
-            if (rs != null) {
-                //makes sure the resultSet isn't in the header info
-                rs.next();
-                this.memNo = rs.getInt("MemberID");
-            }
 
-            java.sql.ResultSet rs2 = statement.executeQuery("SELECT * FROM tblAdmin WHERE MemberNo="+memNo+";");
+            java.sql.ResultSet rs2 = statement.executeQuery("SELECT * FROM tblAdmin WHERE MemberNo="+mn+";");
+            //java.sql.ResultSet rs2 = statement.executeQuery("SELECT * FROM AscendDB.tblAdmin INNER JOIN AscendDB.tblMmeber ON tblAdmin.MemberNo = tblMember.MemberID WHERE MemberNo="+mn+";");
             if (rs2 != null) {
                 //makes sure the resultSet isn't in the header info
                 rs2.next();
@@ -156,7 +151,7 @@ public class Administrator extends Member {
 
     @Override
     public String toString() {
-        return super.toString() + "<hr><p>Admin ID: "+this.adminId+"</p><p>Admin Level: "+this.adminLev+"</p><p>Date Set As Admin: "+
+        return "<hr><p>Admin ID: "+this.adminId+"</p><p>Admin Level: "+this.adminLev+"</p><p>Date Set As Admin: "+
                 this.dateSetAdmin+"</p><p>Date Removed: "+this.dateRevAdmin+"</p><p>Admin Comments: "+this.adminCom+"</p>";
     }
 }

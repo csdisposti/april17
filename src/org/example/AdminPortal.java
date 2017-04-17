@@ -20,26 +20,34 @@ public class AdminPortal extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        String username = request.getParameter("usr");
-        String password = request.getParameter("pwd");
+        String username = request.getParameter("usra");
+        String password = request.getParameter("pwda");
 
-        String adminLogin;
+        String memInfo;
+        int adminLogin;
+        String memInfoAll;
 
         Credentials c = new Credentials();
         Member m = new Member();
+        Member m2 = new Member();
         Administrator a = new Administrator();
 
 
         try{
             //this gets the email username
-            adminLogin = c.readFromDatabase(username, password);
-            if (adminLogin.equals("na")){
+            memInfo = c.readFromDatabase(username, password);
+            if (memInfo.equals("na")){
                 request.getRequestDispatcher("/loginerror.jsp").forward(request, response);
             }
             //read from the member table
+            adminLogin = m.readJustMemNo(memInfo);
+            request.getSession().setAttribute("m", m);
+            m2.readFromDatabase(memInfo);
+            request.getSession().setAttribute("m2", m2);
+            request.getSession().setAttribute("us", memInfo);
             a.readFromDatabase(adminLogin);
             request.getSession().setAttribute("a", a);
-            //request.getSession().setAttribute("us", adminLogin);
+
 
             request.getRequestDispatcher("/adminportal.jsp").forward(request, response);
 

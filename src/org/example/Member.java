@@ -22,7 +22,7 @@ public class Member {
     private String memCom;      //MemberComments
 
     //constructor
-    public Member(int memId, int acctNo, String emailUsNa, String fName,String lName, String phone1, String phone2, String emerCoNa, String emerCoNo, String memCom) {
+    public Member(int memId, int acctNo, String emailUsNa, String fName, String lName, String phone1, String phone2, String emerCoNa, String emerCoNo, String memCom) {
         this.memId = memId;
         this.acctNo = acctNo;
         this.emailUsNa = emailUsNa;
@@ -34,9 +34,9 @@ public class Member {
         this.emerCoNo = emerCoNo;
         this.memCom = memCom;
     }
+
     //empty constructor
-    public Member()
-    {
+    public Member() {
         this.memId = 0;
         this.acctNo = 0;
         this.emailUsNa = null;
@@ -150,8 +150,7 @@ public class Member {
     }
 
     //read data from database to this class
-    protected void readFromDatabase(String user) throws Exception
-    {
+    protected void readFromDatabase(String user) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -164,7 +163,7 @@ public class Member {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User='"+ user +"';");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User='" + user + "';");
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
@@ -180,7 +179,7 @@ public class Member {
                 this.emerCoNa = rs.getString(8);
                 this.emerCoNo = rs.getString(9);
                 this.memCom = rs.getString(10);
-              }
+            }
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
@@ -193,8 +192,8 @@ public class Member {
         }
     }
 
-    protected void addToDatabase(int accountID, String email, String fname, String lname, String phoneone, String phonetwo, String emrconname, String emrconphone, String memcomms) throws Exception
-    {
+
+    protected void addToDatabase(int accountID, String email, String fname, String lname, String phoneone, String phonetwo, String emrconname, String emrconphone, String memcomms) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -218,7 +217,7 @@ public class Member {
             java.sql.ResultSet rs = statement.executeQuery("SELECT MemberID FROM tblMember ORDER BY MemberID DESC LIMIT 1");
             rs.next();
             this.memId = rs.getInt("MemberID");
-			System.out.println(memId);
+            System.out.println(memId);
 
             String updateMember = "UPDATE tblMember SET FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ?, MemberComments = ? WHERE MemberID =" + memId + ";";
             PreparedStatement pstmt = connection.prepareStatement(updateMember);
@@ -231,13 +230,47 @@ public class Member {
             pstmt.setString(7, memcomms);
             pstmt.executeUpdate();
 
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
         }
     }
 
+
+    protected int readJustMemNo(String user) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User='" + user + "';");
+
+            if (rs != null) {
+                //makes sure the resultSet isn't in the header info
+                rs.next();
+
+                this.memId = rs.getInt("MemberID");
+
+            }
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return memId;
+        }
+    }
     @Override
     public String toString() {
         return "<p>Member ID: "+this.memId+"</p><p>Account Number: "+this.acctNo+"</p><p>Email: "+

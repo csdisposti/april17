@@ -32,14 +32,27 @@
         <hr>
     </header>
     <!--begin main text-->
-    <div class="row gray">
+    <div class="row gray text-center">
 
         <h2 class="text-center">Welcome Admin!</h2>
         <hr>
         <h3>Admin Info</h3>
         <hr>
+        <div class="row text-left">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-4">
+        <p>${m2}</p>
+            </div>
+            <div class="col-sm-4">
         <p>${a}</p>
         <hr>
+        </div>
+            <div class="col-sm-2">
+
+            </div>
+        </div>
            <div class="row text-center">
                <div class="col-sm-4">
 

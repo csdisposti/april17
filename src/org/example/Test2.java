@@ -11,6 +11,8 @@ import java.util.Properties;
 public class Test2  {
     private String eu;
     private String pw;
+    private int memNo;
+    private int adminID;
 
     //constructor
     public Test2(String eu, String pw) {
@@ -54,6 +56,7 @@ public class Test2  {
     protected void test() throws Exception
     {
         String email = "kjackson6@psu.edc";
+        int mn = 7;
         java.sql.Connection connection;
 
         String username = "MasterAscend";
@@ -70,11 +73,14 @@ public class Test2  {
             java.sql.Statement statement = connection.createStatement();
 
 
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblCredentials WHERE Email_Username='" + email + "';");
+            //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblCredentials WHERE Email_Username='" + email + "';");
+            //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User='" + email + "';");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAdmin WHERE MemberNo=" + mn + ";");
             if (rs != null) {
                 rs.next();
-                this.eu = rs.getString("Email_Username");
-                this.pw = rs.getString("MemberPW");
+                //this.eu = rs.getString("Email_Username");
+                //this.pw = rs.getString("MemberPW");
+                this.adminID = rs.getInt("AdministratorID");
             }
 
 
@@ -87,7 +93,8 @@ public class Test2  {
 
     @Override
     public String toString() {
-        return "<hr><p>User: "+this.eu+"</p><p>Password: "+this.pw+"</p><p>";
+        //return "<hr><p>User: "+this.eu+"</p><p>Password: "+this.pw+"</p><p>";
+        return "<p>Admin Number:" + this.adminID+"</p>";
     }
 }
 
