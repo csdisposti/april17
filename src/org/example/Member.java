@@ -271,6 +271,91 @@ public class Member {
         }
         return memId;
     }
+
+    protected void getMemberByNamePhone(String fname, String lname, String phone) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE FName='" + fname + "'AND LName='" + lname + "'AND Phone1='" + phone + "';");
+
+            if (rs != null) {
+                //makes sure the resultSet isn't in the header info
+                rs.next();
+
+                this.memId = rs.getInt("MemberID");
+                this.acctNo = rs.getInt(2);
+                this.emailUsNa = rs.getString(3);
+                this.fName = rs.getString(4);
+                this.lName = rs.getString(5);
+                this.phone1 = rs.getString(6);
+                this.phone2 = rs.getString(7);
+                this.emerCoNa = rs.getString(8);
+                this.emerCoNo = rs.getString(9);
+                this.memCom = rs.getString(10);
+            }
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    protected void getMemberByMemID(int memID) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE MemberID='" + memID + "';");
+
+            if (rs != null) {
+                //makes sure the resultSet isn't in the header info
+                rs.next();
+
+                this.memId = rs.getInt("MemberID");
+                this.acctNo = rs.getInt(2);
+                this.emailUsNa = rs.getString(3);
+                this.fName = rs.getString(4);
+                this.lName = rs.getString(5);
+                this.phone1 = rs.getString(6);
+                this.phone2 = rs.getString(7);
+                this.emerCoNa = rs.getString(8);
+                this.emerCoNo = rs.getString(9);
+                this.memCom = rs.getString(10);
+            }
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "<p>Member ID: "+this.memId+"</p><p>Account Number: "+this.acctNo+"</p><p>Email: "+

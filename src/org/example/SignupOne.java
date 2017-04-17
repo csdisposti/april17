@@ -25,7 +25,7 @@ public class SignupOne extends HttpServlet {
         try{
             emailCheck = ce.readFromDatabase(email);
             request.getSession().setAttribute("em", email);
-            if (emailCheck.equals("nr")) {
+            if (emailCheck == null) {
                 request.getRequestDispatcher("/signupone.jsp").forward(request, response);
             }
             request.getRequestDispatcher("/emailexists.jsp").forward(request, response);

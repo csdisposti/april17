@@ -18,46 +18,27 @@ public class AdminEditMemberInfo extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        //String user = request.getParameter("user");
-       // String pw = request.getParameter("pw");
+
         String username = request.getParameter("usr");
 
 
         try{
-            Member m = new Member();
-            m.readFromDatabase(username);
+            //Member m = new Member();
+           // m.readFromDatabase(username);
 
-            request.getSession().setAttribute("m", m);
-            request.getSession().setAttribute("usr", username);
-            //request.getSession().setAttribute("ln", lg);
-                //RequestDispatcher rd = request.getRequestDispatcher("/member.jsp");
-                //rd.forward(request, response);
-
-                //fname = rs.getString(4);
-                //lname = rs.getString(5);
-
-               //request.getAttribute("fname");
-               //request.getAttribute("lname");
+            //request.getSession().setAttribute("m", m);
+           // request.getSession().setAttribute("usr", username);
 
 
                request.getRequestDispatcher("/admineditmemberinfo.jsp").forward(request, response);
 
 
-
         }catch (Exception e2)
 
         {
-
             e2.printStackTrace();
-
         }
-
-
-
         finally{out.close();
-
         }
-
     }
-
 } 

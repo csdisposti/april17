@@ -46,12 +46,12 @@
         <url-pattern>/Reservation</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>EditMemInfo</servlet-name>
-        <servlet-class>org.example.EditMemInfo</servlet-class>
+        <servlet-name>EditMemberInfo</servlet-name>
+        <servlet-class>org.example.EditMemberInfo</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EditMemInfo</servlet-name>
-        <url-pattern>/EditMemInfo</url-pattern>
+        <servlet-name>EditMemberInfo</servlet-name>
+        <url-pattern>/EditMemberInfo</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Home</servlet-name>

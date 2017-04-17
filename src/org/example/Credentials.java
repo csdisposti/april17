@@ -63,9 +63,8 @@ public class Credentials {
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 rs.next();
-                return this.userName = rs.getString("Email_Username");
-            }
-
+                this.userName = rs.getString("Email_Username");
+                }
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
@@ -75,10 +74,9 @@ public class Credentials {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            return this.userName;
         }
 
-
-        return "na";
     }
 
 

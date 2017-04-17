@@ -32,15 +32,16 @@ public class Login extends HttpServlet {
         try{
 
             memberLogin = c.readFromDatabase(username, password);
-            if (memberLogin.equals("na")){
+            if (memberLogin == null){
                 request.getRequestDispatcher("/loginerror.jsp").forward(request, response);
             }
-             m.readFromDatabase(memberLogin);
-            request.getSession().setAttribute("m", m);
-            request.getSession().setAttribute("us", memberLogin);
+            else {
+                m.readFromDatabase(memberLogin);
+                request.getSession().setAttribute("m", m);
+                request.getSession().setAttribute("us", memberLogin);
 
-            request.getRequestDispatcher("/member.jsp").forward(request, response);
-
+                request.getRequestDispatcher("/member.jsp").forward(request, response);
+            }
         }catch (Exception e2)
 
         {

@@ -9,7 +9,7 @@ import java.util.Properties;
  */
 public class CheckEmail {
 
-    private String email = " ";
+    private String email;
 
     protected String readFromDatabase(String email) throws Exception {
         java.sql.Connection connection;
@@ -29,14 +29,14 @@ public class CheckEmail {
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 rs.next();
-               return this.email = rs.getString("Email_Username");
+                    this.email = rs.getString("Email_Username");
+                }
 
-            }
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
         }
-        return "nr";
+        return this.email;
     }
 }
 
