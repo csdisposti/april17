@@ -36,7 +36,7 @@ public class Member {
     }
 
     //empty constructor
-    Member() {
+    public Member() {
         this.memId = 0;
         this.acctNo = 0;
         this.emailUsNa = null;
@@ -193,7 +193,7 @@ public class Member {
     }
 
 
-    void addToDatabase(int accountID, String email, String fname, String lname, String phoneone, String phonetwo, String emrconname, String emrconphone, String memcomms) throws Exception {
+    protected void addToDatabase(int accountID, String email, String fname, String lname, String phoneone, String phonetwo, String emrconname, String emrconphone, String memcomms) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -230,21 +230,14 @@ public class Member {
             pstmt.setString(7, memcomms);
             pstmt.executeUpdate();
 
-
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 
 
-    int readJustMemNo(String user) throws Exception {
+    protected int readJustMemNo(String user) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -263,7 +256,7 @@ public class Member {
                 //makes sure the resultSet isn't in the header info
                 rs.next();
 
-                this.memId = rs.getInt("MemberID");
+                return this.memId = rs.getInt("MemberID");
 
             }
         } catch (Exception e) {
@@ -277,5 +270,11 @@ public class Member {
             }
         }
         return memId;
+    }
+    @Override
+    public String toString() {
+        return "<p>Member ID: "+this.memId+"</p><p>Account Number: "+this.acctNo+"</p><p>Email: "+
+                this.emailUsNa+"</p><p>First Name: "+this.fName+"</p><p>Last Name: "+this.lName+"</p><p>Phone 1: "+
+                this.phone1+"</p><p>Phone 2: "+this.phone2+"</p><p>Emergency Contact Name: "+this.emerCoNa+"</p><p>Emergency Contact Number: "+this.emerCoNo+"</p><p>Member Comments: "+this.memCom+"</p>";
     }
 }

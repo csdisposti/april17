@@ -44,9 +44,6 @@
             <hr>
         </div>
         <div class="col-sm-3">
-            <form action="Home" method="post">
-                <input type="submit" class="btn btn-default btn-sp" value="Home"/>
-            </form>
             <form action="Reservation" method="post">
                 <input type="submit" class="btn btn-default btn-sp" value="Make a Reservation"/>
             </form>

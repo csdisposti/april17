@@ -17,19 +17,14 @@ public class Logout extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-
         try{
             request.getRequestDispatcher("/logout.jsp").forward(request, response);
-
         }
             catch (Exception e2)
         {
             e2.printStackTrace();
         }
         finally{out.close();
-
         }
-
     }
-
 }

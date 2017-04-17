@@ -20,7 +20,7 @@ public class Credentials {
     }
 
     //empty constructor
-    Credentials() {
+    public Credentials() {
         this.userName = null;
         this.pass = null;
     }
@@ -32,6 +32,7 @@ public class Credentials {
 
     //set User Name
     public void setUserName(String UserName) {
+        this.userName = UserName;
     }
 
     //get password
@@ -41,6 +42,7 @@ public class Credentials {
 
     //set Account Type
     public void setPassword(String password) {
+        this.pass = password;
     }
 
     protected String readFromDatabase(String user, String pwd) throws Exception {
@@ -80,7 +82,7 @@ public class Credentials {
     }
 
 
-    void addToDatabase(String user, String pwd) throws Exception {
+    protected void addToDatabase(String user, String pwd) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
