@@ -38,6 +38,27 @@
         <div class="col-sm-6">
             <h3 class="text-center">Edit Member Info</h3>
             <hr>
+            <form action="EditMemberInfoSubmit" method="POST">
+                <input type="hidden"  name="action" value="login">
+                <input type="hidden" id="memid" name="memid" title="memid" value=${mid}>
+                <input type="hidden" id="email" name="email" title="email" value="${em}">
+                <label for="fname">First Name:</label><br />
+                <input type="text" id="fname" name="fname" title="fname" value="${fn}"/><br />
+                <label for="lname">Last Name:</label><br />
+                <input type="text" id="lname" name="lname" title="lname" value="${ln}"/> <br />
+                <label for="phone1">Phone 1:</label><br />
+                <input type="text" id="phone1" name="phone1" title="phone1" value="${ph1}"/><br />
+                <label for="phone2">Phone 2:</label><br />
+                <input type="text" id="phone2" name="phone2" title="phone2" value="${ph2}"/> <br />
+                <label for="en">Emergency Contact Name:</label><br />
+                <input type="text" id="en" name="en" title="en" value="${ecn}"/><br />
+                <label for="ep">Emergency Contact Phone:</label><br />
+                <input type="text" id="ep" name="ep" title="ep" value="${ecp}"/> <br />
+                <label for="memcomms">Comments:</label><br />
+                <textarea rows="10" cols="30" id="memcomms" name="memcomms" value="${memcomms}" title="memcomms"></textarea> <br />
+
+                <input type="submit"  class="btn btn-default btn-sp" value="Update Member Info" />
+            </form>
         </div>
         <div class="col-sm-3">
 

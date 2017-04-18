@@ -50,7 +50,7 @@ public class Member {
     }
 
     //get Member's ID
-    public long getMemId() {
+    public int getMemId() {
         return memId;
     }
 
@@ -60,7 +60,7 @@ public class Member {
     }
 
     //get Member's Account Number
-    public long getAcctNo() {
+    public int getAcctNo() {
         return acctNo;
     }
 
@@ -217,7 +217,6 @@ public class Member {
             java.sql.ResultSet rs = statement.executeQuery("SELECT MemberID FROM tblMember ORDER BY MemberID DESC LIMIT 1");
             rs.next();
             this.memId = rs.getInt("MemberID");
-            System.out.println(memId);
 
             String updateMember = "UPDATE tblMember SET FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ?, MemberComments = ? WHERE MemberID =" + memId + ";";
             PreparedStatement pstmt = connection.prepareStatement(updateMember);
@@ -236,6 +235,36 @@ public class Member {
         }
     }
 
+    protected void updateMemberInfo(int memid, String email, String fname, String lname, String phoneone, String phonetwo, String emrconname, String emrconphone, String memcomms) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+
+            String updateMember = "UPDATE tblMember SET FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ?, MemberComments = ? WHERE MemberID =" + memid + ";";
+            PreparedStatement pstmt = connection.prepareStatement(updateMember);
+            pstmt.setString(1, fname);
+            pstmt.setString(2, lname);
+            pstmt.setString(3, phoneone);
+            pstmt.setString(4, phonetwo);
+            pstmt.setString(5, emrconname);
+            pstmt.setString(6, emrconphone);
+            pstmt.setString(7, memcomms);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        }
+    }
 
     protected int readJustMemNo(String user) throws Exception {
         java.sql.Connection connection;
@@ -272,7 +301,7 @@ public class Member {
         return memId;
     }
 
-    protected void getMemberByNamePhone(String fname, String lname, String phone) throws Exception {
+    /*protected void getMemberByNamePhone(String fname, String lname, String phone) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -313,7 +342,7 @@ public class Member {
             }
         }
     }
-
+*/
     protected void getMemberByMemID(int memID) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";

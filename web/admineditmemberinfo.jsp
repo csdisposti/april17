@@ -51,7 +51,7 @@
                 <input type="text" id="memid" name="memid" title="Member ID" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Get Member"/>
             </form>
-            <p>or</p>
+           <!-- <p>or</p>
             <form action="EditMemberInfo" method="post">
                 <label for="memfname">Member First Name:</label><br />
                 <input type="text" id="memfname" name="memfname" title="Member First Name" required/><br />
@@ -60,7 +60,7 @@
                 <label for="mempphone">Member Primary Phone:</label><br />
                 <input type="text" id="mempphone" name="mempphone" title="Member Primary Phone" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Get Member"/>
-            </form>
+            </form>-->
         </div>
         <div class="col-sm-3">
 

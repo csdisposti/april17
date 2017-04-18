@@ -36,22 +36,19 @@
         <div class="col-sm-3">
         </div>
         <div class="col-sm-6">
-            <h2 class="text-center">Welcome ${fn}!</h2>
+            <h2 class="text-center">Member Info Update Complete</h2>
             <hr>
             <h3>Member Info</h3>
             <hr>
-            <p>${m}</p>
+            <p>${n}</p>
             <hr>
         </div>
         <div class="col-sm-3">
-            <form action="Reservation" method="post">
-                <input type="submit" class="btn btn-default btn-sp" value="Make a Reservation"/>
-            </form>
-            <form action="Logout" method="post">
-                <input type="submit" class="btn btn-default btn-sp" value="Log Out"/>
-            </form>
+            <!--<form action="AdminPortal" method="post">
+                <input type="submit" class="btn btn-default btn-sp" value="Return to Admin Portal"/>
+            </form>-->
+            <a href="http://sample-env-2.pbtdjfn6n9.us-west-2.elasticbeanstalk.com/admin.jsp" class="btn btn-default btn-sp">Return to AdminPortal</a>
         </div>
-
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
 

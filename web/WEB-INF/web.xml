@@ -54,6 +54,14 @@
         <url-pattern>/EditMemberInfo</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>EditMemberInfoSubmit</servlet-name>
+        <servlet-class>org.example.EditMemberInfoSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditMemberInfoSubmit</servlet-name>
+        <url-pattern>/EditMemberInfoSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>org.example.Home</servlet-class>
     </servlet>
