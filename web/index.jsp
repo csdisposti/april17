@@ -35,18 +35,16 @@
         <h2>Flight Club Scheduling</h2>
         <h4>Login or sign up below to access the power of Ascend and begin <em>Soaring to New Heights</em>.</h4>
         <hr>
-        <div class="row gray text-center">
         <div class="col-sm-6">
             <h3>Existing Members</h3>
             <p>If you are an existing member, please login.</p>
-<form action="Login" method="post">
-    <label for="usr">Username:</label><br />
-    <input type="text" id="usr" name="usr" title="Login-Username" required/><br />
-   <label for="pwd">Password:</label><br />
-    <input type="text" id="pwd" name="pwd" title="Login-Password" required/><br />
-    <input type="submit" class="btn btn-default btn-sp" value="Login"/>
-
-</form>
+            <form action="Login" method="post">
+                <label for="usr">Username:</label><br />
+                <input type="text" id="usr" name="usr" title="Login-Username" required/><br />
+                <label for="pwd">Password:</label><br />
+                <input type="text" id="pwd" name="pwd" title="Login-Password" required/><br />
+                 <input type="submit" class="btn btn-default btn-sp" value="Login"/>
+            </form>
         </div>
         <div class="col-sm-6">
             <h3>New Members</h3>
@@ -55,30 +53,13 @@
                 <label for="email">Email:</label><br />
                 <input type="text" id="email" name="email" title="Signup-Email" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Sign Up"/>
-
             </form>
         </div>
-        </div>
-        <div class="row gray text-center">
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-4">
-                <h3>Admin Login</h3>
-                <form action="AdminPortal" method="post">
-                    <label for="usra">Username:</label><br />
-                    <input type="text" id="usra" name="usra" title="Login-Username" required/><br />
-                    <label for="pwda">Password:</label><br />
-                    <input type="text" id="pwda" name="pwda" title="Login-Password" required/><br />
-                    <input type="submit" class="btn btn-default btn-sp" value="Login"/>
-
-                </form>
-            </div>
-            <div class="col-sm-4">
-            </div>
-        </div>
-        <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
 
+        <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
+        <hr>
+        <h3><a href="admin.jsp" class="btn btn-default btn-sp">Admin Login</a></h3>
 
     <footer class="text-center">
         <h4>Ascend, Inc. - <em>Soaring to New Heights</em></h4>
@@ -99,7 +80,7 @@
         <p>Copyright 2017 Ascend, Inc.<br>All rights reserved</p>
     </footer>
     <hr>
-
+    </div>
 </div>
 <!--end main text-->
 </body>

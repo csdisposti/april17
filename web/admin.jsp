@@ -32,17 +32,18 @@
         <hr>
     </header>
     <!--begin main text-->
-    <div class="row gray">
+    <div class="row gray text-center">
+        <h2>Flight Club Scheduling - Admin Portal</h2>
+        <h4>Login below to access the power of Ascend and begin <em>Soaring to New Heights</em>.</h4>
         <div class="col-sm-3">
         </div>
         <div class="col-sm-6">
             <h3>Admin Login</h3>
-
             <form action="AdminPortal" method="post">
-                <label for="usr">Username:</label><br />
-                <input type="text" id="usr" name="usr" title="Login-Username" required/><br />
-                <label for="pwd">Password:</label><br />
-                <input type="text" id="pwd" name="pwd" title="Login-Password" required/><br />
+                <label for="usra">Username:</label><br />
+                <input type="text" id="usra" name="usra" title="Login-Username" required/><br />
+                <label for="pwda">Password:</label><br />
+                <input type="text" id="pwda" name="pwda" title="Login-Password" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Login"/>
 
             </form>
