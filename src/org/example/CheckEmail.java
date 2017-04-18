@@ -12,6 +12,7 @@ public class CheckEmail {
     private String email;
 
     protected String readFromDatabase(String email) throws Exception {
+        //open connection
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -28,28 +29,22 @@ public class CheckEmail {
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
-                rs.next();
+                //see if email exists and save to 'email" otherwise email remains null
+                while (rs.next()) {
                     this.email = rs.getString("Email_Username");
                 }
-
+            }
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return this.email;
     }
 }
 
-  /*  public boolean checkCredential(String username, String password) {
-        try {
-            return password.equals(this.readFromDatabase(username));
-
-        } catch (Exception e) {
-            System.err.println("err");
-            e.printStackTrace();
-        }
-        return password.equals(this.readFromDatabase(username));
-    }
-}
-
-*/

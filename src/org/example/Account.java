@@ -294,10 +294,15 @@ public class Account {
            pstmt.setString(13, acccomms);
            pstmt.executeUpdate();
 
-
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -330,6 +335,12 @@ public class Account {
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return this.acctId;
     }
