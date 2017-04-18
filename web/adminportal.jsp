@@ -33,53 +33,36 @@
     </header>
     <!--begin main text-->
     <div class="row gray text-center">
-
-        <h2 class="text-center">Welcome Admin!</h2>
-        <hr>
-        <h3>Admin Info</h3>
-        <hr>
-        <div class="row text-left">
-            <div class="col-sm-2">
-
+        <h2 class="text-center">Welcome Admin ${fnad}!</h2>
+            <div class="container-fluid">
+                <div class="row">
+            <div class="col-sm-1">
             </div>
-            <div class="col-sm-4">
-        <p>${m2}</p>
+            <div class="col-sm-4 text-left">
+                <h3>Member Info</h3>
+                 <p>${m2}</p>
             </div>
-            <div class="col-sm-4">
-        <p>${a}</p>
-        <hr>
-        </div>
-            <div class="col-sm-2">
+            <div class="col-sm-4 text-left">
+                <h3>Admin Info</h3>
+                 <p>${a}</p>
             </div>
-        </div>
-           <div class="row text-center">
-               <div class="col-sm-4">
+            <div class="col-sm-3">
+                <h3>Admin Tasks</h3>
+                <form action="AdminSetReservation" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="Approve Reservation"/>
+                </form>
+                <form action="AdminSetMaintenance" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="Schedule Maintenance"/>
+                </form>
+                <form action="AdminEditMemberInfo" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="Edit Member Info"/>
+                </form>
+                <form action="Logout" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="Log Out"/>
+                </form>
+            </div>
+            </div>
 
-            <form action="AdminSetReservation" method="post">
-                <input type="submit" class="btn btn-default btn-sp" value="Set Reservation Schedule"/>
-            </form>
-               </div>
-
-               <div class="col-sm-4">
-            <form action="AdminSetMaintenance" method="post">
-                <input type="submit" class="btn btn-default btn-sp" value="Set Maintenance Schedule"/>
-            </form>
-               </div>
-               <div class="col-sm-4">
-                   <form action="AdminEditMemberInfo" method="post">
-                       <input type="submit" class="btn btn-default btn-sp" value="Edit Member Info"/>
-                   </form>
-               </div>
-               <div class="col-sm-4">
-               </div>
-               <div class="col-sm-4">
-                   <form action="Logout" method="post">
-                       <input type="submit" class="btn btn-default btn-sp" value="Log Out"/>
-                   </form>
-               </div>
-               <div class="col-sm-4">
-               </div>
-           </div>
         <hr>
 
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">

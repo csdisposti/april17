@@ -38,9 +38,7 @@
         <div class="col-sm-6">
             <h3 class="text-center">You are now logged out</h3>
             <hr>
-            <a href="http://sample-env-2.pbtdjfn6n9.us-west-2.elasticbeanstalk.com/" class="btn btn-default btn-sp">Login Again</a>
-            <!--<form action="Home" method="post"> <input type="submit" class="btn btn-default btn-sp" value="Login Again"/>
-            </form>-->
+            <a href="/index.jsp" class="btn btn-default btn-sp">Login Again</a>
         </div>
         <div class="col-sm-3">
 

@@ -25,7 +25,7 @@ public class AdminPortal extends HttpServlet {
 
         String memInfo;
         int adminLogin;
-        String memInfoAll;
+        String fnad;
 
         Credentials c = new Credentials();
         Member m = new Member();
@@ -39,34 +39,31 @@ public class AdminPortal extends HttpServlet {
             if (memInfo.equals("na")){
                 request.getRequestDispatcher("/loginerror.jsp").forward(request, response);
             }
-            //read from the member table
-            adminLogin = m.readJustMemNo(memInfo);
-            request.getSession().setAttribute("m", m);
-            m2.readFromDatabase(memInfo);
-            request.getSession().setAttribute("m2", m2);
-            request.getSession().setAttribute("us", memInfo);
-            a.readFromDatabase(adminLogin);
-            request.getSession().setAttribute("a", a);
+            else {
+                //read from the member table
+                adminLogin = m.readJustMemNo(memInfo);
+                request.getSession().setAttribute("m", m);
+                //get admin member info
+                m2.readFromDatabase(memInfo);
+                request.getSession().setAttribute("m2", m2);
+                //get admin first name
+                fnad = m2.getfName();
+                request.getSession().setAttribute("fnad", fnad);
+                //admin username
+                request.getSession().setAttribute("us", memInfo);
+                //get admin info
+                a.readFromDatabase(adminLogin);
+                request.getSession().setAttribute("a", a);
 
-
-            request.getRequestDispatcher("/adminportal.jsp").forward(request, response);
-
-
+                request.getRequestDispatcher("/adminportal.jsp").forward(request, response);
+            }
 
         }catch (Exception e2)
 
         {
-
             e2.printStackTrace();
-
         }
-
-
-
         finally{out.close();
-
         }
-
     }
-
 } 

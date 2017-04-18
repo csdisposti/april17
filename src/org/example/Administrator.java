@@ -151,7 +151,7 @@ public class Administrator extends Member {
 
     @Override
     public String toString() {
-        return "<hr><p>Admin ID: "+this.adminId+"</p><p>Admin Level: "+this.adminLev+"</p><p>Date Set As Admin: "+
+        return "<p>Admin ID: "+this.adminId+"</p><p>Admin Level: "+this.adminLev+"</p><p>Date Set As Admin: "+
                 this.dateSetAdmin+"</p><p>Date Removed: "+this.dateRevAdmin+"</p><p>Admin Comments: "+this.adminCom+"</p>";
     }
 }

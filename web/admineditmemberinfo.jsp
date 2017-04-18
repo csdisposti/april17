@@ -32,7 +32,7 @@
         <hr>
     </header>
     <!--begin main text-->
-    <div class="row gray">
+    <div class="row gray text-center">
         <div class="col-sm-3">
         </div>
         <div class="col-sm-6">

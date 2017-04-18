@@ -33,26 +33,24 @@
     </header>
     <!--begin main text-->
     <div class="row gray">
+        <h2 class="text-center">Update Complete</h2>
+        <h3 class="text-center">The Member's info has been updated</h3>
+        <hr>
         <div class="col-sm-3">
         </div>
-        <div class="col-sm-6">
-            <h2 class="text-center">Member Info Update Complete</h2>
-            <hr>
-            <h3>Member Info</h3>
+        <div class="col-sm-4">
+            <h3>Updated Member Info</h3>
             <hr>
             <p>${n}</p>
             <hr>
         </div>
+        <div class="col-sm-4">
+            <a href="/adminportal.jsp" class="btn btn-default btn-sp">Return to AdminPortal</a>
+        </div>
         <div class="col-sm-3">
-            <!--<form action="AdminPortal" method="post">
-                <input type="submit" class="btn btn-default btn-sp" value="Return to Admin Portal"/>
-            </form>-->
-            <a href="http://sample-env-2.pbtdjfn6n9.us-west-2.elasticbeanstalk.com/admin.jsp" class="btn btn-default btn-sp">Return to AdminPortal</a>
         </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
-
-
     <footer class="text-center">
         <h4>Ascend, Inc. - <em>Soaring to New Heights</em></h4>
         <address>
