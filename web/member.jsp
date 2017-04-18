@@ -33,28 +33,31 @@
     </header>
     <!--begin main text-->
     <div class="row gray">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-6">
-            <h2 class="text-center">Welcome ${fn}!</h2>
-            <hr>
+        <h2 class="text-center">Welcome ${fnm}!</h2>
+        <hr>
+
+       <div class="col-sm-2"></div>
+        <div class="col-sm-4">
             <h3>Member Info</h3>
-            <hr>
-            <p>${m}</p>
-            <hr>
+
+            <p>${mlogin}</p>
+            <br>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <form action="Reservation" method="post">
                 <input type="submit" class="btn btn-default btn-sp" value="Make a Reservation"/>
             </form>
             <form action="Logout" method="post">
                 <input type="submit" class="btn btn-default btn-sp" value="Log Out"/>
             </form>
-        </div>
 
+        </div>
+        <div class="col-sm-2"></div>
+        <hr>
+        <p></p>
+        <hr>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
-
 
     <footer class="text-center">
         <h4>Ascend, Inc. - <em>Soaring to New Heights</em></h4>

@@ -1,16 +1,15 @@
 package org.example;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-import java.util.HashMap;
-import java.util.Properties;
+
+/**
+ * Created by cdisp on 3/27/2017.
+ */
 
 public class Login extends HttpServlet {
 
@@ -26,34 +25,32 @@ public class Login extends HttpServlet {
         String password = request.getParameter("pwd");
 
         String memberLogin;
+        String fnm;
 
         Credentials c = new Credentials();
-        Member m = new Member();
+        Member mlogin = new Member();
         try{
 
             memberLogin = c.readFromDatabase(username, password);
+            //check is member username and password match
             if (memberLogin == null){
                 request.getRequestDispatcher("/loginerror.jsp").forward(request, response);
             }
             else {
-                m.readFromDatabase(memberLogin);
-                request.getSession().setAttribute("m", m);
+                //read member data from ember table
+                mlogin.readFromDatabase(memberLogin);
+                request.getSession().setAttribute("mlogin", mlogin);
                 request.getSession().setAttribute("us", memberLogin);
-
+                //get member first name
+                fnm = mlogin.getfName();
+                request.getSession().setAttribute("fnm" , fnm);
                 request.getRequestDispatcher("/member.jsp").forward(request, response);
             }
         }catch (Exception e2)
-
         {
-
             e2.printStackTrace();
-
         }
-
         finally{out.close();
-
         }
-
     }
-
 } 
