@@ -201,8 +201,9 @@ public class Account {
         this.acctCom = acctCom;
     }
 
-    //read from database for this class
+    //read entire member from database using account id in column AccountID
     public void readFromDatabase(String accID) throws Exception {
+        //open database connection
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -214,8 +215,9 @@ public class Account {
         Class.forName(driver);
         connection = DriverManager.getConnection(url, username, password);
         try {
+            //create statement
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAccount WHERE MemberNo=" + accID + ";");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAccount WHERE AccountID=" + accID + ";");
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
@@ -248,6 +250,7 @@ public class Account {
         }
     }
 
+    //add an account to the database
     protected void addToDatabase(String street, String city, String state, String zip, String acccomms) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -260,17 +263,20 @@ public class Account {
         Class.forName(driver);
         connection = DriverManager.getConnection(url, username, password);
         try {
+            //create statement
             java.sql.Statement statement = connection.createStatement();
-            String newAcc = "INSERT INTO tblAccount () VALUES ()";
+            //create new account
+            String newAcc = "INSERT INTO AscendDB.tblAccount () VALUES ()";
             PreparedStatement ps = connection.prepareStatement(newAcc);
             ps.executeUpdate();
 
-            java.sql.ResultSet rs = statement.executeQuery("SELECT AccountID FROM tblAccount ORDER BY AccountID DESC LIMIT 1");
+            //get account just created
+            java.sql.ResultSet rs = statement.executeQuery("SELECT AccountID FROM AscendDB.tblAccount ORDER BY AccountID DESC LIMIT 1");
             rs.next();
             this.acctId = rs.getInt("AccountID");
-            System.out.println(acctId);
 
-            String updateAccount = "UPDATE tblAccount SET AccountType = ?, StreetAddress = ?, City = ?, State = ?, Zip = ?, PaymentPlan = ?, TotalCharges = ?, TotalPayments = ?, Credits_Reductions = ?, LastInvoiceDate = ?, LastPaymentDate = ?, AccountStatus = ?, AccountComments = ? WHERE AccountID =" + acctId +";";
+            //update newly created account with user data
+            String updateAccount = "UPDATE AscendDB.tblAccount SET AccountType = ?, StreetAddress = ?, City = ?, State = ?, Zip = ?, PaymentPlan = ?, TotalCharges = ?, TotalPayments = ?, Credits_Reductions = ?, LastInvoiceDate = ?, LastPaymentDate = ?, AccountStatus = ?, AccountComments = ? WHERE AccountID =" + acctId +";";
 
            PreparedStatement pstmt = connection.prepareStatement(updateAccount);
            pstmt.setString(1, "T");
@@ -289,18 +295,19 @@ public class Account {
            pstmt.executeUpdate();
 
 
-
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
         }
     }
 
+    //get current date - not currently used
     private static java.sql.Date getCurrentDate() {
         java.util.Date today = new java.util.Date();
         return new java.sql.Date(today.getTime());
     }
 
+    //return the newly created account that was created in addToDatabase
     protected int getNewAcctId() throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
