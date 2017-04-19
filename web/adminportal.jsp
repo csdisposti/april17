@@ -48,14 +48,20 @@
             </div>
             <div class="col-sm-3">
                 <h3>Admin Tasks</h3>
-                <form action="AdminSetReservation" method="post">
-                    <input type="submit" class="btn btn-default btn-sp" value="Approve Reservation"/>
+                <form action="AdminManagementResevation" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="Reservation Management"/>
                 </form>
-                <form action="AdminSetMaintenance" method="post">
-                    <input type="submit" class="btn btn-default btn-sp" value="Schedule Maintenance"/>
+                <form action="AdminManagementMaintenance" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="Maintenance Management"/>
                 </form>
-                <form action="AdminEditMemberInfo" method="post">
-                    <input type="submit" class="btn btn-default btn-sp" value="Edit Member Info"/>
+                <form action="AdminManagementMember" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="Member Management"/>
+                </form>
+                <form action="AdminManagementAircraft" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="Aircraft Management"/>
+                </form>
+                <form action="AdminManagementAirport" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="Airport Management"/>
                 </form>
                 <form action="Logout" method="post">
                     <input type="submit" class="btn btn-default btn-sp" value="Log Out"/>

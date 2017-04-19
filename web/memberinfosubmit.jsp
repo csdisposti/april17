@@ -36,18 +36,30 @@
         <h2 class="text-center">Update Complete</h2>
         <h3 class="text-center">The Member's info has been updated</h3>
         <hr>
-        <div class="col-sm-3">
+        <div class="col-sm-1">
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <h3>Updated Member Info</h3>
             <hr>
             <p>${n}</p>
             <hr>
         </div>
-        <div class="col-sm-4">
-            <a href="/adminportal.jsp" class="btn btn-default btn-sp">Return to AdminPortal</a>
+        <div class="col-sm-3">
+            <h3>Updated Account Info</h3>
+            <hr>
+            <p>${an}</p>
+            <hr>
         </div>
         <div class="col-sm-3">
+            <h3>Updated Member Status</h3>
+            <hr>
+            <p>Admin: Yes</p>
+            <p>Mechanic: No</p>
+            <p>Instrcutor: No</p>
+            <hr>
+        </div>
+        <div class="col-sm-1">
+            <a href="/adminportal.jsp" class="btn btn-default btn-sp">Return to AdminPortal</a>
         </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>

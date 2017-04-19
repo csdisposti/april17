@@ -132,7 +132,7 @@ public class Account {
     }
 
     //get Account Total Charges
-    public double getTotalChgs() {
+    public int getTotalChgs() {
         return totalChgs;
     }
 
@@ -142,7 +142,7 @@ public class Account {
     }
 
     //get Account Total Payments
-    public double getTotalPays() {
+    public int getTotalPays() {
         return totalPays;
     }
 
@@ -152,7 +152,7 @@ public class Account {
     }
 
     //get Account Credit Reductions
-    public double getCreditReds() {
+    public int getCreditReds() {
         return creditReds;
     }
 
@@ -202,7 +202,7 @@ public class Account {
     }
 
     //read entire member from database using account id in column AccountID
-    public void readFromDatabase(String accID) throws Exception {
+    public void readFromDatabase(int accID) throws Exception {
         //open database connection
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -235,7 +235,7 @@ public class Account {
                 this.creditReds = rs.getInt("Credits_Reductions");
                 this.lastInvDate = rs.getDate("LastInvoiceDate");
                 this.lastPayDate = rs.getDate("LastPaymentDate");
-                this.creditReds = rs.getInt("AccountStatus");
+                this.acctStat = rs.getString("AccountStatus");
                 this.acctCom = rs.getString("AccountComments");
             }
         } catch (Exception e) {
@@ -306,6 +306,53 @@ public class Account {
         }
     }
 
+    //update an account in the database
+    /*Date lastinvoicedate, Date lastpaymentdate,*/
+    protected void updateAccount(int accid, String accttype, String street, String city, String state, String zip, String payplan, int totcharges, int totpayments, int creditreduc,  String accountstatus, String acccomms ) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            //create statement
+            //update account with user data
+            /*LastInvoiceDate = ?, LastPaymentDate = ?,*/
+            String updateAccount = "UPDATE AscendDB.tblAccount SET AccountType = ?, StreetAddress = ?, City = ?, State = ?, Zip = ?, PaymentPlan = ?, TotalCharges = ?, TotalPayments = ?, Credits_Reductions = ?,  AccountStatus = ?, AccountComments = ? WHERE AccountID =" + accid +";";
+
+            PreparedStatement pstmt = connection.prepareStatement(updateAccount);
+            pstmt.setString(1, accttype);
+            pstmt.setString(2, street);
+            pstmt.setString(3, city);
+            pstmt.setString(4, state);
+            pstmt.setString(5, zip);
+            pstmt.setString(6, payplan);
+            pstmt.setInt(7, totcharges);
+            pstmt.setInt(8, totpayments);
+            pstmt.setInt(9, creditreduc);
+           // pstmt.setDate(10, (java.sql.Date) lastinvoicedate);
+           // pstmt.setDate(11, (java.sql.Date) lastpaymentdate);
+            pstmt.setString(10, accountstatus);
+            pstmt.setString(11, acctCom);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     //get current date - not currently used
     private static java.sql.Date getCurrentDate() {
         java.util.Date today = new java.util.Date();
@@ -343,5 +390,14 @@ public class Account {
             }
         }
         return this.acctId;
+    }
+
+    @Override
+    public String toString() {
+        /*private Date lastInvDate;
+        private Date lastPayDate;*/
+        return "<p>Account ID: "+this.acctId +"</p><p>Account Type: "+this.acctType+"</p><p>Street: "+ this.street+"</p><p>City: "+this.city+"</p><p>State: "+this.state+"</p><p>Zip Code: "+
+                this.zip+"</p><p>Payment Plan: "+this.paymentPlan+"</p><p>Total Charges: "+this.totalChgs+"</p><p>Total Payments: "+this.totalPays+"</p><p>Credits Reductions: "+
+                this.creditReds+"</p><p>Account Status: " + this.acctStat +"</p><p>Account Comments: " + this.acctCom +"</p>";
     }
 }

@@ -46,20 +46,20 @@
         <url-pattern>/Reservation</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>EditMemberInfo</servlet-name>
-        <servlet-class>org.example.EditMemberInfo</servlet-class>
+        <servlet-name>MemberManagement</servlet-name>
+        <servlet-class>org.example.MemberManagement</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EditMemberInfo</servlet-name>
-        <url-pattern>/EditMemberInfo</url-pattern>
+        <servlet-name>MemberManagement</servlet-name>
+        <url-pattern>/MemberManagement</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>EditMemberInfoSubmit</servlet-name>
-        <servlet-class>org.example.EditMemberInfoSubmit</servlet-class>
+        <servlet-name>MemberManagementSubmit</servlet-name>
+        <servlet-class>org.example.MemberManagementSubmit</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EditMemberInfoSubmit</servlet-name>
-        <url-pattern>/EditMemberInfoSubmit</url-pattern>
+        <servlet-name>MemberManagementSubmit</servlet-name>
+        <url-pattern>/MemberManagementSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Home</servlet-name>
@@ -110,28 +110,44 @@
         <url-pattern>/AdminPortal</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AdminEditMemberInfo</servlet-name>
-        <servlet-class>org.example.AdminEditMemberInfo</servlet-class>
+        <servlet-name>AdminManagementMember</servlet-name>
+        <servlet-class>org.example.AdminManagementMember</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AdminEditMemberInfo</servlet-name>
-        <url-pattern>/AdminEditMemberInfo</url-pattern>
+        <servlet-name>AdminManagementMember</servlet-name>
+        <url-pattern>/AdminManagementMember</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AdminSetReservation</servlet-name>
-        <servlet-class>org.example.AdminSetReservation</servlet-class>
+        <servlet-name>AdminManagementReservation</servlet-name>
+        <servlet-class>org.example.AdminManagementReservation</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AdminSetReservation</servlet-name>
-        <url-pattern>/AdminSetReservation</url-pattern>
+        <servlet-name>AdminManagementReservation</servlet-name>
+        <url-pattern>/AdminManagementReservation</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AdminSetMaintenance</servlet-name>
-        <servlet-class>org.example.AdminSetMaintenance</servlet-class>
+        <servlet-name>AdminManagementMaintenance</servlet-name>
+        <servlet-class>org.example.AdminManagementMaintenance</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AdminSetMaintenance</servlet-name>
-        <url-pattern>/AdminSetMaintenance</url-pattern>
+        <servlet-name>AdminManagementMaintenance</servlet-name>
+        <url-pattern>/AdminManagementMaintenance</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminManagementAircraft</servlet-name>
+        <servlet-class>org.example.AdminManagementAircraft</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminManagementAircraft</servlet-name>
+        <url-pattern>/AdminManagementAircraft</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminManagementAirport</servlet-name>
+        <servlet-class>org.example.AdminManagementAirport</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminManagementAirport</servlet-name>
+        <url-pattern>/AdminManagementAirport</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ReservationSubmit</servlet-name>

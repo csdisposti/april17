@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class AdminEditMemberInfo extends HttpServlet {
+public class AdminManagementAirport extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
 

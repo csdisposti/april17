@@ -297,5 +297,3 @@ public class Reservations {
                 this.instNo+"</p><p>Member Comments: "+this.resApprovedBy+"</p><p>Reservation Comments: " + this.resCom;
     }
 }
-
-

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class AdminSetMaintenance extends HttpServlet {
+public class AdminManagementAircraft extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
 
@@ -15,21 +15,30 @@ public class AdminSetMaintenance extends HttpServlet {
 
         response.setContentType("text/html");
 
+
         PrintWriter out = response.getWriter();
 
 
-        try{
-            request.getRequestDispatcher("/adminsetmaintenance.jsp").forward(request, response);
+        String username = request.getParameter("usr");
 
-        }
-            catch (Exception e2)
+
+        try{
+            //Member m = new Member();
+           // m.readFromDatabase(username);
+
+            //request.getSession().setAttribute("m", m);
+           // request.getSession().setAttribute("usr", username);
+
+
+               request.getRequestDispatcher("/admineditmemberinfo.jsp").forward(request, response);
+
+
+        }catch (Exception e2)
+
         {
             e2.printStackTrace();
         }
         finally{out.close();
-
         }
-
     }
-
-}
+} 
