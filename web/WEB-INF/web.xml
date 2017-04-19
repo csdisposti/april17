@@ -134,6 +134,14 @@
         <url-pattern>/AdminSetMaintenance</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ReservationSubmit</servlet-name>
+        <servlet-class>org.example.ReservationSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReservationSubmit</servlet-name>
+        <url-pattern>/ReservationSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>Test</servlet-name>
         <servlet-class>org.example.Test</servlet-class>
     </servlet>

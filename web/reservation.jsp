@@ -42,13 +42,13 @@
          <hr>
             <div class="col-sm-1">
             </div>
-        <form action="ReservationOne" method="post">
+        <form action="ReservationSubmit" method="post">
             <div class="col-sm-3">
                     <h4>What type of reservation would you like to make?</h4>
                     <input type="hidden" id="memidres" name="memidres" title="Member ID" value="${memidlogin}"><br />
-                    <input type="radio" name="resmain" value="resmain" required> Maintenance Reservation<br>
-                    <input type="radio" name="resflight" value="resflight"> Flight Reservation<br>
-                    <input type="radio" name="reslesson" value="reslesson"> Lesson Reservation<br>
+                    <input type="radio" name="resmain" value="resmain" > Maintenance Reservation<br>
+                    <input type="radio" name="resflight" value="resflight" > Flight Reservation<br>
+                    <input type="radio" name="reslesson" value="reslesson" > Lesson Reservation<br>
 
             </div>
             <div class="col-sm-3">
@@ -71,11 +71,12 @@
             </select>
                 <hr>
                 <h4>If scheduling a lesson,please choice desired instructor:</h4>
-
-                <select name="bob" required>
+                <input id="ir" type="hidden" value="${ir}"/>
+                <select name="type">
                     <option value="Choose an instructor" selected>Choose an instructor</option>
-                    <option value="Bob">Bob</option>
-                    <option value="Susie">Susie</option>
+                    <c:forEach items="${ir}" var="rir">
+                        <option value="${rir}">${rir}</option>
+                    </c:forEach>
                 </select><br>
                 <p>&nbsp;</p>
                 <input type="submit" class="btn btn-default btn-sp" value="Submit Reservation Request"/>
