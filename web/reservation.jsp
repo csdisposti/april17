@@ -64,9 +64,9 @@
                 <h4>What type of aircraft would you like to reserve?</h4>
                 <input id="rr" type="hidden" value="${rr}"/>
                 <select name="type" required>
-                    <option value="Choose an aircraft" selected>Choose an aircraft</option>
-                <c:forEach items="${rr}" var="rer">
-                <option value="${rer}">${rer}</option>
+                    <option value="Choose an aircraft">Choose an aircraft</option>
+                <c:forEach items="${rr}"  var="rer">
+                <option value="aircrafttype" name="aircrafttype" >${rer}</option>
                 </c:forEach>
             </select>
                 <hr>
@@ -75,7 +75,7 @@
                 <select name="type">
                     <option value="Choose an instructor" selected>Choose an instructor</option>
                     <c:forEach items="${ir}" var="rir">
-                        <option value="${rir}">${rir}</option>
+                        <option value="${rir}" name="instructor">${rir}</option>
                     </c:forEach>
                 </select><br>
                 <p>&nbsp;</p>

@@ -38,6 +38,7 @@
         <div class="col-sm-6">
             <h3 class="text-center">Your reservation has been submitted for Admin approval</h3>
             <hr>
+            <p>${ressub}</p>
             <a href="/member.jsp" class="btn btn-default btn-sp">Return to Member Page</a>
         </div>
         <div class="col-sm-3">
