@@ -7,7 +7,7 @@
 
 <head>
 
-    <title>Logged Out - Ascend</title>
+    <title>Maintenance Management - Ascend</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -33,10 +33,19 @@
     </header>
     <!--begin main text-->
     <div class="row gray">
+        <h3 class="text-center">Maintenance Management</h3>
         <div class="col-sm-3">
         </div>
-        <div class="col-sm-6">
-            <h3 class="text-center">Edit Member Info</h3>
+        <div class="col-sm-3">
+            <form action="MaintenanceAdd" method="post">
+                <input type="submit" class="btn btn-default btn-sp" value="Schedule New Maintenance"/>
+            </form>
+            <hr>
+        </div>
+        <div class="col-sm-3">
+            <form action="MaintenanceUpdate" method="post">
+                <input type="submit" class="btn btn-default btn-sp" value="Change Existing Maintenance"/>
+            </form>
             <hr>
         </div>
         <div class="col-sm-3">

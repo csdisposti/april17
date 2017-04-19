@@ -19,7 +19,7 @@ public class AdminManagementMaintenance extends HttpServlet {
 
 
         try{
-            request.getRequestDispatcher("/adminsetmaintenance.jsp").forward(request, response);
+            request.getRequestDispatcher("/maintenancemanagement.jsp").forward(request, response);
 
         }
             catch (Exception e2)

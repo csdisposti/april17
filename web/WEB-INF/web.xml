@@ -62,6 +62,14 @@
         <url-pattern>/ReservationsManagement</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ReservationsManagementSubmit</servlet-name>
+        <servlet-class>org.example.ReservationsManagementSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReservationsManagementSubmit</servlet-name>
+        <url-pattern>/ReservationsManagementSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ReservationsManagementPending</servlet-name>
         <servlet-class>org.example.ReservationsManagementPending</servlet-class>
     </servlet>
@@ -78,14 +86,6 @@
         <url-pattern>/ReservationsManagementPendingSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ReservationsManagementSubmit</servlet-name>
-        <servlet-class>org.example.ReservationsManagementSubmit</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ReservationsManagementSubmit</servlet-name>
-        <url-pattern>/ReservationsManagementSubmit</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>MemberManagement</servlet-name>
         <servlet-class>org.example.MemberManagement</servlet-class>
     </servlet>
@@ -100,6 +100,38 @@
     <servlet-mapping>
         <servlet-name>MemberManagementSubmit</servlet-name>
         <url-pattern>/MemberManagementSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MaintenanceManagement</servlet-name>
+        <servlet-class>org.example.MaintenanceManagement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MaintenanceManagement</servlet-name>
+        <url-pattern>/MaintenanceManagement</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MaintenanceManagementSubmit</servlet-name>
+        <servlet-class>org.example.MaintenanceManagementSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MaintenanceManagementSubmit</servlet-name>
+        <url-pattern>/MaintenanceManagementSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MaintenanceAdd</servlet-name>
+        <servlet-class>org.example.MaintenanceAdd</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MaintenanceAdd</servlet-name>
+        <url-pattern>/MaintenanceAdd</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MaintenanceUpdate</servlet-name>
+        <servlet-class>org.example.MaintenanceUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MaintenanceUpdate</servlet-name>
+        <url-pattern>/MaintenanceUpdate</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Home</servlet-name>
