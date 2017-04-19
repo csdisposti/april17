@@ -44,6 +44,10 @@
         </div>
         <div class="col-sm-3">
             <form action="MaintenanceUpdate" method="post">
+                <select name="type" required>
+                    <option value="Choose an aircraft">Choose a Service Contract ID</option>
+                    <option>016540548-1</option>
+                </select><br/>
                 <input type="submit" class="btn btn-default btn-sp" value="Change Existing Maintenance"/>
             </form>
             <hr>

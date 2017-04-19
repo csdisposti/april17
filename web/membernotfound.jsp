@@ -42,12 +42,12 @@
             <h4>Choose Member to edit - choose one of the options below to edit a member</h4>
             <form action="MemberManagement" method="post">
                 <label for="mememail">Member Email:</label><br />
-                <input type="text" id="mememail" name="mememail" title="Member Email" required/><br />
+                <input type="text" id="mememail" name="mememail" title="Member Email"/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Get Member"/>
 
             <p>or</p>
                 <label for="memid">Member ID:</label><br />
-                <input type="text" id="memid" name="memid" title="Member ID" required/><br />
+                <input type="text" id="memid" name="memid" title="Member ID" /><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Get Member"/>
             </form>
         </div>
