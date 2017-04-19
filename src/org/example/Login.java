@@ -26,6 +26,7 @@ public class Login extends HttpServlet {
 
         String memberLogin;
         String fnm;
+        int memidlogin;
 
         Credentials c = new Credentials();
         Member mlogin = new Member();
@@ -43,7 +44,9 @@ public class Login extends HttpServlet {
                 request.getSession().setAttribute("us", memberLogin);
                 //get member first name
                 fnm = mlogin.getfName();
+                memidlogin = mlogin.getMemId();
                 request.getSession().setAttribute("fnm" , fnm);
+                request.getSession().setAttribute("memidlogin", memidlogin);
                 request.getRequestDispatcher("/member.jsp").forward(request, response);
             }
         }catch (Exception e2)

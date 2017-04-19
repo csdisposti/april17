@@ -1,8 +1,11 @@
 package org.example;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.sql.Array;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -10,19 +13,22 @@ import java.util.Properties;
  */
 public class Aircraft {
     private String reg;
-    private long ownId;
+    private int ownId;
     private String makeModel;
     private String airType;
-    private double rentFee;
-    private long airAge;
-    private long flightHrs;
-    private long flightDist;
+    private int rentFee;
+    private int airAge;
+    private double flightHrs;
+    private double flightDist;
     private String lastMaintType;
     private Date lastMaintDate;
     private String airCom;
 
-    public Aircraft(String reg, long ownId, String makeModel, String airType, double rentFee,
-                    long airAge, long flightHrs, long flightDist, String lastMaintType, Date lastMaintDate, String airCom) {
+    private ArrayList list;
+
+    //constructor
+    public Aircraft(String reg, int ownId, String makeModel, String airType, int rentFee,
+                    int airAge, double flightHrs, double flightDist, String lastMaintType, Date lastMaintDate, String airCom) {
         this.reg = reg;
         this.ownId = ownId;
         this.makeModel = makeModel;
@@ -36,6 +42,26 @@ public class Aircraft {
         this.airCom = airCom;
     }
 
+    //empty constructor
+    public Aircraft() {
+        this.reg = null;
+        this.ownId = 0;
+        this.makeModel = null;
+        this.airType = null;
+        this.rentFee = 0;
+        this.airAge = 0;
+        this.flightHrs = 0;
+        this.flightDist = 0;
+        this.lastMaintType = null;
+        this.lastMaintDate = null;
+        this.airCom = null;
+    }
+
+    public Aircraft(String reg, String makeModel) {
+        this.reg = reg;
+        this.makeModel = makeModel;
+    }
+
     //get Aircraft Registration
     public String getReg() {
         return reg;
@@ -47,12 +73,12 @@ public class Aircraft {
     }
 
     //get Aircraft Owner Id
-    public long getOwnId() {
+    public int getOwnId() {
         return ownId;
     }
 
     //set Aircraft Owner Id
-    public void setOwnId(long ownId) {
+    public void setOwnId(int ownId) {
         this.ownId = ownId;
     }
 
@@ -77,42 +103,42 @@ public class Aircraft {
     }
 
     //get Aircraft Rental fee
-    public double getRentFee() {
+    public int getRentFee() {
         return rentFee;
     }
 
     //set Aircraft Rental fee
-    public void setRentFee(double rentFee) {
+    public void setRentFee(int rentFee) {
         this.rentFee = rentFee;
     }
 
     //get Aircraft Age
-    public long getAirAge() {
+    public int getAirAge() {
         return airAge;
     }
 
     //set Aircraft Age
-    public void setAirAge(long airAge) {
+    public void setAirAge(int airAge) {
         this.airAge = airAge;
     }
 
     //get Aircraft Flight Hours
-    public long getFlightHrs() {
+    public double getFlightHrs() {
         return flightHrs;
     }
 
     //set Aircraft Flight Hours
-    public void setFlightHrs(long flightHrs) {
+    public void setFlightHrs(double flightHrs) {
         this.flightHrs = flightHrs;
     }
 
     //get Aircraft Flight Distance
-    public long getFlightDist() {
+    public double getFlightDist() {
         return flightDist;
     }
 
     //set Aircraft Flight Distance
-    public void setFlightDist(long flightDist) {
+    public void setFlightDist(double flightDist) {
         this.flightDist = flightDist;
     }
 
@@ -146,8 +172,7 @@ public class Aircraft {
         this.airCom = airCom;
     }
 
-    public void readFromDatabase(String Registration) throws Exception
-    {
+    public void readFromDatabase(String registration) throws Exception {
 
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -161,32 +186,42 @@ public class Aircraft {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAircraft WHERE Registration='"+Registration+"';");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAircraft");
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 rs.next();
 
                 this.reg = rs.getString("Registration");
-                this.ownId = rs.getLong("OwnerID");
+                this.ownId = rs.getInt("OwnerID");
                 this.makeModel = rs.getString("Make_Model");
                 this.airType = rs.getString("AircraftType");
-                this.rentFee = rs.getDouble("RentalFee");
-                this.airAge = rs.getLong("AircraftAge");
-                this.flightHrs = rs.getLong("FlightHours");
-                this.flightDist = rs.getLong("FlightDistance");
+                this.rentFee = rs.getInt("RentalFee");
+                this.airAge = rs.getInt("AircraftAge");
+                this.flightHrs = rs.getDouble("FlightHours");
+                this.flightDist = rs.getDouble("FlightDistance");
                 this.lastMaintType = rs.getString("LastMaintenanceType");
                 this.lastMaintDate = rs.getDate("LastMaintenanceDate");
                 this.airCom = rs.getString("AircraftComments");
             }
-        } catch (Exception e)
-        {
+
+        } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-    public void writeToDatabase()
-    {
-        //java.sql.Connection c = AscendMain.conn;
+
+
+
+    @Override
+    public String toString() {
+        return "<p>Registration: " + this.reg + "</p><p>" + this.ownId + "</p><p>" + this.makeModel + "</p><p>" + this.airType +"</p><p>" + this.rentFee +
+               "</p><p>" + this.airAge + "</p><p>" + this.flightHrs + "</p><p>" + this.flightDist + "</p><p>" + this.lastMaintType + "</p><p>" + this.lastMaintDate + "</p><p>" + this.airCom  +"</p>";
     }
 }

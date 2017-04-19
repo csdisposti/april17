@@ -1,5 +1,9 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="org.example.Login"%>
+<%@page import="org.example.Aircraft"%>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <!DOCTYPE html>
 
@@ -7,7 +11,7 @@
 
 <head>
 
-    <title>Logged Out - Ascend</title>
+    <title>Schedule a Reservation - Ascend</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -22,6 +26,7 @@
 
     <link rel="stylesheet" type="text/css" href="http://ascend.2ndmm.com/css/style.css">
 
+
 </head>
 
 <body>
@@ -33,18 +38,56 @@
     </header>
     <!--begin main text-->
     <div class="row gray">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-6">
-            <h3 class="text-center">Reservation</h3>
-            <hr>
-        </div>
-        <div class="col-sm-3">
+        <h3 class="text-center">Schedule a Reservation</h3>
+         <hr>
+            <div class="col-sm-1">
+            </div>
+        <form action="ReservationOne" method="post">
+            <div class="col-sm-3">
+                    <h4>What type of reservation would you like to make?</h4>
+                    <input type="hidden" id="memidres" name="memidres" title="Member ID" value="${memidlogin}"><br />
+                    <input type="radio" name="resmain" value="resmain" required> Maintenance Reservation<br>
+                    <input type="radio" name="resflight" value="resflight"> Flight Reservation<br>
+                    <input type="radio" name="reslesson" value="reslesson"> Lesson Reservation<br>
 
+            </div>
+            <div class="col-sm-3">
+                <h4>Date you would like to schedule your reservation:</h4>
+                <label for="resdate">Resevation Date: </label>
+                <input type="text" id="resdate" name="resdate" required/> <br><span> enter in following format: MM/DD/YYYY</span><br>
+                <br>
+                <h4>Time you would like to schedule your reservation:</h4>
+                <label for="restime">Resevation Time: </label>
+                <input type="text" id="restime" name="resdate" required/><br> <span> enter using 24 hour clock. ex: 13:30</span><br>
+            </div>
+            <div class="col-sm-3">
+                <h4>What type of aircraft would you like to reserve?</h4>
+                <input id="rr" type="hidden" value="${rr}"/>
+                <select name="type" required>
+                    <option value="Choose an aircraft" selected>Choose an aircraft</option>
+                <c:forEach items="${rr}" var="rer">
+                <option value="${rer}">${rer}</option>
+                </c:forEach>
+            </select>
+                <hr>
+                <h4>If scheduling a lesson,please choice desired instructor:</h4>
 
-        </div>
+                <select name="bob" required>
+                    <option value="Choose an instructor" selected>Choose an instructor</option>
+                    <option value="Bob">Bob</option>
+                    <option value="Susie">Susie</option>
+                </select><br>
+                <p>&nbsp;</p>
+                <input type="submit" class="btn btn-default btn-sp" value="Submit Reservation Request"/>
+                <p>&nbsp;</p>
+            </div>
+        </form>
+            <div class="col-sm-2">
 
-        <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
+            </div>
+
+        <hr>
+        <p><img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block"></p>
         <hr>
 
 

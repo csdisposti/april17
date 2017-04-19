@@ -8,6 +8,9 @@ import java.util.Properties;
 /**
  * Created by cdisp on 3/15/2017.
  */
+
+/*Testing pages*/
+
 public class Test2  {
     private String eu;
     private String pw;

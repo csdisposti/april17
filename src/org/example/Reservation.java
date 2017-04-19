@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Reservation extends HttpServlet {
 
@@ -16,11 +18,19 @@ public class Reservation extends HttpServlet {
         response.setContentType("text/html");
 
         PrintWriter out = response.getWriter();
-
+        String reg = "N3621";
+        String blah;
+        AircraftList aircrafts = new AircraftList();
+        ArrayList<AircraftList> ResourcesReserved = new ArrayList<>();
 
         try{
-            request.getRequestDispatcher("/reservation.jsp").forward(request, response);
 
+            ResourcesReserved = aircrafts.populateResourcesReserved();
+
+            System.out.println(ResourcesReserved);
+            request.getSession().setAttribute("rr", ResourcesReserved);
+
+            request.getRequestDispatcher("/reservation.jsp").forward(request, response);
         }
             catch (Exception e2)
         {

@@ -43,10 +43,7 @@
                 <label for="mememail">Member Email:</label><br />
                 <input type="text" id="mememail" name="mememail" title="Member Email" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Get Member"/>
-            </form>
-
             <p>or</p>
-            <form action="EditMemberInfo" method="post">
                 <label for="memid">Member ID:</label><br />
                 <input type="text" id="memid" name="memid" title="Member ID" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Get Member"/>
