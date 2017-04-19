@@ -30,7 +30,7 @@ public class AdminManagementAirport extends HttpServlet {
            // request.getSession().setAttribute("usr", username);
 
 
-               request.getRequestDispatcher("/admineditmemberinfo.jsp").forward(request, response);
+               request.getRequestDispatcher("/airportmanagement.jsp").forward(request, response);
 
 
         }catch (Exception e2)
