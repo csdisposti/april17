@@ -36,9 +36,10 @@
         <div class="row gray text-center">
             <div class="col-sm-3">
             </div>
-            <div class="col-sm-6">
+
                 <h3 class="text-center">Manage Reservations</h3>
                 <hr>
+            <div class="col-sm-6">
                 <h4>Find Reservations:</h4>
                 <form action="ReservationsManagement" method="post">
                     <label for="mememail">Reservation Date:</label><br />
@@ -50,7 +51,10 @@
                 </form>
             </div>
             <div class="col-sm-3">
-
+                <h4>Approve/Reject Pending Reservations:</h4>
+                <form action="ReservationsManagementPending" method="post">
+                    <input type="submit" class="btn btn-default btn-sp" value="View Pending Reservations"/>
+                </form>
 
             </div>
 

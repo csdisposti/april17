@@ -62,6 +62,22 @@
         <url-pattern>/ReservationsManagement</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ReservationsManagementPending</servlet-name>
+        <servlet-class>org.example.ReservationsManagementPending</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReservationsManagementPending</servlet-name>
+        <url-pattern>/ReservationsManagementPending</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ReservationsManagementPendingSubmit</servlet-name>
+        <servlet-class>org.example.ReservationsManagementPendingSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReservationsManagementPendingSubmit</servlet-name>
+        <url-pattern>/ReservationsManagementPendingSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ReservationsManagementSubmit</servlet-name>
         <servlet-class>org.example.ReservationsManagementSubmit</servlet-class>
     </servlet>
