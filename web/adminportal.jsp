@@ -48,7 +48,7 @@
             </div>
             <div class="col-sm-3">
                 <h3>Admin Tasks</h3>
-                <form action="AdminManagementResevation" method="post">
+                <form action="AdminManagementReservation" method="post">
                     <input type="submit" class="btn btn-default btn-sp" value="Reservation Management"/>
                 </form>
                 <form action="AdminManagementMaintenance" method="post">

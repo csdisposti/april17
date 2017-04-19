@@ -40,26 +40,14 @@
             <hr>
             <h3>ERROR - Member not found - please try again</h3>
             <h4>Choose Member to edit - choose one of the options below to edit a member</h4>
-            <form action="EditMemberInfo" method="post">
+            <form action="MemberManagement" method="post">
                 <label for="mememail">Member Email:</label><br />
                 <input type="text" id="mememail" name="mememail" title="Member Email" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Get Member"/>
-            </form>
 
             <p>or</p>
-            <form action="EditMemberInfo" method="post">
                 <label for="memid">Member ID:</label><br />
                 <input type="text" id="memid" name="memid" title="Member ID" required/><br />
-                <input type="submit" class="btn btn-default btn-sp" value="Get Member"/>
-            </form>
-            <p>or</p>
-            <form action="EditMemberInfo" method="post">
-                <label for="memfname">Member First Name:</label><br />
-                <input type="text" id="memfname" name="memfname" title="Member First Name" required/><br />
-                <label for="memlname">Member Last Name:</label><br />
-                <input type="text" id="memlname" name="memlname" title="Member Last Name" required/><br />
-                <label for="mempphone">Member Primary Phone:</label><br />
-                <input type="text" id="mempphone" name="mempphone" title="Member Primary Phone" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Get Member"/>
             </form>
         </div>

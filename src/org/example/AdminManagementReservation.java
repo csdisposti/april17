@@ -19,7 +19,7 @@ public class AdminManagementReservation extends HttpServlet {
 
 
         try{
-            request.getRequestDispatcher("/adminsetreservation.jsp").forward(request, response);
+            request.getRequestDispatcher("/adminreservationinfo.jsp").forward(request, response);
 
         }
             catch (Exception e2)

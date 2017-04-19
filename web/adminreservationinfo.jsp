@@ -7,7 +7,7 @@
 
 <head>
 
-    <title>Logged Out - Ascend</title>
+    <title>Admin Reservation Management - Ascend</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -33,16 +33,26 @@
     </header>
     <!--begin main text-->
     <div class="row gray">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-6">
-            <h3 class="text-center">Edit Member Info</h3>
-            <hr>
-        </div>
-        <div class="col-sm-3">
+        <div class="row gray text-center">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-6">
+                <h3 class="text-center">Manage Reservations</h3>
+                <hr>
+                <h4>Find Reservations:</h4>
+                <form action="ReservationsManagement" method="post">
+                    <label for="mememail">Reservation Date:</label><br />
+                    <input type="text" id="mememail" name="mememail" title="Member Email" /><br />
+                    <p>or</p>
+                    <label for="memid">Instructor Number:</label><br />
+                    <input type="text" id="memid" name="memid" title="Member ID" /><br />
+                    <input type="submit" class="btn btn-default btn-sp" value="View Reservations"/>
+                </form>
+            </div>
+            <div class="col-sm-3">
 
 
-        </div>
+            </div>
 
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
