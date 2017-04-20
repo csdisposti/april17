@@ -9,7 +9,7 @@ import java.util.Properties;
 /**
  * Created by cdisp on 3/15/2017.
  */
-public class Administrator extends Member {
+public class Administrator {
     private int adminId;
     private int memNo;
     private String adminLev;
@@ -98,6 +98,7 @@ public class Administrator extends Member {
         this.adminCom = adminCom;
     }
 
+    //read from databse by member id
     public void readFromDatabase(int mn) throws Exception
     {
         java.sql.Connection connection;
@@ -128,22 +129,19 @@ public class Administrator extends Member {
                     this.adminCom = rs2.getString("AdminComments");
                 }
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
-        } finally
-        {
-            try
-            {
+        } finally {
+            try {
                 connection.close();
-            }catch(Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
+    //add member to admin table
     protected void addToDatabase(int memNo, String adminLev, String adminCom) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -169,8 +167,16 @@ public class Administrator extends Member {
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
+
+    //update member entry in admin table
     protected void updateAdminInfo(int memNo, String adminLev, String adminCom) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -197,17 +203,57 @@ public class Administrator extends Member {
                 pstmt.setString(3, adminCom);
                 pstmt.executeUpdate();
             }
-            } catch(Exception e){
-                System.err.println("err");
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
 
+    //remove member as having "special admin status" as either, admin, mechanic, or instructor
+    protected void removeAdminStatus(int adminID, String adminLev, String adminCom) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+            java.sql.ResultSet rs = statement.executeQuery("SELECT AdministratorID FROM AscendDB.tblAdmin WHERE AdministratorID=" + adminID);
+            rs.next();
+            this.adminId = rs.getInt("AdministratorID");
 
+            String updateMember = "UPDATE AscendDB.tblAdmin SET AdminLevel = ?, DateRemoved = ?, AdminComments = ? WHERE AdministratorID=" + adminId + ";";
+            PreparedStatement pstmt = connection.prepareStatement(updateMember);
+            pstmt.setString(1, adminLev);
+            pstmt.setDate(2, new java.sql.Date(new java.util.Date().getTime()));
+            pstmt.setString(3, adminCom);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @Override
     public String toString() {
         return "<p>Admin ID: "+this.adminId+"</p><p>Admin Level: "+this.adminLev+"</p><p>Date Set As Admin: "+
                 this.dateSetAdmin+"</p><p>Date Removed: "+this.dateRevAdmin+"</p><p>Admin Comments: "+this.adminCom+"</p>";
     }
 }
-

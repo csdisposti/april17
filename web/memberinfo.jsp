@@ -39,78 +39,74 @@
         <div class="col-sm-3">
             <h3 class="text-center">Edit Member Basic Info</h3>
             <hr>
-
                 <input type="hidden"  name="action" value="login">
                 <input type="hidden" id="memid" name="memid" title="memid" value=${mid}>
                 <input type="hidden" id="email" name="email" title="email" value="${em}">
-                <label for="fname">First Name:</label><br />
+            <label for="fname">First Name:</label><br />
                 <input type="text" id="fname" name="fname" title="fname" value="${fn}"/> <br />
-                <label for="lname">Last Name:</label><br />
+            <label for="lname">Last Name:</label><br />
                 <input type="text" id="lname" name="lname" title="lname" value="${ln}"/> <br />
-                <label for="phone1">Phone 1:</label><br />
+            <label for="phone1">Phone 1:</label><br />
                 <input type="text" id="phone1" name="phone1" title="phone1" value="${ph1}"/> <br />
-                <label for="phone2">Phone 2:</label><br />
+            <label for="phone2">Phone 2:</label><br />
                 <input type="text" id="phone2" name="phone2" title="phone2" value="${ph2}"/> <br />
-                <label for="en">Emergency Contact Name:</label><br />
+            <label for="en">Emergency Contact Name:</label><br />
                 <input type="text" id="en" name="en" title="en" value="${ecn}"/> <br />
-                <label for="ep">Emergency Contact Phone:</label><br />
+            <label for="ep">Emergency Contact Phone:</label><br />
                 <input type="text" id="ep" name="ep" title="ep" value="${ecp}"/> <br />
-                <label for="memcomms">Member Comments:</label><br />
+            <label for="memcomms">Member Comments:</label><br />
                 <textarea rows="10" cols="30" id="memcomms" name="memcomms" value="${memcomms}" title="memcomms"></textarea> <br />
-
-
         </div>
         <div class="col-sm-3">
             <h3 class="text-center">Edit Member Account Info</h3>
             <hr>
-            <input type="hidden" id="accid" name="accid" title="accid" value=${accid}>
-                <label for="accttype">Account Type:</label><br />
+                <input type="hidden" id="accid" name="accid" title="accid" value=${accid}>
+            <label for="accttype">Account Type:</label><br />
                 <input type="text" id="accttype" name="accttype" title="accttype" value="${accttype}"/><br />
                 <span>I = Individual, F = Family, D = Donor, T = Trial</span><br/>
-                <label for="street">Street:</label><br />
+            <label for="street">Street:</label><br />
                 <input type="text" id="street" name="street" title="street" value="${street}"/> <br />
-                <label for="city">City:</label><br />
+            <label for="city">City:</label><br />
                 <input type="text" id="city" name="city" title="city" value="${city}"/><br />
-                <label for="state">State:</label><br />
+            <label for="state">State:</label><br />
                 <input type="text" id="state" name="state" title="state" value="${state}"/> <br />
-                <label for="zip">Zip Code:</label><br />
+            <label for="zip">Zip Code:</label><br />
                 <input type="text" id="zip" name="zip" title="zip" value="${zip}"/><br />
-                <label for="payplan">Payment Plan:</label><br />
+            <label for="payplan">Payment Plan:</label><br />
                 <input type="text" id="payplan" name="payplan" title="payplan" value="${payplan}"/> <br />
                 <span>D = DirectDraft, C = CreditCard, K = Check, P = Prepaid </span><br/>
 
             <label for="totcharges">Total Charges:</label><br />
-            <input type="text" id="totcharges" name="totcharges" title="totcharges" value="${totcharges}"/> <br />
+                <input type="text" id="totcharges" name="totcharges" title="totcharges" value="${totcharges}"/> <br />
             <label for="totpayments">Total Payments:</label><br />
-            <input type="text" id="totpayments" name="totpayments" title="totpayments" value="${totpayments}"/> <br />
+                <input type="text" id="totpayments" name="totpayments" title="totpayments" value="${totpayments}"/> <br />
             <label for="creditreduc">Credits Reductions:</label><br />
-            <input type="text" id="creditreduc" name="creditreduc" title="creditreduc" value="${creditreduc}"/> <br />
-           <label for="lastinvoicedate">Last Invoice Date:</label><br />
-            <input type="text" id="lastinvoicedate" name="lastinvoicedate" title="lastinvoicedate" value="${lastinvoicedate}"/> <br />
-            <span>yyyy-mm-dd</span><br />
+                <input type="text" id="creditreduc" name="creditreduc" title="creditreduc" value="${creditreduc}"/> <br />
+            <label for="lastinvoicedate">Last Invoice Date:</label><br />
+                <input type="text" id="lastinvoicedate" name="lastinvoicedate" title="lastinvoicedate" value="${lastinvoicedate}"/> <br />
+                <span>yyyy-mm-dd</span><br />
             <label for="lastpaymentdate">Last Payment Date:</label><br />
-            <input type="text" id="lastpaymentdate" name="lastpaymentdate" title="lastpaymentdate" value="${lastpaymentdate}"/> <br />
-            <span>yyyy-mm-dd</span><br/>
+                <input type="text" id="lastpaymentdate" name="lastpaymentdate" title="lastpaymentdate" value="${lastpaymentdate}"/> <br />
+                <span>yyyy-mm-dd</span><br/>
             <label for="accountstatus">Account Status:</label><br />
-            <input type="text" id="accountstatus" name="accountstatus" title="accountstatus" value="${accountstatus}"/> <br />
-            <span>A, B, C = Grades, F = Issues, N = NewAccount </span><br/>
+                <input type="text" id="accountstatus" name="accountstatus" title="accountstatus" value="${accountstatus}"/> <br />
+                <span>A, B, C = Grades, F = Issues, N = NewAccount </span><br/>
             <label for="acccomms">Account Comments:</label><br />
                 <textarea rows="10" cols="30" id="acccomms" name="acccomms" value="${acccomms}" title="acccomms"></textarea> <br />
-<br>
-
-
+                <br>
         </div>
-            <div class="col-sm-3">
-                <h3 class="text-center">Edit Member Status</h3>
-                <hr>
-                <input id="mi" type="hidden" value="${mi}"/>
-                <label for="memberstatus">Member Status:</label><br />
+        <div class="col-sm-3">
+            <h3 class="text-center">Edit Member Status</h3>
+            <hr>
+                <input id="mi" name="mi" title="mi" type="hidden" value="${mi}"/>
+                <input id="adminid" name="adminid" title="adminid" type="hidden" value="${adminid}"/>
+            <label for="memberstatus">Member Status:</label><br />
                 <input type="text" id="memberstatus" name="memberstatus" title="memberstatus" value="${memberstatus}"/> <br />
-                <span>A = Administrator, M = Mechanic, I = Instructor</span><br/>
-                <label for="admincomms">Member Status Comments:</label><br />
+                <span>A = Administrator, M = Mechanic, I = Instructor, N = No Special Status</span><br/>
+            <label for="admincomms">Member Status Comments:</label><br />
                 <textarea rows="10" cols="30" id="admincomms" name="admincomms" value="${admincomms}" title="admincomms"></textarea> <br />
-            <input type="submit"  class="btn btn-default btn-sp" value="Update Member/Account Info" />
-        </div>
+        <input type="submit"  class="btn btn-default btn-sp" value="Update Member/Account Info" />
+         </div>
         </form>
         <div class="col-sm-1">
 

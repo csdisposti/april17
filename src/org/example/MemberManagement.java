@@ -56,6 +56,7 @@ public class MemberManagement extends HttpServlet {
         String acccomms;
 
         //Admin level
+        int adminid;
         String memberstatus;
         String admincomms;
 
@@ -117,6 +118,11 @@ public class MemberManagement extends HttpServlet {
                     admin.readFromDatabase(mid);
                     //get member level
                     memberstatus = admin.getAdminLev();
+                    if (memberstatus != null && !memberstatus.isEmpty()) {
+                        memberstatus = "N";
+                    }
+
+                    adminid = admin.getAdminId();
                     admincomms = admin.getAdminCom();
 
                     //set session variables
@@ -143,6 +149,7 @@ public class MemberManagement extends HttpServlet {
                     request.getSession().setAttribute("lastpaymentdate", lastpaymentdate);
                     request.getSession().setAttribute("accountstatus", accountstatus);
                     request.getSession().setAttribute("acccomms", acccomms);
+                    request.getSession().setAttribute("adminid", adminid);
                     request.getSession().setAttribute("memberstatus", memberstatus);
                     request.getSession().setAttribute("admincomms", admincomms);
                 }
@@ -194,6 +201,10 @@ public class MemberManagement extends HttpServlet {
                     admin.readFromDatabase(mid);
                     //get member level
                     memberstatus = admin.getAdminLev();
+                    if (memberstatus.isEmpty()) {
+                        memberstatus = "N";
+                    }
+                    adminid = admin.getAdminId();
                     admincomms = admin.getAdminCom();
 
                     //set session variables
@@ -220,6 +231,7 @@ public class MemberManagement extends HttpServlet {
                     request.getSession().setAttribute("lastpaymentdate", lastpaymentdate);
                     request.getSession().setAttribute("accountstatus", accountstatus);
                     request.getSession().setAttribute("acccomms", acccomms);
+                    request.getSession().setAttribute("adminid", adminid);
                     request.getSession().setAttribute("memberstatus", memberstatus);
                     request.getSession().setAttribute("admincomms", admincomms);
                 }

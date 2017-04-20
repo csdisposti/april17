@@ -51,6 +51,7 @@ public class MemberManagementSubmit extends HttpServlet {
         //admin info
         String memberstatus = request.getParameter("memberstatus");
         String admincomms = request.getParameter("admincomms");
+        String adminId = request.getParameter("adminid");
 
         Member m = new Member();
         Member n = new Member();
@@ -66,6 +67,8 @@ public class MemberManagementSubmit extends HttpServlet {
             int tc = Integer.parseInt(totcharges);
             int tp = Integer.parseInt(totpayments);
             int cr = Integer.parseInt(creditreduc);
+            int ad = Integer.parseInt(adminId);
+
             String nodate = "0000-00-00";
             Date lpd = new SimpleDateFormat("yyyy-MM-dd").parse(nodate);
             Date lid = new SimpleDateFormat("yyyy-MM-dd").parse(nodate);
@@ -75,19 +78,33 @@ public class MemberManagementSubmit extends HttpServlet {
             if (lastpaymentdate != null && !lastpaymentdate.isEmpty())  {
                 lpd = new SimpleDateFormat("yyyy-MM-dd").parse(lastpaymentdate);
             }
+            else {
+                lpd = new SimpleDateFormat("yyyy-MM-dd").parse(nodate);
+                lid = new SimpleDateFormat("yyyy-MM-dd").parse(nodate);
+            }
 
             m.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, en, ep, mc);
             a.updateAccount(ai, accttype, street, city, state, zip, payplan, tc, tp, cr, lid, lpd, accountstatus, acccomms);
 
+
+           // = admin.readJustMemNo(mi);
             admin.readFromDatabase(mi);
-            if (admin.getMemId() == 0) {
-                admin.addToDatabase(mi, memberstatus, admincomms);
-            } else {
-                admin.updateAdminInfo(mi, memberstatus, admincomms);
+            int admemno = admin.getMemNo();
+            String nospec;
+            nospec=memberstatus.substring(0,1).trim();
+
+            if(nospec.equals("N") || (nospec.equals("n"))) {
+                admin.removeAdminStatus(ad, memberstatus, admincomms);
             }
+            else if (admemno != 0) {
+                admin.updateAdminInfo(mi, memberstatus, admincomms);
+            } else {
+                admin.addToDatabase(mi, memberstatus, admincomms);
+            }
+
             n.readFromDatabase(email);
             an.readFromDatabase(ai);
-            adminnew.readFromDatabase(mi);
+            adminnew.readFromDatabase(admemno);
 
             request.getSession().setAttribute("n", n);
             request.getSession().setAttribute("an", an);
