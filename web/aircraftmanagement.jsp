@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="org.example.Login"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 
@@ -44,12 +45,16 @@
             </form>
             <hr>
 
-            <form action="AircraftUpdate" method="post">
+            <form action="AircraftManagement" method="post">
                 <h4>Choose Aircraft to edit</h4>
-                <select name="type" required>
-                    <option value="Choose an aircraft">Choose an aircraft</option>
-                   <option>N123AZ - Cessna CE-1725</option>
+                <input id="aircraft" type="hidden" value="${acftup}"/>
+                <select name="aircrafttype" required>
+                 <option value="Choose an aircraft">Choose an aircraft</option>
+                    <c:forEach items="${acftup}"  var="item">
+                        <option id="item" value="${item}">${item}</option>
+                    </c:forEach>
                 </select><br/>
+
                 <input type="submit" class="btn btn-default btn-sp" value="Update Existing Aircraft"/>
             </form>
             <hr>

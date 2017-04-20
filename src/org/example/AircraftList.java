@@ -96,6 +96,6 @@ public class AircraftList {
     }
     @Override
     public String toString() {
-        return "<span>" + this.reg + " " + this.makeModel + "</span>";
+        return this.reg + " " + this.makeModel;
     }
 }

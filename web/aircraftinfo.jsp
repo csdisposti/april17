@@ -41,31 +41,31 @@
 
 
                 <input type="hidden"  name="action" value="login">
-                <label for="scid">Registration ID:</label><br />
-                <input type="text" id="scid" name="scid" title="scid" value="N123AZ"><br/>
+                <label for="registrationID">Registration ID:</label><br />
+                <input type="text" id="registrationID" name="registrationID" title="registrationID" value="${registrationID}"><br/>
                 <input type="hidden" id="email" name="email" title="email" value="${em}">
-                <label for="contot">Owner ID:</label><br />
-                <input type="text" id="contot" name="contot" title="contot" value="9608"/><br />
-                <label for="constart">Make &amp; Model:</label><br />
-                <input type="text" id="constart" name="constart" title="constart" value="Cessna CE-1725"/><br />
-                <label for="conend">Aircraft Type:</label><br />
-                <input type="text" id="conend" name="conend" title="conend" value="Piston"/><br />
-                 <label for="paymeth">Rental Fee:</label><br />
-                 <input type="text" id="paymeth" name="paymeth" title="paymeth" value="200"/><br />
-            <label for="paymeth">Aircraft Age:</label><br />
-            <input type="text" id="paymeth" name="paymeth" title="paymeth" value="5"/><br />
+                <label for="ownerID">Owner ID:</label><br />
+                <input type="text" id="ownerID" name="ownerID" title="ownerID" value="${ownerID}"/><br />
+                <label for="makeModel">Make &amp; Model:</label><br />
+                <input type="text" id="makeModel" name="makeModel" title="makeModel" value="${makeModel}"/><br />
+                <label for="aircraftType">Aircraft Type:</label><br />
+                <input type="text" id="aircraftType" name="aircraftType" title="aircraftType" value="${aircraftType}"/><br />
+                 <label for="rentalFee">Rental Fee:</label><br />
+                 <input type="text" id="rentalFee" name="rentalFee" title="rentalFee" value="${rentalFee}"/><br />
+            <label for="aircraftAge">Aircraft Age:</label><br />
+            <input type="text" id="aircraftAge" name="aircraftAge" title="aircraftAge" value="${aircraftAge}"/><br />
         </div>
             <div class="col-sm-4">
-            <label for="paymeth">Flight Hours:</label><br />
-            <input type="text" id="paymeth" name="paymeth" title="paymeth" value="5477"/><br />
-            <label for="paymeth">Flight Distance:</label><br />
-            <input type="text" id="paymeth" name="paymeth" title="paymeth" value="7210"/><br />
-            <label for="paymeth">Last Maintenance Type:</label><br />
-            <input type="text" id="paymeth" name="paymeth" title="paymeth" value="'A' Check"/><br />
-            <label for="paymeth">Last Maintenance Date:</label><br />
-            <input type="text" id="paymeth" name="paymeth" title="paymeth" value="9/21/2016"/><br />
-            <label for="concomms">Aicraft Comments:</label><br />
-            <textarea rows="10" cols="30" id="concomms" name="concomms" value="Good plane" title="concomms"></textarea> <br />
+            <label for="flightHours">Flight Hours:</label><br />
+            <input type="text" id="flightHours" name="flightHours" title="flightHours" value="${flightHours}"/><br />
+            <label for="flightDistance">Flight Distance:</label><br />
+            <input type="text" id="flightDistance" name="flightDistance" title="flightDistance" value="${flightDistance}"/><br />
+            <label for="lastMaintType">Last Maintenance Type:</label><br />
+            <input type="text" id="lastMaintType" name="lastMaintType" title="lastMaintType" value="${lastMaintType}"/><br />
+            <label for="lastMaintDate">Last Maintenance Date:</label><br />
+            <input type="text" id="lastMaintDate" name="lastMaintDate" title="paymeth" value="${lastMaintDate}"/><br />
+            <label for="aircraftComms">Aicraft Comments:</label><br />
+            <textarea rows="10" cols="30" id="aircraftComms" name="aircraftComms" title="aircraftComms">${aircraftComms}</textarea> <br />
 
 
 

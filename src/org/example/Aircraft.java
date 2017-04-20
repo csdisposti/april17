@@ -186,7 +186,7 @@ public class Aircraft {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAircraft");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAircraft WHERE Registration='" + registration + "';");
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
@@ -216,8 +216,6 @@ public class Aircraft {
             }
         }
     }
-
-
 
     @Override
     public String toString() {

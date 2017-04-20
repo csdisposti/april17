@@ -63,7 +63,7 @@
                 <select name="type" required>
                     <option value="Choose an aircraft">Choose an aircraft</option>
                 <c:forEach items="${rr}"  var="rer">
-                <option value="aircrafttype" name="aircrafttype" >${rer}</option>
+                <option id="rer" name="rer">${rer}</option>
                 </c:forEach>
             </select>
                 <hr>
