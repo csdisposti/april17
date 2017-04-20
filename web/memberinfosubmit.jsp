@@ -53,9 +53,7 @@
         <div class="col-sm-3">
             <h3>Updated Member Status</h3>
             <hr>
-            <p>Admin: Yes</p>
-            <p>Mechanic: No</p>
-            <p>Instrcutor: No</p>
+            <p>${adminnew}</p>
             <hr>
         </div>
         <div class="col-sm-1">

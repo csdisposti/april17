@@ -44,15 +44,15 @@
                 <input type="hidden" id="memid" name="memid" title="memid" value=${mid}>
                 <input type="hidden" id="email" name="email" title="email" value="${em}">
                 <label for="fname">First Name:</label><br />
-                <input type="text" id="fname" name="fname" title="fname" value="${fn}"/><br />
+                <input type="text" id="fname" name="fname" title="fname" value="${fn}"/> <br />
                 <label for="lname">Last Name:</label><br />
                 <input type="text" id="lname" name="lname" title="lname" value="${ln}"/> <br />
                 <label for="phone1">Phone 1:</label><br />
-                <input type="text" id="phone1" name="phone1" title="phone1" value="${ph1}"/><br />
+                <input type="text" id="phone1" name="phone1" title="phone1" value="${ph1}"/> <br />
                 <label for="phone2">Phone 2:</label><br />
                 <input type="text" id="phone2" name="phone2" title="phone2" value="${ph2}"/> <br />
                 <label for="en">Emergency Contact Name:</label><br />
-                <input type="text" id="en" name="en" title="en" value="${ecn}"/><br />
+                <input type="text" id="en" name="en" title="en" value="${ecn}"/> <br />
                 <label for="ep">Emergency Contact Phone:</label><br />
                 <input type="text" id="ep" name="ep" title="ep" value="${ecp}"/> <br />
                 <label for="memcomms">Member Comments:</label><br />
@@ -87,8 +87,10 @@
             <input type="text" id="creditreduc" name="creditreduc" title="creditreduc" value="${creditreduc}"/> <br />
            <label for="lastinvoicedate">Last Invoice Date:</label><br />
             <input type="text" id="lastinvoicedate" name="lastinvoicedate" title="lastinvoicedate" value="${lastinvoicedate}"/> <br />
+            <span>yyyy-mm-dd</span><br />
             <label for="lastpaymentdate">Last Payment Date:</label><br />
             <input type="text" id="lastpaymentdate" name="lastpaymentdate" title="lastpaymentdate" value="${lastpaymentdate}"/> <br />
+            <span>yyyy-mm-dd</span><br/>
             <label for="accountstatus">Account Status:</label><br />
             <input type="text" id="accountstatus" name="accountstatus" title="accountstatus" value="${accountstatus}"/> <br />
             <span>A, B, C = Grades, F = Issues, N = NewAccount </span><br/>
@@ -101,12 +103,12 @@
             <div class="col-sm-3">
                 <h3 class="text-center">Edit Member Status</h3>
                 <hr>
-                <label for="admin">Admin:</label><br />
-                <input type="text" id="admin" name="admin" title="admin" value="Yes"/><br />
-                <label for="mechanic">Mechanic:</label><br />
-                <input type="text" id="mechanic" name="mechanic" title="mechanic" value="No"/><br />
-                <label for="instructor">Instructor:</label><br />
-                <input type="text" id="instructor" name="instructor" title="instructor" value="No"/><br />
+                <input id="mi" type="hidden" value="${mi}"/>
+                <label for="memberstatus">Member Status:</label><br />
+                <input type="text" id="memberstatus" name="memberstatus" title="memberstatus" value="${memberstatus}"/> <br />
+                <span>A = Administrator, M = Mechanic, I = Instructor</span><br/>
+                <label for="admincomms">Member Status Comments:</label><br />
+                <textarea rows="10" cols="30" id="admincomms" name="admincomms" value="${admincomms}" title="admincomms"></textarea> <br />
             <input type="submit"  class="btn btn-default btn-sp" value="Update Member/Account Info" />
         </div>
         </form>

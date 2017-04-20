@@ -18,12 +18,16 @@ public class MemberManagement extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        String email = request.getParameter("mememail");
-        String id = request.getParameter("memid");
+        //get input from form
+        String email = null;
+        String id = null;
+        email = request.getParameter("mememail");
+        id = request.getParameter("memid");
 
-
+        //check for email
         String emailCheck;
 
+        //member variables
         int memIDCheck;
         int mid;
         String em;
@@ -35,7 +39,8 @@ public class MemberManagement extends HttpServlet {
         String ecp;
         String memcomms;
 
-        int accid;
+        //account variables
+        int accid = 0;
         String accttype;
         String street;
         String city;
@@ -50,20 +55,32 @@ public class MemberManagement extends HttpServlet {
         String accountstatus;
         String acccomms;
 
+        //Admin level
+        String memberstatus;
+        String admincomms;
+
+        //new objects
         Member m = new Member();
         Account a = new Account();
+        Administrator admin = new Administrator();
         CheckEmail ce = new CheckEmail();
         CheckMemberId cmi = new CheckMemberId();
 
+
+
         try {
-            if (email != null) {
+
+
+            //if email entered
+            if (email != null && !email.isEmpty()) {
                 emailCheck = ce.readFromDatabase(email);
                 request.getSession().setAttribute("email", email);
-                if (emailCheck == null) {
-                    request.getRequestDispatcher("/membernotfound.jsp").forward(request, response);
-                } else {
+                if (emailCheck != null && !emailCheck.isEmpty()) {
                     m.readFromDatabase(email);
+                    //set session member variable
                     request.getSession().setAttribute("m", m);
+
+                    //get member info
                     mid = m.getMemId();
                     em = m.getEmailUsNa();
                     fn = m.getfName();
@@ -74,9 +91,14 @@ public class MemberManagement extends HttpServlet {
                     ecp = m.getEmerCoNo();
                     memcomms = m.getMemCom();
 
+                    //get account info
                     accid = m.getAcctNo();
                     a.readFromDatabase(accid);
+
+                    //set account session variable
                     request.getSession().setAttribute("a", a);
+
+                    //get the rest of the account info
                     accttype = a.getAcctType();
                     street = a.getStreet();
                     city = a.getCity();
@@ -91,6 +113,13 @@ public class MemberManagement extends HttpServlet {
                     accountstatus = a.getAcctStat();
                     acccomms = a.getAcctCom();
 
+                    //get admin info
+                    admin.readFromDatabase(mid);
+                    //get member level
+                    memberstatus = admin.getAdminLev();
+                    admincomms = admin.getAdminCom();
+
+                    //set session variables
                     request.getSession().setAttribute("mid", mid);
                     request.getSession().setAttribute("em", em);
                     request.getSession().setAttribute("fn", fn);
@@ -114,18 +143,21 @@ public class MemberManagement extends HttpServlet {
                     request.getSession().setAttribute("lastpaymentdate", lastpaymentdate);
                     request.getSession().setAttribute("accountstatus", accountstatus);
                     request.getSession().setAttribute("acccomms", acccomms);
-                    request.getRequestDispatcher("/memberinfo.jsp").forward(request, response);
+                    request.getSession().setAttribute("memberstatus", memberstatus);
+                    request.getSession().setAttribute("admincomms", admincomms);
                 }
-
-            } else if (id != null) {
-                int mi = Integer.parseInt(id);
+                //if id entered
+            } else if (id != null && !id.isEmpty()) {
+                //parse int
+                int mi = Integer.parseInt(id.trim());
                 memIDCheck = cmi.readFromDatabase(mi);
-                request.getSession().setAttribute("memid", id);
-                if (memIDCheck == 0) {
-                    request.getRequestDispatcher("/membernotfound.jsp").forward(request, response);
-                } else {
+                request.getSession().setAttribute("memid", mi);
+                if (memIDCheck != 0) {
                     m.getMemberByMemID(mi);
+                    //set session member variable
                     request.getSession().setAttribute("m", m);
+
+                    //get member info
                     mid = m.getMemId();
                     em = m.getEmailUsNa();
                     fn = m.getfName();
@@ -136,9 +168,14 @@ public class MemberManagement extends HttpServlet {
                     ecp = m.getEmerCoNo();
                     memcomms = m.getMemCom();
 
+                    //get account info
                     accid = m.getAcctNo();
                     a.readFromDatabase(accid);
+
+                    //set account session variable
                     request.getSession().setAttribute("a", a);
+
+                    //get the rest of the account info
                     accttype = a.getAcctType();
                     street = a.getStreet();
                     city = a.getCity();
@@ -153,6 +190,13 @@ public class MemberManagement extends HttpServlet {
                     accountstatus = a.getAcctStat();
                     acccomms = a.getAcctCom();
 
+                    //get admin info
+                    admin.readFromDatabase(mid);
+                    //get member level
+                    memberstatus = admin.getAdminLev();
+                    admincomms = admin.getAdminCom();
+
+                    //set session variables
                     request.getSession().setAttribute("mid", mid);
                     request.getSession().setAttribute("em", em);
                     request.getSession().setAttribute("fn", fn);
@@ -174,23 +218,15 @@ public class MemberManagement extends HttpServlet {
                     request.getSession().setAttribute("creditreduc", creditreduc);
                     request.getSession().setAttribute("lastinvoicedate", lastinvoicedate);
                     request.getSession().setAttribute("lastpaymentdate", lastpaymentdate);
-                    request.getSession().setAttribute("payplan", payplan);
                     request.getSession().setAttribute("accountstatus", accountstatus);
                     request.getSession().setAttribute("acccomms", acccomms);
-                    request.getRequestDispatcher("/memberinfo.jsp").forward(request, response);
+                    request.getSession().setAttribute("memberstatus", memberstatus);
+                    request.getSession().setAttribute("admincomms", admincomms);
                 }
-                }
-
-
-
-           // else if (mfname !=null){
-           //     m.getMemberByNamePhone(mfname, mlname, mempp);
-           //     request.getRequestDispatcher("/editmemberinfo.jsp").forward(request, response);
-           // }
-          //  else {
-
-         //   }
-
+            } else {
+                request.getRequestDispatcher("/membernotfound.jsp").forward(request, response);
+            }
+            request.getRequestDispatcher("/memberinfo.jsp").forward(request, response);
         }
             catch (Exception e2)
         {

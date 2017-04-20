@@ -9,9 +9,32 @@ import java.util.Properties;
  */
 public class CheckMemberId {
 
-    private int memID = 0;
+    private int memID;
 
-    protected int readFromDatabase(int memID) throws Exception {
+
+    //constructor
+    public CheckMemberId(int memID) {
+        this.memID = memID;
+    }
+
+    //empty constructor
+    public CheckMemberId() {
+        this.memID = 0;
+    }
+
+    //get Member ID
+    public int getMemberID() {
+        return memID;
+    }
+
+    //set MemberID
+    public void setMemberID(int UserName) {
+        this.memID = memID;
+    }
+
+
+
+    protected int readFromDatabase(int memid) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -24,14 +47,14 @@ public class CheckMemberId {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE MemberID=" + memID + ";");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE MemberID=" + memid + ";");
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
-                rs.next();
+                 rs.next();
                     this.memID = rs.getInt("MemberID");
-                }
 
+            }
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();

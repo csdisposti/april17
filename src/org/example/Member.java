@@ -167,18 +167,19 @@ public class Member {
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
-                rs.next();
+                while (rs.next()) {
 
-                this.memId = rs.getInt("MemberID");
-                this.acctNo = rs.getInt(2);
-                this.emailUsNa = rs.getString(3);
-                this.fName = rs.getString(4);
-                this.lName = rs.getString(5);
-                this.phone1 = rs.getString(6);
-                this.phone2 = rs.getString(7);
-                this.emerCoNa = rs.getString(8);
-                this.emerCoNo = rs.getString(9);
-                this.memCom = rs.getString(10);
+                    this.memId = rs.getInt("MemberID");
+                    this.acctNo = rs.getInt(2);
+                    this.emailUsNa = rs.getString(3);
+                    this.fName = rs.getString(4);
+                    this.lName = rs.getString(5);
+                    this.phone1 = rs.getString(6);
+                    this.phone2 = rs.getString(7);
+                    this.emerCoNa = rs.getString(8);
+                    this.emerCoNo = rs.getString(9);
+                    this.memCom = rs.getString(10);
+                }
             }
         } catch (Exception e) {
             System.err.println("err");

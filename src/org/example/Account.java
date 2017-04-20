@@ -221,22 +221,23 @@ public class Account {
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
-                rs.next();
+                while (rs.next()) {
 
-                this.acctId = rs.getInt("AccountID");
-                this.acctType = rs.getString("AccountType");
-                this.street = rs.getString("StreetAddress");
-                this.city = rs.getString("City");
-                this.state = rs.getString("State");
-                this.zip = rs.getString("Zip");
-                this.paymentPlan = rs.getString("PaymentPlan");
-                this.totalChgs = rs.getInt("TotalCharges");
-                this.totalPays = rs.getInt("TotalPayments");
-                this.creditReds = rs.getInt("Credits_Reductions");
-                this.lastInvDate = rs.getDate("LastInvoiceDate");
-                this.lastPayDate = rs.getDate("LastPaymentDate");
-                this.acctStat = rs.getString("AccountStatus");
-                this.acctCom = rs.getString("AccountComments");
+                    this.acctId = rs.getInt("AccountID");
+                    this.acctType = rs.getString("AccountType");
+                    this.street = rs.getString("StreetAddress");
+                    this.city = rs.getString("City");
+                    this.state = rs.getString("State");
+                    this.zip = rs.getString("Zip");
+                    this.paymentPlan = rs.getString("PaymentPlan");
+                    this.totalChgs = rs.getInt("TotalCharges");
+                    this.totalPays = rs.getInt("TotalPayments");
+                    this.creditReds = rs.getInt("Credits_Reductions");
+                    this.lastInvDate = rs.getDate("LastInvoiceDate");
+                    this.lastPayDate = rs.getDate("LastPaymentDate");
+                    this.acctStat = rs.getString("AccountStatus");
+                    this.acctCom = rs.getString("AccountComments");
+                }
             }
         } catch (Exception e) {
             System.err.println("err");
