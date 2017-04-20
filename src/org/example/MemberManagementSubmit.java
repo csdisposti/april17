@@ -60,12 +60,11 @@ public class MemberManagementSubmit extends HttpServlet {
             int tc = Integer.parseInt(totcharges);
             int tp = Integer.parseInt(totpayments);
             int cr = Integer.parseInt(creditreduc);
-            //Date lid = df.parse(lastinvoicedate);
-           // Date lpd= df.parse(lastpaymentdate);
-            /*lid, lpd,*/
+            Date lid = new SimpleDateFormat("yyyy-MM-dd").parse(lastinvoicedate);
+            Date lpd = new SimpleDateFormat("yyyy-MM-dd").parse(lastpaymentdate);
 
             m.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, en, ep, mc);
-            a.updateAccount(ai, accttype, street, city, state, zip, payplan, tc, tp, cr, accountstatus, acccomms);
+            a.updateAccount(ai, accttype, street, city, state, zip, payplan, tc, tp, cr, lid, lpd, accountstatus, acccomms);
 
             n.readFromDatabase(email);
             an.readFromDatabase(ai);

@@ -85,10 +85,10 @@
             <input type="text" id="totpayments" name="totpayments" title="totpayments" value="${totpayments}"/> <br />
             <label for="creditreduc">Credits Reductions:</label><br />
             <input type="text" id="creditreduc" name="creditreduc" title="creditreduc" value="${creditreduc}"/> <br />
-           <!-- <label for="lastinvoicedate">Last Invoice Date:</label><br />
+           <label for="lastinvoicedate">Last Invoice Date:</label><br />
             <input type="text" id="lastinvoicedate" name="lastinvoicedate" title="lastinvoicedate" value="${lastinvoicedate}"/> <br />
             <label for="lastpaymentdate">Last Payment Date:</label><br />
-            <input type="text" id="lastpaymentdate" name="lastpaymentdate" title="lastpaymentdate" value="${lastpaymentdate}"/> <br />-->
+            <input type="text" id="lastpaymentdate" name="lastpaymentdate" title="lastpaymentdate" value="${lastpaymentdate}"/> <br />
             <label for="accountstatus">Account Status:</label><br />
             <input type="text" id="accountstatus" name="accountstatus" title="accountstatus" value="${accountstatus}"/> <br />
             <span>A, B, C = Grades, F = Issues, N = NewAccount </span><br/>

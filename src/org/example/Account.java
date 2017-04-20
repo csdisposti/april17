@@ -288,8 +288,8 @@ public class Account {
            pstmt.setInt(7, 0);
            pstmt.setInt(8, 0);
            pstmt.setInt(9, 0);
-           pstmt.setDate(10, new java.sql.Date(new java.util.Date().getTime()));
-           pstmt.setDate(11, new java.sql.Date(new java.util.Date().getTime()));
+           pstmt.setNull(10, java.sql.Types.DATE);
+           pstmt.setNull(11, java.sql.Types.DATE);
            pstmt.setString(12, "N");
            pstmt.setString(13, acccomms);
            pstmt.executeUpdate();
@@ -307,8 +307,8 @@ public class Account {
     }
 
     //update an account in the database
-    /*Date lastinvoicedate, Date lastpaymentdate,*/
-    protected void updateAccount(int accid, String accttype, String street, String city, String state, String zip, String payplan, int totcharges, int totpayments, int creditreduc,  String accountstatus, String acccomms ) throws Exception {
+
+    protected void updateAccount(int accid, String accttype, String street, String city, String state, String zip, String payplan, int totcharges, int totpayments, int creditreduc,  Date lastinvoicedate, Date lastpaymentdate, String accountstatus, String acccomms ) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -322,8 +322,7 @@ public class Account {
         try {
             //create statement
             //update account with user data
-            /*LastInvoiceDate = ?, LastPaymentDate = ?,*/
-            String updateAccount = "UPDATE AscendDB.tblAccount SET AccountType = ?, StreetAddress = ?, City = ?, State = ?, Zip = ?, PaymentPlan = ?, TotalCharges = ?, TotalPayments = ?, Credits_Reductions = ?,  AccountStatus = ?, AccountComments = ? WHERE AccountID =" + accid +";";
+            String updateAccount = "UPDATE AscendDB.tblAccount SET AccountType = ?, StreetAddress = ?, City = ?, State = ?, Zip = ?, PaymentPlan = ?, TotalCharges = ?, TotalPayments = ?, Credits_Reductions = ?, LastInvoiceDate = ?, LastPaymentDate = ?, AccountStatus = ?, AccountComments = ? WHERE AccountID =" + accid +";";
 
             PreparedStatement pstmt = connection.prepareStatement(updateAccount);
             pstmt.setString(1, accttype);
@@ -335,10 +334,10 @@ public class Account {
             pstmt.setInt(7, totcharges);
             pstmt.setInt(8, totpayments);
             pstmt.setInt(9, creditreduc);
-           // pstmt.setDate(10, (java.sql.Date) lastinvoicedate);
-           // pstmt.setDate(11, (java.sql.Date) lastpaymentdate);
-            pstmt.setString(10, accountstatus);
-            pstmt.setString(11, acctCom);
+            pstmt.setDate(10, new java.sql.Date(lastinvoicedate.getTime()));
+            pstmt.setDate(11, new java.sql.Date(lastpaymentdate.getTime()));
+            pstmt.setString(12, accountstatus);
+            pstmt.setString(13, acctCom);
             pstmt.executeUpdate();
 
         } catch (Exception e) {

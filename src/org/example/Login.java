@@ -30,6 +30,7 @@ public class Login extends HttpServlet {
 
         Credentials c = new Credentials();
         Member mlogin = new Member();
+        Account alogin = new Account();
         try{
 
             memberLogin = c.readFromDatabase(username, password);
