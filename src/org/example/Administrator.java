@@ -3,6 +3,8 @@ package org.example;
 import java.io.InputStream;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
@@ -16,6 +18,7 @@ public class Administrator {
     private Date dateSetAdmin;
     private Date dateRevAdmin;
     private String adminCom;
+
 
     //constructor
     public Administrator(int adminId, int memNo, String adminLev, Date dateSetAdmin, Date dateRevAdmin, String adminCom) {
@@ -128,6 +131,8 @@ public class Administrator {
                     this.dateRevAdmin = rs2.getDate("DateRemoved");
                     this.adminCom = rs2.getString("AdminComments");
                 }
+
+
             }
         } catch (Exception e) {
             System.err.println("err");
@@ -251,9 +256,19 @@ public class Administrator {
             }
         }
     }
+
+
+    // Output "2012-09-26"
     @Override
     public String toString() {
-        return "<p>Admin ID: "+this.adminId+"</p><p>Admin Level: "+this.adminLev+"</p><p>Date Set As Admin: "+
-                this.dateSetAdmin+"</p><p>Date Removed: "+this.dateRevAdmin+"</p><p>Admin Comments: "+this.adminCom+"</p>";
+        if (this.dateSetAdmin == null && this.dateRevAdmin != null) {
+            return "<p>Admin ID: " + this.adminId + "</p><p>Admin Level: " + this.adminLev + "</p><p>Date Set As Admin: 0000-00-00 </p><p>Date Removed: " + this.dateRevAdmin + "</p><p>Admin Comments: " + this.adminCom + "</p>";
+        } else if (this.dateSetAdmin != null && this.dateRevAdmin == null) {
+            return "<p>Admin ID: " + this.adminId + "</p><p>Admin Level: " + this.adminLev + "</p><p>Date Set As Admin: " +
+                    this.dateSetAdmin + "</p><p>Date Removed: 0000-00-00 </p><p>Admin Comments: " + this.adminCom + "</p>";
+        } else {
+            return "<p>Admin ID: " + this.adminId + "</p><p>Admin Level: " + this.adminLev + "</p><p>Date Set As Admin: " +
+                    this.dateSetAdmin + "</p><p>Date Removed: " + this.dateRevAdmin + "</p><p>Admin Comments: " + this.adminCom + "</p>";
+        }
     }
 }

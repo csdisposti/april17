@@ -338,7 +338,7 @@ public class Account {
             pstmt.setDate(10, new java.sql.Date(lastinvoicedate.getTime()));
             pstmt.setDate(11, new java.sql.Date(lastpaymentdate.getTime()));
             pstmt.setString(12, accountstatus);
-            pstmt.setString(13, acctCom);
+            pstmt.setString(13, acccomms);
             pstmt.executeUpdate();
 
         } catch (Exception e) {

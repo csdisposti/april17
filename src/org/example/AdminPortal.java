@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 
 public class AdminPortal extends HttpServlet {
 
@@ -30,8 +31,7 @@ public class AdminPortal extends HttpServlet {
         Credentials c = new Credentials();
         Member m = new Member();
         Member m2 = new Member();
-        Administrator a = new Administrator();
-
+        Administrator a =  new Administrator();
 
         try{
             //this gets the email username

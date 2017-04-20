@@ -55,7 +55,7 @@
             <label for="ep">Emergency Contact Phone:</label><br />
                 <input type="text" id="ep" name="ep" title="ep" value="${ecp}"/> <br />
             <label for="memcomms">Member Comments:</label><br />
-                <textarea rows="10" cols="30" id="memcomms" name="memcomms" value="${memcomms}" title="memcomms"></textarea> <br />
+                <textarea rows="10" cols="30" id="memcomms" name="memcomms" title="memcomms">${memcomms}</textarea> <br />
         </div>
         <div class="col-sm-3">
             <h3 class="text-center">Edit Member Account Info</h3>
@@ -92,7 +92,7 @@
                 <input type="text" id="accountstatus" name="accountstatus" title="accountstatus" value="${accountstatus}"/> <br />
                 <span>A, B, C = Grades, F = Issues, N = NewAccount </span><br/>
             <label for="acccomms">Account Comments:</label><br />
-                <textarea rows="10" cols="30" id="acccomms" name="acccomms" value="${acccomms}" title="acccomms"></textarea> <br />
+                <textarea rows="10" cols="30" id="acccomms" name="acccomms"  title="acccomms">${acccomms}</textarea> <br />
                 <br>
         </div>
         <div class="col-sm-3">
@@ -104,7 +104,7 @@
                 <input type="text" id="memberstatus" name="memberstatus" title="memberstatus" value="${memberstatus}"/> <br />
                 <span>A = Administrator, M = Mechanic, I = Instructor, N = No Special Status</span><br/>
             <label for="admincomms">Member Status Comments:</label><br />
-                <textarea rows="10" cols="30" id="admincomms" name="admincomms" value="${admincomms}" title="admincomms"></textarea> <br />
+                <textarea rows="10" cols="30" id="admincomms" name="admincomms" title="admincomms">${admincomms}</textarea> <br />
         <input type="submit"  class="btn btn-default btn-sp" value="Update Member/Account Info" />
          </div>
         </form>

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.Date;
 
 public class MemberManagement extends HttpServlet {
@@ -64,6 +65,7 @@ public class MemberManagement extends HttpServlet {
         Member m = new Member();
         Account a = new Account();
         Administrator admin = new Administrator();
+
         CheckEmail ce = new CheckEmail();
         CheckMemberId cmi = new CheckMemberId();
 
@@ -121,7 +123,6 @@ public class MemberManagement extends HttpServlet {
                     if (memberstatus != null && !memberstatus.isEmpty()) {
                         memberstatus = "N";
                     }
-
                     adminid = admin.getAdminId();
                     admincomms = admin.getAdminCom();
 
@@ -245,9 +246,6 @@ public class MemberManagement extends HttpServlet {
             e2.printStackTrace();
         }
         finally{out.close();
-
         }
-
     }
-
 }
