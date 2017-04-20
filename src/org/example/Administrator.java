@@ -3,8 +3,6 @@ package org.example;
 import java.io.InputStream;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
@@ -257,8 +255,6 @@ public class Administrator {
         }
     }
 
-
-    // Output "2012-09-26"
     @Override
     public String toString() {
         if (this.dateSetAdmin == null && this.dateRevAdmin != null) {
