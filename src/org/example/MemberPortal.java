@@ -11,7 +11,7 @@ import java.io.PrintWriter;
  * Created by cdisp on 3/27/2017.
  */
 
-public class Login extends HttpServlet {
+public class MemberPortal extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 
@@ -21,16 +21,16 @@ public class Login extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        String username = request.getParameter("usr");
-        String password = request.getParameter("pwd");
+        String username = request.getParameter("email");
+        String password = request.getParameter("password");
 
         String memberLogin;
-        String fnm;
+        String fn;
         int memidlogin;
 
         Credentials c = new Credentials();
         Member mlogin = new Member();
-        Account alogin = new Account();
+
         try{
 
             memberLogin = c.readFromDatabase(username, password);
@@ -39,16 +39,16 @@ public class Login extends HttpServlet {
                 request.getRequestDispatcher("/loginerror.jsp").forward(request, response);
             }
             else {
-                //read member data from ember table
+                //read member data from member table
                 mlogin.readFromDatabase(memberLogin);
                 request.getSession().setAttribute("mlogin", mlogin);
                 request.getSession().setAttribute("us", memberLogin);
                 //get member first name
-                fnm = mlogin.getfName();
+                fn = mlogin.getfName();
                 memidlogin = mlogin.getMemId();
-                request.getSession().setAttribute("fnm" , fnm);
+                request.getSession().setAttribute("fn" , fn);
                 request.getSession().setAttribute("memidlogin", memidlogin);
-                request.getRequestDispatcher("/member.jsp").forward(request, response);
+                request.getRequestDispatcher("/memberportal.jsp").forward(request, response);
             }
         }catch (Exception e2)
         {

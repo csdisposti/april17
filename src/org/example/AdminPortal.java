@@ -1,14 +1,11 @@
 package org.example;
 
-import org.example.Member;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
 
 public class AdminPortal extends HttpServlet {
 
@@ -18,11 +15,10 @@ public class AdminPortal extends HttpServlet {
 
         response.setContentType("text/html");
 
-
         PrintWriter out = response.getWriter();
 
-        String username = request.getParameter("usra");
-        String password = request.getParameter("pwda");
+        String username = request.getParameter("email");
+        String password = request.getParameter("password");
 
         String memInfo;
         int adminLogin;
@@ -31,7 +27,7 @@ public class AdminPortal extends HttpServlet {
         Credentials c = new Credentials();
         Member m = new Member();
         Member m2 = new Member();
-        Administrator a =  new Administrator();
+        Admin a =  new Admin();
 
         try{
             //this gets the email username

@@ -6,10 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
 import java.util.Date;
 
-public class MemberManagement extends HttpServlet {
+public class AdminManagementMemberProcess extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
 
@@ -20,8 +19,8 @@ public class MemberManagement extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         //get input from form
-        String email = null;
-        String id = null;
+        String email;
+        String id;
         email = request.getParameter("mememail");
         id = request.getParameter("memid");
 
@@ -41,7 +40,7 @@ public class MemberManagement extends HttpServlet {
         String memcomms;
 
         //account variables
-        int accid = 0;
+        int accid;
         String accttype;
         String street;
         String city;
@@ -64,7 +63,7 @@ public class MemberManagement extends HttpServlet {
         //new objects
         Member m = new Member();
         Account a = new Account();
-        Administrator admin = new Administrator();
+        Admin admin = new Admin();
 
         CheckEmail ce = new CheckEmail();
         CheckMemberId cmi = new CheckMemberId();

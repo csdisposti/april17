@@ -9,33 +9,27 @@ import java.util.Properties;
 /**
  * Created by cdisp on 3/15/2017.
  */
-public class Administrator {
+public class Admin {
     private int adminId;
     private int memNo;
     private String adminLev;
-    private Date dateSetAdmin;
-    private Date dateRevAdmin;
     private String adminCom;
 
 
     //constructor
-    public Administrator(int adminId, int memNo, String adminLev, Date dateSetAdmin, Date dateRevAdmin, String adminCom) {
+    public Admin(int adminId, int memNo, String adminLev, String adminCom) {
         this.adminId = adminId;
         this.memNo = memNo;
         this.adminLev = adminLev;
-        this.dateSetAdmin = dateSetAdmin;
-        this.dateRevAdmin = dateRevAdmin;
         this.adminCom = adminCom;
     }
 
     //empty constructor
-    public Administrator()
+    public Admin()
     {
         this.adminId = 0;
         this.memNo = 0;
         this.adminLev = null;
-        this.dateSetAdmin = null;
-        this.dateRevAdmin = null;
         this.adminCom = null;
     }
 
@@ -67,26 +61,6 @@ public class Administrator {
     //set Admin Level
     public void setAdminLev(String adminLev) {
         this.adminLev = adminLev;
-    }
-
-    //get Admin Date Set as Admin
-    public Date getDateSetAdmin() {
-        return dateSetAdmin;
-    }
-
-    //set Admin Date Set as Admin
-    public void setDateSetAdmin(Date dateSetAdmin) {
-        this.dateSetAdmin = dateSetAdmin;
-    }
-
-    //get Admin Date Removed as Admin
-    public Date getDateRevAdmin() {
-        return dateRevAdmin;
-    }
-
-    //set Admin Date Removed as Admin
-    public void setDateRevAdmin(Date dateRevAdmin) {
-        this.dateRevAdmin = dateRevAdmin;
     }
 
     //get Admin Comments
@@ -125,8 +99,6 @@ public class Administrator {
                     this.adminId = rs2.getInt("AdministratorID");
                     this.memNo = rs2.getInt("MemberNo");
                     this.adminLev = rs2.getString("AdminLevel");
-                    this.dateSetAdmin = rs2.getDate("DateSetAsAdmin");
-                    this.dateRevAdmin = rs2.getDate("DateRemoved");
                     this.adminCom = rs2.getString("AdminComments");
                 }
 
@@ -158,12 +130,11 @@ public class Administrator {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            String newAdmin = "INSERT INTO AscendDB.tblAdmin (MemberNo, AdminLevel, DateSetAsAdmin, AdminComments) VALUES (?, ?, ?, ?)";
+            String newAdmin = "INSERT INTO AscendDB.tblAdmin (MemberNo, AdminLevel, AdminComments) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(newAdmin);
             ps.setInt(1, memNo);
             ps.setString(2, adminLev);
-            ps.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
-            ps.setString(4, adminCom);
+            ps.setString(3, adminCom);
             ps.executeUpdate();
 
 
@@ -199,11 +170,10 @@ public class Administrator {
                 while (rs.next()) {
                     this.memNo = rs.getInt("MemberNo");
                 }
-                String updateMember = "UPDATE AscendDB.tblAdmin SET AdminLevel = ?, DateSetAsAdmin = ?,  AdminComments = ? WHERE MemberNo =" + memNo + ";";
+                String updateMember = "UPDATE AscendDB.tblAdmin SET AdminLevel = ?, AdminComments = ? WHERE MemberNo =" + memNo + ";";
                 PreparedStatement pstmt = connection.prepareStatement(updateMember);
                 pstmt.setString(1, adminLev);
-                pstmt.setDate(2, new java.sql.Date(new java.util.Date().getTime()));
-                pstmt.setString(3, adminCom);
+                pstmt.setString(2, adminCom);
                 pstmt.executeUpdate();
             }
         } catch (Exception e) {
@@ -236,11 +206,10 @@ public class Administrator {
             rs.next();
             this.adminId = rs.getInt("AdministratorID");
 
-            String updateMember = "UPDATE AscendDB.tblAdmin SET AdminLevel = ?, DateRemoved = ?, AdminComments = ? WHERE AdministratorID=" + adminId + ";";
+            String updateMember = "UPDATE AscendDB.tblAdmin SET AdminLevel = ?, AdminComments = ? WHERE AdministratorID=" + adminId + ";";
             PreparedStatement pstmt = connection.prepareStatement(updateMember);
             pstmt.setString(1, adminLev);
-            pstmt.setDate(2, new java.sql.Date(new java.util.Date().getTime()));
-            pstmt.setString(3, adminCom);
+            pstmt.setString(2, adminCom);
             pstmt.executeUpdate();
 
         } catch (Exception e) {
@@ -257,14 +226,8 @@ public class Administrator {
 
     @Override
     public String toString() {
-        if (this.dateSetAdmin == null && this.dateRevAdmin != null) {
-            return "<p>Admin ID: " + this.adminId + "</p><p>Admin Level: " + this.adminLev + "</p><p>Date Set As Admin: 0000-00-00 </p><p>Date Removed: " + this.dateRevAdmin + "</p><p>Admin Comments: " + this.adminCom + "</p>";
-        } else if (this.dateSetAdmin != null && this.dateRevAdmin == null) {
+
             return "<p>Admin ID: " + this.adminId + "</p><p>Admin Level: " + this.adminLev + "</p><p>Date Set As Admin: " +
-                    this.dateSetAdmin + "</p><p>Date Removed: 0000-00-00 </p><p>Admin Comments: " + this.adminCom + "</p>";
-        } else {
-            return "<p>Admin ID: " + this.adminId + "</p><p>Admin Level: " + this.adminLev + "</p><p>Date Set As Admin: " +
-                    this.dateSetAdmin + "</p><p>Date Removed: " + this.dateRevAdmin + "</p><p>Admin Comments: " + this.adminCom + "</p>";
+                     "</p><p>Admin Comments: " + this.adminCom + "</p>";
         }
     }
-}

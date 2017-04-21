@@ -1,72 +1,70 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="org.example.Login"%>
-
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-    <title>New Member Sign Up - Ascend</title>
-
+    <title>Member Portal - Ascend</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta name="viewport" content="width=device-width">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" type="text/css" href="http://ascend.2ndmm.com/css/style.css">
-
 </head>
-
 <body>
 <div class="container-fluid">
     <header class="text-center">
-
         <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
         <hr>
     </header>
     <!--begin main text-->
-    <div class="row gray">
-        <div class="col-sm-3">
+    <div class="row">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-2 text-right">
+        <h4 class=text-center" >Welcome ${fn}!</h4>
+            <hr>
         </div>
-        <div class="col-sm-6">
-            <h2 class="text-center">New Member - Add contact info</h2>
-            <form action="Welcome" method="POST">
-            <input type="hidden"  name="action" value="login">
-                <input type="hidden" id="email" name="email" title="email" value=${email}>
-                <input type="hidden" id="pwd" name="pwd" title="pwd" value=${pwd}>
-                <input type="hidden" id="accID" name="accID" title="accID" value=${accID}>
-                <label for="fname">First Name:</label><br />
-                <input type="text" id="fname" name="fname" title="fname" required/><br />
-                <label for="lname">Last Name:</label><br />
-                <input type="text" id="lname" name="lname" title="lname" required/> <br />
-                <label for="phone1">Phone 1:</label><br />
-                <input type="text" id="phone1" name="phone1" title="phone1" required/><br />
-                <label for="phone2">Phone 2:</label><br />
-                <input type="text" id="phone2" name="phone2" title="phone2" /> <br />
-                <label for="en">Emergency Contact Name:</label><br />
-                <input type="text" id="en" name="en" title="en" required/><br />
-                <label for="ep">Emergency Contact Phone:</label><br />
-                <input type="text" id="ep" name="ep" title="ep" required/> <br />
-                <label for="memcomms">Comments:</label><br />
-                <textarea rows="10" cols="30" id="memcomms" name="memcomms" title="memcomms"></textarea> <br />
-
-            <input type="submit"  class="btn btn-default btn-sp" value="Add Contact Info/Complete Signup" />
+        <div class="col-sm-1">
+        <form action="Logout" method="post">
+            <input type="submit" class="btn btn-default" value="Log Out"/>
         </form>
         </div>
-        <div class="col-sm-3">
+        <hr>
+    </div>
+    <div class="row gray text-center">
 
+        <hr>
+        <h3>Member Portal</h3>
+        <hr>
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-3">
+            <form action="FlightReservation" method="post">
+                <input type="submit" class="btn btn-default btn-sp" value="Make a Flight Reservation"/>
+            </form>
+            <hr>
+            <form action="FlyingLessonReservation" method="post">
+                <input type="submit" class="btn btn-default btn-sp" value="Make a Flying Lesson Reservation"/>
+            </form>
+            <hr>
+
+        </div>
+        <div class="col-sm-3">
+            <form action="ViewMyReservations" method="post">
+                <input type="submit" class="btn btn-default btn-sp" value="View My Reservations"/>
+            </form>
+            <hr>
+            <form action="EditMyInfo" method="post">
+                <input type="submit" class="btn btn-default btn-sp" value="Edit My Info"/>
+            </form>
+        </div>
+        <div class="col-sm-3">
         </div>
 
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
-
 
     <footer class="text-center">
         <h4>Ascend, Inc. - <em>Soaring to New Heights</em></h4>

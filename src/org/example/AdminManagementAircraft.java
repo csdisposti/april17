@@ -16,19 +16,16 @@ public class AdminManagementAircraft extends HttpServlet {
 
         response.setContentType("text/html");
 
-
         PrintWriter out = response.getWriter();
 
         AircraftList aircrafts = new AircraftList();
         ArrayList<AircraftList> ResourcesReserved = new ArrayList<>();
-
 
         try{
 
             ResourcesReserved = aircrafts.populateResourcesReserved();
             request.getSession().setAttribute("acftup", ResourcesReserved);
                request.getRequestDispatcher("/aircraftmanagement.jsp").forward(request, response);
-
 
         }catch (Exception e2)
 

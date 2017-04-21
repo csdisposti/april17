@@ -22,12 +22,12 @@
         <url-pattern>/Search</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>org.example.Login</servlet-class>
+        <servlet-name>MemberPortal</servlet-name>
+        <servlet-class>org.example.MemberPortal</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <servlet-name>MemberPortal</servlet-name>
+        <url-pattern>/MemberPortal</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Logout</servlet-name>
@@ -38,12 +38,36 @@
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>Reservation</servlet-name>
-        <servlet-class>org.example.Reservation</servlet-class>
+        <servlet-name>FlightReservation</servlet-name>
+        <servlet-class>org.example.FlightReservation</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Reservation</servlet-name>
-        <url-pattern>/Reservation</url-pattern>
+        <servlet-name>FlightReservation</servlet-name>
+        <url-pattern>/FlightReservation</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FlyingLessonReservation</servlet-name>
+        <servlet-class>org.example.FlyingLessonReservation</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FlyingLessonReservation</servlet-name>
+        <url-pattern>/FlyingLessonReservation</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewMyReservations</servlet-name>
+        <servlet-class>org.example.ViewMyReservations</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewMyReservations</servlet-name>
+        <url-pattern>/ViewMyReservations</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditMyInfo</servlet-name>
+        <servlet-class>org.example.EditMyInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditMyInfo</servlet-name>
+        <url-pattern>/EditMyInfo</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ReservationSubmit</servlet-name>
@@ -85,22 +109,7 @@
         <servlet-name>ReservationsManagementPendingSubmit</servlet-name>
         <url-pattern>/ReservationsManagementPendingSubmit</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>MemberManagement</servlet-name>
-        <servlet-class>org.example.MemberManagement</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MemberManagement</servlet-name>
-        <url-pattern>/MemberManagement</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>MemberManagementSubmit</servlet-name>
-        <servlet-class>org.example.MemberManagementSubmit</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MemberManagementSubmit</servlet-name>
-        <url-pattern>/MemberManagementSubmit</url-pattern>
-    </servlet-mapping>
+
     <servlet>
         <servlet-name>MaintenanceManagement</servlet-name>
         <servlet-class>org.example.MaintenanceManagement</servlet-class>
@@ -133,9 +142,6 @@
         <servlet-name>MaintenanceUpdate</servlet-name>
         <url-pattern>/MaintenanceUpdate</url-pattern>
     </servlet-mapping>
-
-
-
     <servlet>
         <servlet-name>AircraftManagement</servlet-name>
         <servlet-class>org.example.AircraftManagement</servlet-class>
@@ -168,9 +174,6 @@
         <servlet-name>AircraftUpdate</servlet-name>
         <url-pattern>/AircraftUpdate</url-pattern>
     </servlet-mapping>
-
-
-
     <servlet>
         <servlet-name>AirportManagement</servlet-name>
         <servlet-class>org.example.AirportManagement</servlet-class>
@@ -203,8 +206,6 @@
         <servlet-name>AirportUpdate</servlet-name>
         <url-pattern>/AirportUpdate</url-pattern>
     </servlet-mapping>
-
-
     <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>org.example.Home</servlet-class>
@@ -230,14 +231,6 @@
         <url-pattern>/SignupTwo</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>SignupThree</servlet-name>
-        <servlet-class>org.example.SignupThree</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SignupThree</servlet-name>
-        <url-pattern>/SignupThree</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>Welcome</servlet-name>
         <servlet-class>org.example.Welcome</servlet-class>
     </servlet>
@@ -260,6 +253,22 @@
     <servlet-mapping>
         <servlet-name>AdminManagementMember</servlet-name>
         <url-pattern>/AdminManagementMember</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminManagementMemberProcess</servlet-name>
+        <servlet-class>org.example.AdminManagementMemberProcess</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminManagementMemberProcess</servlet-name>
+        <url-pattern>/AdminManagementMemberProcess</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AdminManagementMemberSubmit</servlet-name>
+        <servlet-class>org.example.AdminManagementMemberSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminManagementMemberSubmit</servlet-name>
+        <url-pattern>/AdminManagementMemberSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AdminManagementReservation</servlet-name>

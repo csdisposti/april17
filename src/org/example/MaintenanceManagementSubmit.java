@@ -20,30 +20,7 @@ public class MaintenanceManagementSubmit extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        String memberid = request.getParameter("memid");
-        String email = request.getParameter("email");
-        String fname = request.getParameter("fname");
-        String lname = request.getParameter("lname");
-        String phoneone = request.getParameter("phone1");
-        String phonetwo = request.getParameter("phone2");
-        String en = request.getParameter("en");
-        String ep = request.getParameter("ep");
-        String mc = request.getParameter("memcomms");
-        String accountid = request.getParameter("accid");
-        String accttype = request.getParameter("accttype");
-        String street = request.getParameter("street");
-         String city  = request.getParameter("city");
 
-        String state = request.getParameter("state");
-        String zip = request.getParameter("zip");
-        String payplan = request.getParameter("payplan");
-          String totcharges = request.getParameter("totcharges");
-        String totpayments = request.getParameter("totpayments");
-        String creditreduc = request.getParameter("creditreduc");
-        String lastinvoicedate = request.getParameter("lastinvoicedate");
-        String lastpaymentdate = request.getParameter("lastpaymentdate");
-        String accountstatus = request.getParameter("accountstatus");
-        String acccomms = request.getParameter("acccomms");
 
         Member m = new Member();
         Member n = new Member();
@@ -52,24 +29,7 @@ public class MaintenanceManagementSubmit extends HttpServlet {
 
         try{
 
-            DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-            int mi = Integer.parseInt(memberid);
-            int ai = Integer.parseInt(accountid);
-            int tc = Integer.parseInt(totcharges);
-            int tp = Integer.parseInt(totpayments);
-            int cr = Integer.parseInt(creditreduc);
-            Date lid = new SimpleDateFormat("yyyy-MM-dd").parse(lastinvoicedate);
-            Date lpd = new SimpleDateFormat("yyyy-MM-dd").parse(lastpaymentdate);
 
-            m.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, en, ep, mc);
-            a.updateAccount(ai, accttype, street, city, state, zip, payplan, tc, tp, cr, lid, lpd, accountstatus, acccomms);
-
-            n.readFromDatabase(email);
-            an.readFromDatabase(ai);
-            request.getSession().setAttribute("n", n);
-            request.getSession().setAttribute("an", an);
-            System.out.println(email);
-            System.out.println(accttype);
             request.getRequestDispatcher("/memberinfosubmit.jsp").forward(request, response);
         }
             catch (Exception e2)

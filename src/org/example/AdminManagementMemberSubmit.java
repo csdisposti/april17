@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class SignupFour extends HttpServlet {
+public class AdminManagementMemberSubmit extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
 
@@ -18,18 +20,25 @@ public class SignupFour extends HttpServlet {
         PrintWriter out = response.getWriter();
 
 
-        try{
-            request.getRequestDispatcher("/welcome.jsp").forward(request, response);
 
+        //objects
+        Member m = new Member();
+        Member n = new Member();
+        Account a = new Account();
+        Account an = new Account();
+        Admin admin = new Admin();
+        Admin adminnew = new Admin();
+
+        try{
+
+
+            request.getRequestDispatcher("/memberinfosubmit.jsp").forward(request, response);
         }
             catch (Exception e2)
         {
             e2.printStackTrace();
-        }
-        finally{out.close();
+        } finally{out.close();
 
         }
-
     }
-
 }

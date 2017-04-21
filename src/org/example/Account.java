@@ -252,7 +252,7 @@ public class Account {
     }
 
     //add an account to the database
-    protected void addToDatabase(String street, String city, String state, String zip, String acccomms) throws Exception {
+    protected void memberCreateNewAccount(String street, String city, String state, String zip, String accttype) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -277,22 +277,14 @@ public class Account {
             this.acctId = rs.getInt("AccountID");
 
             //update newly created account with user data
-            String updateAccount = "UPDATE AscendDB.tblAccount SET AccountType = ?, StreetAddress = ?, City = ?, State = ?, Zip = ?, PaymentPlan = ?, TotalCharges = ?, TotalPayments = ?, Credits_Reductions = ?, LastInvoiceDate = ?, LastPaymentDate = ?, AccountStatus = ?, AccountComments = ? WHERE AccountID =" + acctId +";";
+            String updateAccount = "UPDATE AscendDB.tblAccount SET AccountType = ?, StreetAddress = ?, City = ?, State = ?, Zip = ? WHERE AccountID =" + acctId +";";
 
            PreparedStatement pstmt = connection.prepareStatement(updateAccount);
-           pstmt.setString(1, "T");
+           pstmt.setString(1, accttype);
            pstmt.setString(2, street);
            pstmt.setString(3, city);
            pstmt.setString(4, state);
            pstmt.setString(5, zip);
-           pstmt.setString(6, "P");
-           pstmt.setInt(7, 0);
-           pstmt.setInt(8, 0);
-           pstmt.setInt(9, 0);
-           pstmt.setNull(10, java.sql.Types.DATE);
-           pstmt.setNull(11, java.sql.Types.DATE);
-           pstmt.setString(12, "N");
-           pstmt.setString(13, acccomms);
            pstmt.executeUpdate();
 
         } catch (Exception e) {
@@ -308,8 +300,99 @@ public class Account {
     }
 
     //update an account in the database
+    protected void memberupdateAccount(int accid, String accttype, String street, String city, String state, String zip) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            //create statement
+            //update account with user data
+            String updateAccount = "UPDATE AscendDB.tblAccount SET AccountType = ?, StreetAddress = ?, City = ?, State = ?, Zip = ? WHERE AccountID =" + accid +";";
 
-    protected void updateAccount(int accid, String accttype, String street, String city, String state, String zip, String payplan, int totcharges, int totpayments, int creditreduc,  Date lastinvoicedate, Date lastpaymentdate, String accountstatus, String acccomms ) throws Exception {
+            PreparedStatement pstmt = connection.prepareStatement(updateAccount);
+            pstmt.setString(1, accttype);
+            pstmt.setString(2, street);
+            pstmt.setString(3, city);
+            pstmt.setString(4, state);
+            pstmt.setString(5, zip);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //ADMIN add an account to the database
+    protected void adminCreateNewAccount(String street, String city, String state, String zip, String paymentplan, double totalcharges, double totalpayments, double creditsreduction, Date lastinvoicedate, Date lastpaymentdate, String accountstatus) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            //create statement
+            java.sql.Statement statement = connection.createStatement();
+            //create new account
+            String newAcc = "INSERT INTO AscendDB.tblAccount () VALUES ()";
+            PreparedStatement ps = connection.prepareStatement(newAcc);
+            ps.executeUpdate();
+
+            //get account just created
+            java.sql.ResultSet rs = statement.executeQuery("SELECT AccountID FROM AscendDB.tblAccount ORDER BY AccountID DESC LIMIT 1");
+            rs.next();
+            this.acctId = rs.getInt("AccountID");
+
+            //update newly created account with user data
+            String updateAccount = "UPDATE AscendDB.tblAccount SET AccountType = ?, StreetAddress = ?, City = ?, State = ?, Zip = ?, PaymentPlan = ?, TotalCharges = ?, TotalPayments = ?, Credits_Reductions = ?, LastInvoiceDate = ?, LastPaymentDate = ?, AccountStatus = ? WHERE AccountID =" + acctId +";";
+
+            PreparedStatement pstmt = connection.prepareStatement(updateAccount);
+            pstmt.setString(1, "T");
+            pstmt.setString(2, street);
+            pstmt.setString(3, city);
+            pstmt.setString(4, state);
+            pstmt.setString(5, zip);
+            pstmt.setString(6, "P");
+            pstmt.setInt(7, 0);
+            pstmt.setInt(8, 0);
+            pstmt.setInt(9, 0);
+            pstmt.setNull(10, java.sql.Types.DATE);
+            pstmt.setNull(11, java.sql.Types.DATE);
+            pstmt.setString(12, "N");
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //ADMIN - update an account in the database
+    protected void adminupdateAccount(int accid, String accttype, String street, String city, String state, String zip, String payplan, int totcharges, int totpayments, int creditreduc,  Date lastinvoicedate, Date lastpaymentdate, String accountstatus, String acccomms ) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -394,8 +477,6 @@ public class Account {
 
     @Override
     public String toString() {
-        /*private Date lastInvDate;
-        private Date lastPayDate;*/
         return "<p>Account ID: "+this.acctId +"</p><p>Account Type: "+this.acctType+"</p><p>Street: "+ this.street+"</p><p>City: "+this.city+"</p><p>State: "+this.state+"</p><p>Zip Code: "+
                 this.zip+"</p><p>Payment Plan: "+this.paymentPlan+"</p><p>Total Charges: "+this.totalChgs+"</p><p>Total Payments: "+this.totalPays+"</p><p>Credits Reductions: "+
                 this.creditReds+"</p><p>Account Status: " + this.acctStat +"</p><p>Account Comments: " + this.acctCom +"</p>";

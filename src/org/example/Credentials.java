@@ -45,6 +45,7 @@ public class Credentials {
         this.pass = password;
     }
 
+    //read credentials from database
     protected String readFromDatabase(String user, String pwd) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -59,7 +60,6 @@ public class Credentials {
         try {
             java.sql.Statement statement = connection.createStatement();
             java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblCredentials WHERE Email_Username='" + user + "'AND MemberPW='" + pwd + "';");
-
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 rs.next();
@@ -76,10 +76,9 @@ public class Credentials {
             }
             return this.userName;
         }
-
     }
 
-
+    //add new user to database
     protected void addToDatabase(String user, String pwd) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -111,17 +110,3 @@ public class Credentials {
         }
     }
 }
-
-  /*  public boolean checkCredential(String username, String password) {
-        try {
-            return password.equals(this.readFromDatabase(username));
-
-        } catch (Exception e) {
-            System.err.println("err");
-            e.printStackTrace();
-        }
-        return password.equals(this.readFromDatabase(username));
-    }
-}
-
-*/
