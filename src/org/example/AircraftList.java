@@ -8,25 +8,20 @@ import java.util.Properties;
 /**
  * Created by cdisp on 3/17/2017.
  */
-public class AircraftList {
+public class AircraftList extends Aircraft{
     private String reg;
-
     private String makeModel;
-
 
     //constructor
     public AircraftList(String reg,String makeModel) {
         this.reg = reg;
-
         this.makeModel = makeModel;
     }
 
     //empty constructor
     public AircraftList() {
         this.reg = null;
-
         this.makeModel = null;
-
     }
 
 

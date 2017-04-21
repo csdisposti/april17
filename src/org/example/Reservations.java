@@ -22,11 +22,12 @@ public class Reservations {
     private Time inTime;
     private String dest;
     private int instNo;
+    private boolean resStatus;
     private int resApprovedBy;
     private String resCom;
 
     //constructor
-    public Reservations(int resId, int resBy, String resType, String resourcesRes, Date resDate, Time outTime, Time inTime, String dest, int instNo, int resApprovedBy, String resCom) {
+    public Reservations(int resId, int resBy, String resType, String resourcesRes, Date resDate, Time outTime, Time inTime, String dest, int instNo, Boolean resStatus, int resApprovedBy, String resCom) {
         this.resId = resId;
         this.resBy = resBy;
         this.resType = resType;
@@ -36,6 +37,7 @@ public class Reservations {
         this.inTime = inTime;
         this.dest = dest;
         this.instNo = instNo;
+        this.resStatus = resStatus;
         this.resApprovedBy = resApprovedBy;
         this.resCom = resCom;
     }
@@ -51,6 +53,7 @@ public class Reservations {
         this.inTime = null;
         this.dest = null;
         this.instNo = 0;
+        this.resStatus = false;
         this.resApprovedBy = 0;
         this.resCom = null;
     }
@@ -165,6 +168,7 @@ public class Reservations {
         this.resCom = resCom;
     }
 
+    //read reservations from database
     public void readFromDatabase(String ReservationID)throws Exception
     {
         java.sql.Connection connection;
@@ -184,18 +188,18 @@ public class Reservations {
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 rs.next();
-
-                this.resId = rs.getInt("ReservationID");
-                this.resBy = rs.getInt("ReservedBy");
-                this.resType = rs.getString("ReservationType");
-                this.resourcesRes = rs.getString("ResourcesReserved");
-                this.resDate = rs.getDate("ReservationDate");
-                this.outTime = rs.getTime("OutTime");
-                this.inTime = rs.getTime("InTime");
-                this.dest = rs.getString("Destination");
-                this.instNo = rs.getInt("InstructorNo");
-                this.resApprovedBy = rs.getInt("ReservationApprovedBy");
-                this.resCom = rs.getString("ReservationComments");
+                    this.resId = rs.getInt("ReservationID");
+                    this.resBy = rs.getInt("ReservedBy");
+                    this.resType = rs.getString("ReservationType");
+                    this.resourcesRes = rs.getString("ResourcesReserved");
+                    this.resDate = rs.getDate("ReservationDate");
+                    this.outTime = rs.getTime("OutTime");
+                    this.inTime = rs.getTime("InTime");
+                    this.dest = rs.getString("Destination");
+                    this.instNo = rs.getInt("InstructorNo");
+                    this.resStatus = rs.getBoolean("ReservationStatus");
+                    this.resApprovedBy = rs.getInt("ReservationApprovedBy");
+                    this.resCom = rs.getString("ReservationComments");
             }
         } catch (Exception e) {
             System.err.println("err");
@@ -209,9 +213,8 @@ public class Reservations {
         }
     }
 
-
-
-    protected void addToDatabase(int resId, int resBy, String resType, String resourcesRes, Date rseDate, Time outTime, Time inTime, String dest, int instNo, int resApprovedBy, String resCom) throws Exception {
+    //member add reservation to database as pending
+    protected void addNewReservation(int resBy, String resType, String resourcesRes, Date resDate, Time outTime, int instNo) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -223,22 +226,28 @@ public class Reservations {
         Class.forName(driver);
         connection = DriverManager.getConnection(url, username, password);
         try {
+            //create statement
             java.sql.Statement statement = connection.createStatement();
+            //create new account
+            String newRes = "INSERT INTO AscendDB.tblReservations () VALUES ()";
+            PreparedStatement ps = connection.prepareStatement(newRes);
+            ps.executeUpdate();
 
-            String updateMember = "INSERT INTO AscendDB.tblReservation (ReservedBy, ReservationType, ResourcesReserved, ReservationDate, OutTime, InTime, Destination, InstructorNo, ReservationComments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
-            PreparedStatement pstmt = connection.prepareStatement(updateMember);
+            //get account just created
+            java.sql.ResultSet rs = statement.executeQuery("SELECT ReservationID FROM AscendDB.tblReservations ORDER BY ReservationID DESC LIMIT 1");
+            rs.next();
+            this.resId = rs.getInt("ReservationID");
+
+            //update newly created account with reservation data
+            String updateReservation = "UPDATE AscendDB.tblReservation SET ReservedBy = ?, ReservationType = ?, ResourcesReserved = ?, ReservationDate = ?, OutTime = ?, InstructorNo = ? WHERE ReservationID =" + resId +";";
+            PreparedStatement pstmt = connection.prepareStatement(updateReservation);
             pstmt.setInt(1, resBy);
             pstmt.setString(2, resType);
             pstmt.setString(3, resourcesRes);
             pstmt.setDate(4, (java.sql.Date) resDate);
             pstmt.setTime(5, outTime);
-            pstmt.setTime(6, inTime);
-            pstmt.setString(7, dest);
-            pstmt.setInt(1, instNo);
-            pstmt.setInt(1, resApprovedBy);
-            pstmt.setString(7, resCom);
+            pstmt.setInt(6, instNo);
             pstmt.executeUpdate();
-
 
         } catch (Exception e) {
             System.err.println("err");
@@ -252,6 +261,7 @@ public class Reservations {
         }
     }
 
+    //check the availability of the member requested reservation
     protected void checkAvailability(String reres) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -270,13 +280,10 @@ public class Reservations {
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 rs.next();
-
                 this.resourcesRes = rs.getString("ResourceReserved");
                 this.resDate = rs.getDate("ReservationDate");
                 this.outTime = rs.getTime("OutTime");
             }
-
-
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
@@ -291,9 +298,9 @@ public class Reservations {
 
     @Override
     public String toString() {
-        return "<p>Reservation ID: "+this.resId +"</p><p>Reserved by: "+this.resBy+"</p><p>Email: "+
-                this.resType+"</p><p>First Name: "+this.resourcesRes+"</p><p>Last Name: "+this.resDate+"</p><p>Phone 1: "+
-                this.outTime+"</p><p>Phone 2: "+this.inTime+"</p><p>Emergency Contact Name: "+this.dest+"</p><p>Emergency Contact Number: "+
-                this.instNo+"</p><p>Member Comments: "+this.resApprovedBy+"</p><p>Reservation Comments: " + this.resCom;
+        return "<p>Reservation ID: "+this.resId +"</p><p>Reserved by: "+this.resBy+"</p><p>Reservation Type: "+
+                this.resType+"</p><p>Resources Reserved: "+this.resourcesRes+"</p><p>Reservation Date: "+this.resDate+"</p><p>Reservation Out Time: "+
+                this.outTime+"</p><p>Reservation In Time: "+this.inTime+"</p><p>Destination: "+this.dest+"</p><p>Instrcutor Number: "+
+                this.instNo+"</p><p>Reservation Satus: "+this.resStatus+"</p><p>Reservation Approved By: "+this.resApprovedBy+"</p><p>Reservation Comments: " + this.resCom;
     }
 }

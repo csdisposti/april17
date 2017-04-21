@@ -26,17 +26,16 @@
          <hr>
             <div class="col-sm-1">
             </div>
-        <form action="ReservationFlyingLessonSubmit" method="post">
+        <form action="FlyingLessonReservationSubmit" method="post">
             <input type="hidden" id="memberfid" name="memberid" value="${mid}"/>
             <div class="col-sm-3">
                 <h4>Date you would like to schedule your reservation:</h4>
                 <label for="resdate">Reservation Date: </label>
-                <input type="date" value="2017-04-21" id="resdate" name="resdate" title="Reservation Date" required/> <br>
-                <span> enter in following format: MM-DD-YYYY</span><br>
+                <input type="date" value="YYYY-MM-DD" id="resdate" name="resdate" title="Reservation Date" required/> <br>
                 <br>
                 <h4>Time you would like to schedule your reservation:</h4>
                 <label for="restime">Reservation Time: </label>
-                <input type="text" pattern="^\d{2}:\d{2}$" id="restime" name="restime" title="Reservation Time" required/><br> <span> enter using 24 hour clock. ex: 13:30</span><br>
+                <input type="text" pattern="^\d{2}:\d{2}$" id="restime" name="restime" title="Reservation Time" value="HH:MM" required/><br> <span> enter using 24 hour clock. ex: 13:30</span><br>
             </div>
             <div class="col-sm-3">
                 <h4>What type of aircraft would you like to reserve?</h4>
