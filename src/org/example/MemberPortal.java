@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 
 /**
  * Created by cdisp on 3/27/2017.
+ * Member Portal
  */
 
 public class MemberPortal extends HttpServlet {
@@ -26,7 +27,7 @@ public class MemberPortal extends HttpServlet {
 
         String memberLogin;
         String fn;
-        int memidlogin;
+        int memid;
 
         Credentials c = new Credentials();
         Member mlogin = new Member();
@@ -45,9 +46,9 @@ public class MemberPortal extends HttpServlet {
                 request.getSession().setAttribute("us", memberLogin);
                 //get member first name
                 fn = mlogin.getfName();
-                memidlogin = mlogin.getMemId();
+                memid = mlogin.getMemId();
                 request.getSession().setAttribute("fn" , fn);
-                request.getSession().setAttribute("memidlogin", memidlogin);
+                request.getSession().setAttribute("memid", memid);
                 request.getRequestDispatcher("/memberportal.jsp").forward(request, response);
             }
         }catch (Exception e2)

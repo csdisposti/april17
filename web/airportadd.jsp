@@ -51,15 +51,14 @@
             <input type="text" id="ctaf" name="cfat" title="CTAF_UNICOM" value=""/><br />
             <label for="runway">Runway Type:</label><br />
             <input type="text" id="runway" name="runway" title="Runway Type" value=""/><br />
-                //resume here
-            <label for="conend">Tower Frequency:</label><br />
-            <input type="text" id="conend" name="conend" title="conend" value=""/><br />
-            <label for="paymeth">Fuel:</label><br />
-            <input type="text" id="paymeth" name="paymeth" title="paymeth" value=""/><br />
-            <label for="contot">Storage:</label><br />
-            <input type="text" id="contot" name="contot" title="contot" value=""/><br />
-            <label for="concomms">Airport Comments:</label><br />
-            <textarea rows="10" cols="30" id="concomms" name="concomms" value=" " title="concomms"></textarea> <br />
+            <label for="towerfreq">Tower Frequency:</label><br />
+            <input type="text" id="towerfreq" name="towerfreq" title="Tower Frequency" value=""/><br />
+            <label for="fuel">Fuel:</label><br />
+            <input type="text" id="fuel" name="fuel" title="Fuel" value=""/><br />
+            <label for="storage">Storage:</label><br />
+            <input type="text" id="storage" name="storage" title="Storage" value=""/><br />
+            <label for="airportcomms">Airport Comments:</label><br />
+            <textarea rows="10" cols="30" id="airportcomms" name="airportcomms" value=" " title="Airport Comments"></textarea> <br />
             <input type="submit"  class="btn btn-default btn-sp" value="Add New Airport" />
             </div>
         </form>

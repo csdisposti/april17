@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class FlyingLessonReservation extends HttpServlet {
 
@@ -17,11 +18,24 @@ public class FlyingLessonReservation extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String memberid = request.getParameter("memid");
+
+        AircraftList aircrafts = new AircraftList();
+        ArrayList<AircraftList> aircrafttype;
+        InstructorsList instructors = new InstructorsList();
+        ArrayList<InstructorsList> instructortype;
+
         try{
 
-                request.getRequestDispatcher("/signupone.jsp").forward(request, response);
+            int mid = Integer.parseInt(memberid);
+            aircrafttype = aircrafts.populateResourcesReserved();
+            instructortype = instructors.populateResourcesReserved();
+            request.getSession().setAttribute("aircrafttype", aircrafttype);
+            request.getSession().setAttribute("instructortype", instructortype);
+            request.getSession().setAttribute("mid", mid);
+            request.getRequestDispatcher("/flyinglessonreservation.jsp").forward(request, response);
         }
-            catch (Exception e2)
+        catch (Exception e2)
         {
             e2.printStackTrace();
         }

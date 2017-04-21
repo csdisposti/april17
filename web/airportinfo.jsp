@@ -21,7 +21,7 @@
     </header>
     <!--begin main text-->
     <div class="row gray">
-        <h3 class="text-center">Update Existing Maintenance</h3>
+        <h3 class="text-center">Update Existing Airport</h3>
         <hr>
 <div class="col-sm-2"></div>
         <form action="AirportManagementSubmit" method="POST">
@@ -41,25 +41,24 @@
                 <input type="text" id="latitude" name="latitude" title="Latitude" value=""/><br />
                 <label for="logitude">Longitude:</label><br />
                 <input type="text" id="logitude" name="logitude" title="Logitude" value=""/><br />
-                //resume here
-                <label for="conend">Contact Name:</label><br />
-                <input type="text" id="conend" name="conend" title="conend" value="John Fadok"/><br />
-                <label for="paymeth">Contact Phone:</label><br />
-                <input type="text" id="paymeth" name="paymeth" title="paymeth" value="828-693-1897"/><br />
+                <label for="apcontactn">Contact Name:</label><br />
+                <input type="text" id="apcontactn" name="apcontactn" title="Contact Name" value=""/><br />
+                <label for="apcontactp">Contact Phone:</label><br />
+                <input type="text" id="apcontactp" name="apcontactp" title="Contact Phone" value=""/><br />
             </div>
             <div class="col-sm-4">
-            <label for="contot">CTAF_UNICOM:</label><br />
-                <input type="text" id="contot" name="contot" title="contot" value="123"/><br />
-                <label for="constart">Runway Type:</label><br />
-                <input type="text" id="constart" name="constart" title="constart" value="asphalt"/><br />
-                <label for="conend">Tower Frequency:</label><br />
-                <input type="text" id="conend" name="conend" title="conend" value="No Tower"/><br />
-                <label for="paymeth">Fuel:</label><br />
-                <input type="text" id="paymeth" name="paymeth" title="paymeth" value="0"/><br />
-                <label for="contot">Storage:</label><br />
-                <input type="text" id="contot" name="contot" title="contot" value="hangers"/><br />
-                <label for="concomms">Airport Comments:</label><br />
-                <textarea rows="10" cols="30" id="concomms" name="concomms" value="Great airport" title="concomms"></textarea> <br />
+                <label for="ctaf">CTAF_UNICOM:</label><br />
+                <input type="text" id="ctaf" name="cfat" title="CTAF_UNICOM" value=""/><br />
+                <label for="runway">Runway Type:</label><br />
+                <input type="text" id="runway" name="runway" title="Runway Type" value=""/><br />
+                <label for="towerfreq">Tower Frequency:</label><br />
+                <input type="text" id="towerfreq" name="towerfreq" title="Tower Frequency" value=""/><br />
+                <label for="fuel">Fuel:</label><br />
+                <input type="text" id="fuel" name="fuel" title="Fuel" value=""/><br />
+                <label for="storage">Storage:</label><br />
+                <input type="text" id="storage" name="storage" title="Storage" value=""/><br />
+                <label for="airportcomms">Airport Comments:</label><br />
+                <textarea rows="10" cols="30" id="airportcomms" name="airportcomms" value="" title="Airport Comments"></textarea> <br />
                 <input type="submit"  class="btn btn-default btn-sp" value="Update Existing Airport" />
             </div>
         </form>

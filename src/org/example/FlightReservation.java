@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class FlightReservation extends HttpServlet {
 
@@ -17,8 +18,13 @@ public class FlightReservation extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        AircraftList aircrafts = new AircraftList();
+        ArrayList<AircraftList> ResourcesReserved;
+
         try{
 
+            ResourcesReserved = aircrafts.populateResourcesReserved();
+            request.getSession().setAttribute("aircrafttype", ResourcesReserved);
                 request.getRequestDispatcher("/signupone.jsp").forward(request, response);
         }
             catch (Exception e2)

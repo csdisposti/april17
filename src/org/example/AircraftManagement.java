@@ -22,7 +22,6 @@ public class AircraftManagement extends HttpServlet {
 
         String aircraft = request.getParameter("aircrafttype");
 
-
             int ownerID;
             String makeModel;
             String aircraftType;
