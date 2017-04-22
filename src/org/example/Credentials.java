@@ -62,9 +62,10 @@ public class Credentials {
             java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblCredentials WHERE Email_Username='" + user + "'AND MemberPW='" + pwd + "';");
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
-                rs.next();
-                this.userName = rs.getString("Email_Username");
+                while (rs.next()) {
+                    this.userName = rs.getString("Email_Username");
                 }
+            }
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
@@ -92,7 +93,7 @@ public class Credentials {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            String newCred = "INSERT INTO tblCredentials (Email_Username, MemberPW) VALUES (?,?)";
+            String newCred = "INSERT INTO AscendDB.tblCredentials (Email_Username, MemberPW) VALUES (?,?)";
             PreparedStatement ps = connection.prepareStatement(newCred);
             ps.setString(1, user);
             ps.setString(2, pwd);
@@ -109,4 +110,31 @@ public class Credentials {
             }
         }
     }
+
+    //member update credentials
+    protected void updateCredentials(String user, String pwd) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+
+            String updateCredentials = "UPDATE AscendDB.tblCredentials SET MemberPW = ? WHERE Email_Username =" + user + ";";
+            PreparedStatement pstmt = connection.prepareStatement(updateCredentials);
+            pstmt.setString(1, pwd);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        }
+    }
+
 }

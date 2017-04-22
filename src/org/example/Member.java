@@ -237,7 +237,7 @@ public class Member {
 
 
     //member update own info
-    protected void updateMyInfo(int memid, String email, String fname, String lname, String phoneone, String phonetwo, String emrconname, String emrconphone) throws Exception {
+    protected void updateMyInfo(int memid, String fname, String lname, String phoneone, String phonetwo, String emrconname, String emrconphone) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -251,7 +251,7 @@ public class Member {
         try {
             java.sql.Statement statement = connection.createStatement();
 
-            String updateMember = "UPDATE tblMember SET FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ?, MemberComments = ? WHERE MemberID =" + memid + ";";
+            String updateMember = "UPDATE tblMember SET FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ? WHERE MemberID =" + memid + ";";
             PreparedStatement pstmt = connection.prepareStatement(updateMember);
             pstmt.setString(1, fname);
             pstmt.setString(2, lname);

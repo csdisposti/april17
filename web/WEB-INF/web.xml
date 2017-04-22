@@ -70,6 +70,14 @@
         <url-pattern>/EditMyInfo</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>EditMyInfoSubmit</servlet-name>
+        <servlet-class>org.example.EditMyInfoSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditMyInfoSubmit</servlet-name>
+        <url-pattern>/EditMyInfoSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ReservationFlyingLessonSubmit</servlet-name>
         <servlet-class>org.example.ReservationFlyingLessonSubmit</servlet-class>
     </servlet>

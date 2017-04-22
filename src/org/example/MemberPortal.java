@@ -28,6 +28,7 @@ public class MemberPortal extends HttpServlet {
         String memberLogin;
         String fn;
         int memid;
+        String email;
 
         Credentials c = new Credentials();
         Member mlogin = new Member();
@@ -41,14 +42,17 @@ public class MemberPortal extends HttpServlet {
             }
             else {
                 //read member data from member table
-                mlogin.readFromDatabase(memberLogin);
+                mlogin.readFromDatabase(username);
                 request.getSession().setAttribute("mlogin", mlogin);
                 request.getSession().setAttribute("us", memberLogin);
                 //get member first name
                 fn = mlogin.getfName();
                 memid = mlogin.getMemId();
+
                 request.getSession().setAttribute("fn" , fn);
                 request.getSession().setAttribute("memid", memid);
+                request.getSession().setAttribute("mpassword", password);
+                request.getSession().setAttribute("memail", username);
                 request.getRequestDispatcher("/memberportal.jsp").forward(request, response);
             }
         }catch (Exception e2)
