@@ -59,7 +59,7 @@ public class Credentials {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblCredentials WHERE Email_Username='" + user + "'AND MemberPW='" + pwd + "';");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblCredentials WHERE Email_Username='" + user + "'AND MemberPW='" + pwd + "';");
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 rs.next();

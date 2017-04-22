@@ -27,7 +27,7 @@ public class SignupTwo extends HttpServlet {
             //check if email is already registered
             emailCheck = ce.readFromDatabase(email);
             request.getSession().setAttribute("email", email);
-            request.getSession().setAttribute("pass", password);
+            request.getSession().setAttribute("password", password);
             //if email is not already registered send to next step in signup process
             if (emailCheck == null) {
                 request.getRequestDispatcher("/signuptwo.jsp").forward(request, response);

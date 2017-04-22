@@ -5,12 +5,15 @@ import java.sql.DriverManager;
 import java.util.Properties;
 
 /**
- * Created by mrkirkland on 4/11/2017.
+ * Created by cdisp on 4/11/2017.
  */
-public class CheckEmail {
+public class CheckAdmin extends Admin {
 
     private String email;
+    private String adminlev;
 
+
+    //Check for admin privledges
     protected String readFromDatabase(String email) throws Exception {
         //open connection
         java.sql.Connection connection;
@@ -25,13 +28,13 @@ public class CheckEmail {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblCredentials WHERE Email_Username='" + email + "';");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT AdminLevel FROM AscendDB.tblAdmin INNER JOIN AscendDB.tblMember ON tblAdmin.MemberNo = tblMember.MemberID WHERE tblMember.Email_User='" + email + "';");
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 //see if email exists and save to 'email" otherwise email remains null
                 while (rs.next()) {
-                    this.email = rs.getString("Email_Username");
+                    this.adminlev = rs.getString("AdminLevel");
                 }
             }
         } catch (Exception e) {
@@ -44,7 +47,7 @@ public class CheckEmail {
                 e.printStackTrace();
             }
         }
-        return this.email;
+        return this.adminlev;
     }
 }
 

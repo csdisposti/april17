@@ -73,7 +73,7 @@ public class Admin {
         this.adminCom = adminCom;
     }
 
-    //read from databse by member id
+    //read from database by member id
     public void readFromDatabase(int mn) throws Exception
     {
         java.sql.Connection connection;

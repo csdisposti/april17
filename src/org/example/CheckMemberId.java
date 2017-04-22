@@ -28,7 +28,7 @@ public class CheckMemberId {
     }
 
     //set MemberID
-    public void setMemberID(int UserName) {
+    public void setMemberID(int memID) {
         this.memID = memID;
     }
 
@@ -47,7 +47,7 @@ public class CheckMemberId {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE MemberID=" + memid + ";");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblMember WHERE MemberID=" + memid + ";");
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info

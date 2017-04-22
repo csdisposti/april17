@@ -80,7 +80,7 @@ public class Test2  {
             //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblCredentials WHERE Email_Username='" + email + "';");
             //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User='" + email + "';");
            // java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAdmin WHERE MemberNo=" + mn + ";");
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblReservations");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAdmin");
             if (rs != null) {
                 rs.next();
                 //this.eu = rs.getString("Email_Username");

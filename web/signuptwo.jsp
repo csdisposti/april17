@@ -31,22 +31,22 @@
                 <input type="hidden" id="email" name="email" title="email" value="${email}">
                 <input type="hidden" id="password" name="password" title="password" value="${password}">
             <label for="fname">First Name:</label><br />
-                <input type="text" id="fname" name="fname" title="First Name" /> <br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="fname" name="fname" title="First Name - Letters/Numbers/Apostrophes Only" /> <br />
             <label for="lname">Last Name:</label><br />
-                <input type="text" id="lname" name="lname" title="Last Name" /> <br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="lname" name="lname" title="Last Name - Letters/Numbers/Apostrophes Only" /> <br />
             <label for="phone1">Phone 1:</label><br />
-            <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="phone1" name="phone1" title="Phone 1" />
+            <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="phone1" name="phone1" title="Phone 1 - Please enter in the following format: 555-555-5555" />
             <span> Example: 555-555-5555</span><br>
             <label for="phone2">Phone 2:</label><br />
-            <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="phone2" name="phone2" title="Phone 2" />
+            <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="phone2" name="phone2" title="Phone 2 - Please enter in the following format: 555-555-5555" />
             <span> Example: 555-555-5555</span><br>
         <hr>
         </div>
             <div class="col-sm-3">
             <label for="street">Street Address:</label><br />
-            <input type="text" id="street" name="street" title="Street" required/><br />
+            <input type="text" pattern="^[a-zA-Z0-9-#-.-'\s]{1,24}$" id="street" name="street" title="Street - Letters/Numbers/Apostrophes/Hashtags Only" required/><br />
             <label for="city">City:</label><br />
-            <input type="text" id="city" name="city" title="City" required/> <br />
+            <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="city" name="city" title="City - Letters/Numbers/Apostrophes Only" required/> <br />
             <label for="state">State:</label><br />
             <select id="state" name="state" title="State">
                 <option value="NC">North Carolina</option>
@@ -102,14 +102,15 @@
                 <option value="WY">Wyoming</option>
             </select><br>
             <label for="zip">Zip Code:</label><br />
-            <input type="text" id="zip" name="zip" title="Zip Code" required/> <br />
+            <input type="text" pattern="[0-9]{5}" id="zip" name="zip" title="Zip Code - 5 digits only" required/> <br />
+                <span> Example: 12345</span><br>
             <hr>
             </div>
         <div class="col-sm-3">
             <label for="emerconname">Emergency Contact Name:</label><br />
-            <input type="text" id="emerconname" name="emerconname" title="Emergency Contact Name" /> <br />
+            <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="emerconname" name="emerconname" title="Emergency Contact Name - Letters/Numbers/Apostrophes Only" /> <br />
             <label for="emerconphone">Emergency Contact Phone:</label><br />
-            <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="emerconphone" name="emerconphone" title="Emergency Contact Phone" />
+            <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="emerconphone" name="emerconphone" title="Emergency Contact Phone - Please enter in the following format: 555-555-5555" />
             <span> Example: 555-555-5555</span><br>
             <label>Account Type:</label><br />
             <input type="radio" name="accttype" title="Account Type" value="I"> I - Individual

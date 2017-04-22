@@ -22,9 +22,11 @@ public class AdminPortal extends HttpServlet {
 
         String memInfo;
         int adminLogin;
+        String adminCheck;
         String fnad;
 
         Credentials c = new Credentials();
+        CheckAdmin ca = new CheckAdmin();
         Member m = new Member();
         Member m2 = new Member();
         Admin a =  new Admin();
@@ -32,10 +34,14 @@ public class AdminPortal extends HttpServlet {
         try{
             //this gets the email username
             memInfo = c.readFromDatabase(username, password);
-            if (memInfo.equals("na")){
+            adminCheck = ca.readFromDatabase(username);
+            if (memInfo == null){
                 request.getRequestDispatcher("/loginerror.jsp").forward(request, response);
             }
-            else {
+            else if (adminCheck == null) {
+                //check admin level
+                request.getRequestDispatcher("/adminerror.jsp").forward(request, response);
+            } else{
                 //read from the member table
                 adminLogin = m.readJustMemNo(memInfo);
                 request.getSession().setAttribute("m", m);
