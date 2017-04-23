@@ -31,12 +31,12 @@ public class InstructorsList extends Member{
         this.lname = null;
     }
 
-    //get InstructorList level
+    //get Instructor id
     public int getMemId() {
         return memid;
     }
 
-    //set InsructorList level
+    //set instructor id
     public void setMemId(int memid) {
         this.memid = memid;
     }
@@ -118,6 +118,6 @@ public class InstructorsList extends Member{
     }
     @Override
     public String toString() {
-        return this.fname + " " + this.lname + " " + this.memid;
+        return this.fname + " " + this.lname;
     }
 }

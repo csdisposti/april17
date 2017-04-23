@@ -224,8 +224,8 @@ public class Admin {
         }
     }
 
-    //get isntructor number
-    public void getInstructors(int memberid) throws Exception
+    //get instructor number
+    public int getInstructorNumber(String fn, String ln) throws Exception
     {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -240,18 +240,25 @@ public class Admin {
         try {
             java.sql.Statement statement = connection.createStatement();
 
+            java.sql.ResultSet rs1 = statement.executeQuery("SELECT MemberID FROM tblMember WHERE tblMember.FName='" + fn +"'AND tblMember.LName='" + ln +"'");
+            if (rs1 != null) {
+                //makes sure the resultSet isn't in the header info
+                while (rs1.next()) {
 
-            java.sql.ResultSet rs2 = statement.executeQuery("SELECT AdministratorID FROM tblAdmin INNER JOIN tblMember ON tblAdmin.MemberNo = tblMember.MemberID WHERE tblMember.MemberID='" + memberid +"'");
-            //java.sql.ResultSet rs2 = statement.executeQuery("SELECT * FROM AscendDB.tblAdmin INNER JOIN AscendDB.tblMmeber ON tblAdmin.MemberNo = tblMember.MemberID WHERE MemberNo="+mn+";");
+                    this.memNo = rs1.getInt("MemberID");
+                }
+
+            }
+            java.sql.ResultSet rs2 = statement.executeQuery("SELECT AdministratorID FROM tblAdmin INNER JOIN tblMember ON tblAdmin.MemberNo = tblMember.MemberID WHERE tblMember.MemberID='" + memNo +"'");
             if (rs2 != null) {
                 //makes sure the resultSet isn't in the header info
                 while (rs2.next()) {
 
-                    this.adminId = rs2.getInt("AdministratorID");
+                    return this.adminId = rs2.getInt("AdministratorID");
                 }
 
-
             }
+
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
@@ -262,6 +269,7 @@ public class Admin {
                 e.printStackTrace();
             }
         }
+            return this.adminId;
     }
 
     @Override

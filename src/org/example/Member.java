@@ -380,6 +380,7 @@ public class Member {
     }
 
 
+
     //get member by member id
     protected void getMemberByMemID(int memID) throws Exception {
         java.sql.Connection connection;

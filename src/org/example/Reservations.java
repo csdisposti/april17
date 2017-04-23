@@ -215,7 +215,7 @@ public class Reservations {
     }
 
     //member add reservation to database as pending
-    protected void addNewReservation(int resBy, String resType, String resourcesRes, String resDate, Time outTime, int instNo) throws Exception {
+    protected void addNewReservation(int resBy, String resType, String resourcesRes, String resDate, String outTime, int instNo) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -234,7 +234,7 @@ public class Reservations {
             ps.setString(2, resType);
             ps.setString(3, resourcesRes);
             ps.setDate(4, java.sql.Date.valueOf(resDate));
-            ps.setTime(5, outTime);
+            ps.setTime(5, java.sql.Time.valueOf(outTime));
             ps.setInt(6, instNo);
             ps.executeUpdate();
 

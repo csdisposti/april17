@@ -33,33 +33,31 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
         Reservations res = new Reservations();
         Admin ins = new Admin();
 
-        String resType = "F";
+        //Rservation here is alwaysL for lesson
+        String resType = "L";
         String available;
+        String seconds = ":00";
 
         ReservationsList reservationsubmit = new ReservationsList();
         Aircraft act = new Aircraft();
+        Admin I = new Admin();
 
         try {
+            //get registrationID only for resources rserved column
+            String[] registrationid = aircrafttype.split("\\s+");
+            String rr = registrationid[0];
 
-            String[] instr = instructor.split("\\s+");
+            //get instructor adminID for instructor column
+            String[] insructornames = instructor.split("\\s+");
+            String fname = insructornames[0];
+            String lname = insructornames[0];
+            int instruct = I.getInstructorNumber(fname, lname);
 
-            String instruc = instr[2];
-            System.out.println(instruc);
-
-            System.out.print(aircrafttype);
-            System.out.print(resdate);
+            //parse memberid to int
             int mi = Integer.parseInt(memberid);
-            int istruct = Integer.parseInt(instruc);
 
-            //parse date
-           // Date rdate = new SimpleDateFormat("yyyy-MM-dd").parse(resdate);
-
-            //System.out.println(rdate);
-
-            //get time
-            SimpleDateFormat sdf = new SimpleDateFormat(restime);
-            long ms = sdf.parse(restime).getTime();
-            Time rtime = new Time(ms);
+            //add :00 to restime
+            String fullOutTime = restime + seconds;
 
 
             //check availbility not working took me error page
@@ -73,10 +71,9 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             // else {}
 
 
-            String rr = "MS";
             int resID;
             //add reservation
-            res.addNewReservation(mi, resType, rr, resdate, rtime, istruct);
+            res.addNewReservation(mi, resType, rr, resdate, fullOutTime, instruct);
             resID = res.getResId();
             res.readFromDatabase(resID);
             request.getSession().setAttribute("mi", mi);
