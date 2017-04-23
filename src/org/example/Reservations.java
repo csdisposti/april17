@@ -1,11 +1,9 @@
 package org.example;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -26,6 +24,7 @@ public class Reservations {
     private boolean resStatus;
     private int resApprovedBy;
     private String resCom;
+
 
     //constructor
     public Reservations(int resId, int resBy, String resType, String resourcesRes, Date resDate, Time outTime, Time inTime, String dest, int instNo, Boolean resStatus, int resApprovedBy, String resCom) {
@@ -57,6 +56,7 @@ public class Reservations {
         this.resStatus = false;
         this.resApprovedBy = 0;
         this.resCom = null;
+
     }
 
     //get Reservation id
@@ -105,7 +105,7 @@ public class Reservations {
     }
 
     //set Reservation Date
-    public void setRseDate(Date rseDate) {
+    public void setResDate(Date rseDate) {
         this.resDate = rseDate;
     }
 
@@ -211,6 +211,52 @@ public class Reservations {
                     this.resStatus = rs.getBoolean("ReservationStatus");
                     this.resApprovedBy = rs.getInt("ReservationApprovedBy");
                     this.resCom = rs.getString("ReservationComments");
+            }
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //read reservations from database
+    public void viewMyReservations(int memberID)throws Exception
+    {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblReservations WHERE ReservedBy="+memberID+";");
+
+            if (rs != null) {
+                //makes sure the resultSet isn't in the header info
+                while (rs.next()) {
+                    this.resId = rs.getInt("ReservationID");
+                    this.resBy = rs.getInt("ReservedBy");
+                    this.resType = rs.getString("ReservationType");
+                    this.resourcesRes = rs.getString("ResourcesReserved");
+                    this.resDate = rs.getDate("ReservationDate");
+                    this.outTime = rs.getTime("OutTime");
+                    this.inTime = rs.getTime("InTime");
+                    this.dest = rs.getString("Destination");
+                    this.instNo = rs.getInt("InstructorNo");
+                    this.resStatus = rs.getBoolean("ReservationStatus");
+                    this.resApprovedBy = rs.getInt("ReservationApprovedBy");
+                    this.resCom = rs.getString("ReservationComments");
+                }
             }
         } catch (Exception e) {
             System.err.println("err");

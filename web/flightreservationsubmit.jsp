@@ -40,6 +40,7 @@
             <form action="MemberPortal" method="post">
                 <input type="hidden" id="usernamemp" name="username" value="${username}"/>
                 <input type="hidden" id="passwordmp" name="password" value="${password}"/>
+                <input type="hidden" id="memberfid" name="memberid" value="${memberid}"/>
                 <input type="submit" class="btn btn-default" value="Return to Member Portal"/>
             </form>
             <br>

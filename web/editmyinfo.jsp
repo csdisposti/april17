@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Member Sign Up - Ascend</title>
+    <title>edit My Info - Ascend</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width">
     <!-- Latest compiled and minified CSS -->
@@ -12,16 +12,6 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="http://ascend.2ndmm.com/css/style.css">
-    <script>
-        function myFunction() {
-        var x = document.getElementById('passwordChange');
-        if (x.style.display === 'none') {
-            x.style.display = 'block';
-        } else {
-            x.style.display = 'none';
-        }
-    }</script>
-
 </head>
 <body>
 <div class="container-fluid">

@@ -31,7 +31,7 @@ public class FlightReservation extends HttpServlet {
             int mid = Integer.parseInt(memberid);
             aircrafttype = aircrafts.populateResourcesReserved();
             request.getSession().setAttribute("aircrafttype", aircrafttype);
-            request.getSession().setAttribute("mid", mid);
+            request.getSession().setAttribute("memberid", mid);
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("password", password);
             request.getRequestDispatcher("/flightreservation.jsp").forward(request, response);

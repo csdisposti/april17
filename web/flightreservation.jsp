@@ -27,7 +27,7 @@
         <form action="FlightReservationSubmit" method="post">
             <input type="hidden" id="usernameflr" name="username" value="${username}"/>
             <input type="hidden" id="passwordflr" name="password" value="${password}"/>
-            <input type="hidden" id="memberfid" name="memberid" value="${memid}"/>
+            <input type="hidden" id="memberfid" name="memberid" value="${memberid}"/>
             <div class="col-sm-4">
                 <h4>Date you would like to schedule your reservation:</h4>
                 <label for="resdate">Reservation Date: </label>

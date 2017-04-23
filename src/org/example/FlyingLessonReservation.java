@@ -34,7 +34,7 @@ public class FlyingLessonReservation extends HttpServlet {
             instructortype = instructors.populateResourcesReserved();
             request.getSession().setAttribute("aircrafttype", aircrafttype);
             request.getSession().setAttribute("instructortype", instructortype);
-            request.getSession().setAttribute("mid", mid);
+            request.getSession().setAttribute("memberid", mid);
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("password", password);
             request.getRequestDispatcher("/flyinglessonreservation.jsp").forward(request, response);

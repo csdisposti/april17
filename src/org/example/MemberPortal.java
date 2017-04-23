@@ -27,7 +27,7 @@ public class MemberPortal extends HttpServlet {
 
         String memberLogin;
         String fn;
-        int memid;
+        int memberid;
         String email;
 
         Credentials c = new Credentials();
@@ -47,10 +47,11 @@ public class MemberPortal extends HttpServlet {
                 request.getSession().setAttribute("us", memberLogin);
                 //get member first name
                 fn = mlogin.getfName();
-                memid = mlogin.getMemId();
+                memberid = mlogin.getMemId();
+                System.out.println(memberid);
 
                 request.getSession().setAttribute("fn" , fn);
-                request.getSession().setAttribute("memid", memid);
+                request.getSession().setAttribute("memberid", memberid);
                 request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("password", password);
 

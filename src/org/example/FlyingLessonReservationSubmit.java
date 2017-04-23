@@ -111,7 +111,7 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             System.out.println(hournew);
             System.out.println(intime);
 
-            request.getSession().setAttribute("mi", mi);
+            request.getSession().setAttribute("memberid", mi);
             request.getSession().setAttribute("reservationsubmit", reservationsubmit);
             request.getSession().setAttribute("res", res);
             request.getSession().setAttribute("flyinglesson", flyinglesson);

@@ -28,14 +28,14 @@
             <form action="FlightReservation" method="post">
                 <input type="hidden" id="memberf" name="username" value="${username}"/>
                 <input type="hidden" id="memberfp" name="password" value="${password}"/>
-                <input type="hidden" id="memberfid" name="memberid" value="${memid}"/>
+                <input type="hidden" id="memberfid" name="memberid" value="${memberid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Make a Flight Reservation"/>
             </form>
             <hr>
             <form action="FlyingLessonReservation" method="post">
                 <input type="hidden" id="memberfl" name="username" value="${username}"/>
                 <input type="hidden" id="memberflp" name="password" value="${password}"/>
-                <input type="hidden" id="memberflid" name="memberid" value="${memid}"/>
+                <input type="hidden" id="memberflid" name="memberid" value="${memberid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Make a Flying Lesson Reservation"/>
             </form>
             <hr>
@@ -45,14 +45,14 @@
             <form action="ViewMyReservations" method="post">
                 <input type="hidden" id="membervmr" name="username" value="${username}"/>
                 <input type="hidden" id="membervmrp" name="password" value="${password}"/>
-                <input type="hidden" id="membervmrid" name="memberid" value="${memid}"/>
+                <input type="hidden" id="membervmrid" name="memberid" value="${memberid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="View My Reservations"/>
             </form>
             <hr>
             <form action="EditMyInfo" method="post">
                 <input type="hidden" id="membere" name="username" value="${username}"/>
                 <input type="hidden" id="memberp" name="password" value="${password}"/>
-                <input type="hidden" id="memberid" name="memberid" value="${memid}"/>
+                <input type="hidden" id="memberid" name="memberid" value="${memberid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Edit My Info"/>
             </form>
         </div>
