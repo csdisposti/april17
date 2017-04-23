@@ -53,7 +53,7 @@
                 <select name="aircrafttype" required>
                  <option value="Choose an aircraft">Choose an aircraft</option>
                     <c:forEach items="${acftup}"  var="item">
-                        <option id="item" value="${item}">${item}</option>
+                        <option value="${item}">${item}</option>
                     </c:forEach>
                 </select><br/>
                 <input type="submit" class="btn btn-default btn-sp" value="Update Existing Aircraft"/>

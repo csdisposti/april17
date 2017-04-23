@@ -24,11 +24,11 @@
     <div class="row gray">
         <h3 class="text-center">Schedule a Flight Reservation</h3>
          <hr>
-            <div class="col-sm-1">
+            <div class="col-sm-2">
             </div>
         <form action="FlyingLessonReservationSubmit" method="post">
-            <input type="hidden" id="memberfid" name="memberid" value="${mid}"/>
-            <div class="col-sm-3">
+            <input type="hidden" id="memberfid" name="memberid" value="${memid}"/>
+            <div class="col-sm-4">
                 <h4>Date you would like to schedule your reservation:</h4>
                 <label for="resdate">Reservation Date: </label>
                 <input type="date" value="YYYY-MM-DD" id="resdate" name="resdate" title="Reservation Date" required/> <br>
@@ -37,22 +37,22 @@
                 <label for="restime">Reservation Time: </label>
                 <input type="text" pattern="^\d{2}:\d{2}$" id="restime" name="restime" title="Reservation Time" value="HH:MM" required/><br> <span> enter using 24 hour clock. ex: 13:30</span><br>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <h4>What type of aircraft would you like to reserve?</h4>
                 <input id="aircrafttype" type="hidden" value="${aircrafttype}"/>
-                <select name="type" required>
+                <select name="act" title="Aircraft Type" required>
                     <option value="Choose an aircraft" title="Aircraft Type">Choose an aircraft</option>
                 <c:forEach items="${aircrafttype}" var="at">
-                <option id="at" name="at" title="instructor">${at}</option>
+                <option value="${at}">${at}</option>
                 </c:forEach>
             </select>
                 <hr>
                 <h4>If scheduling a lesson,please choose desired instructor:</h4>
                 <input id="instructors" type="hidden" value="${instructortype}"/>
-                <select name="type" required>
+                <select name="ins" title="Instructor" required>
                     <option value="Choose an instructor" selected>Choose an instructor</option>
                     <c:forEach items="${instructortype}" var="it">
-                        <option value="${it}" name="it" title="Instructor" >${it}</option>
+                        <option value="${it}">${it}</option>
                     </c:forEach>
                 </select><br>
                 <p>&nbsp;</p>

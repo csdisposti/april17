@@ -224,6 +224,46 @@ public class Admin {
         }
     }
 
+    //get isntructor number
+    public void getInstructors(int memberid) throws Exception
+    {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+
+
+            java.sql.ResultSet rs2 = statement.executeQuery("SELECT AdministratorID FROM tblAdmin INNER JOIN tblMember ON tblAdmin.MemberNo = tblMember.MemberID WHERE tblMember.MemberID='" + memberid +"'");
+            //java.sql.ResultSet rs2 = statement.executeQuery("SELECT * FROM AscendDB.tblAdmin INNER JOIN AscendDB.tblMmeber ON tblAdmin.MemberNo = tblMember.MemberID WHERE MemberNo="+mn+";");
+            if (rs2 != null) {
+                //makes sure the resultSet isn't in the header info
+                while (rs2.next()) {
+
+                    this.adminId = rs2.getInt("AdministratorID");
+                }
+
+
+            }
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public String toString() {
 

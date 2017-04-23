@@ -7,14 +7,17 @@ import java.util.Properties;
 /**
  * Created by cdisp on 3/17/2017.
  */
-public class InstructorsList {
+public class InstructorsList extends Member{
+    private int memid;
     private String level;
     private String fname;
     private String lname;
 
 
+
     //constructor
-    public InstructorsList(String level, String fname, String lname) {
+    public InstructorsList(int memid, String level, String fname, String lname) {
+        this.memid = memid;
         this.level = level;
         this.fname = fname;
         this.lname = lname;
@@ -22,9 +25,20 @@ public class InstructorsList {
 
     //empty constructor
     public InstructorsList() {
+        this.memid = 0;
         this.level = null;
         this.fname = null;
         this.lname = null;
+    }
+
+    //get InstructorList level
+    public int getMemId() {
+        return memid;
+    }
+
+    //set InsructorList level
+    public void setMemId(int memid) {
+        this.memid = memid;
     }
 
     //get InstructorList level
@@ -77,13 +91,14 @@ public class InstructorsList {
        // String I = "I";
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT LName, Fname FROM tblMember INNER JOIN tblAdmin ON tblMember.MemberID = tblAdmin.MemberNo WHERE tblAdmin.AdminLevel='I'");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT MemberID, LName, Fname FROM tblMember INNER JOIN tblAdmin ON tblMember.MemberID = tblAdmin.MemberNo WHERE tblAdmin.AdminLevel='I'");
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 while (rs.next()) {
                     InstructorsList instructor = new InstructorsList();
                    // instructor.setLevel(rs.getString(3));
+                    instructor.setMemId(rs.getInt("MemberID"));
                     instructor.setFName(rs.getString("FName"));
                     instructor.setLName(rs.getString("LName"));
                     instructors.add(instructor);
@@ -103,6 +118,6 @@ public class InstructorsList {
     }
     @Override
     public String toString() {
-        return "<span>" + this.fname + " " + this.lname + "</span>";
+        return this.fname + " " + this.lname + " " + this.memid;
     }
 }

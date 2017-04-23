@@ -42,14 +42,14 @@
         </div>
         <div class="col-sm-3">
             <form action="FlightReservation" method="post">
-                <input type="hidden" id="memberf" name="member" value="${mlogin}"/>
-                <input type="hidden" id="memberfid" name="memberid" value="${mid}"/>
+                <input type="hidden" id="memberf" name="member" value="${memail}"/>
+                <input type="hidden" id="memberfid" name="memberid" value="${memid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Make a Flight Reservation"/>
             </form>
             <hr>
             <form action="FlyingLessonReservation" method="post">
-                <input type="hidden" id="memberfl" name="member" value="${mlogin}"/>
-                <input type="hidden" id="memberflid" name="memberid" value="${mid}"/>
+                <input type="hidden" id="memberfl" name="member" value="${memail}"/>
+                <input type="hidden" id="memberflid" name="memberid" value="${memid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Make a Flying Lesson Reservation"/>
             </form>
             <hr>
@@ -57,8 +57,8 @@
         </div>
         <div class="col-sm-3">
             <form action="ViewMyReservations" method="post">
-                <input type="hidden" id="membervmr" name="member" value="${mlogin}"/>
-                <input type="hidden" id="membervmrid" name="memberid" value="${mid}"/>
+                <input type="hidden" id="membervmr" name="member" value="${memail}"/>
+                <input type="hidden" id="membervmrid" name="memberid" value="${memid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="View My Reservations"/>
             </form>
             <hr>

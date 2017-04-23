@@ -88,6 +88,7 @@ public class ReservationsList extends Reservations{
         }
     }
 
+
     @Override
     public String toString() {
         return "<p>Reservation ID: "+this.resId +"</p><p>Reserved by: "+this.resBy+"</p><p>Email: "+

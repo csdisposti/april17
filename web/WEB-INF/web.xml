@@ -78,20 +78,20 @@
         <url-pattern>/EditMyInfoSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ReservationFlyingLessonSubmit</servlet-name>
-        <servlet-class>org.example.ReservationFlyingLessonSubmit</servlet-class>
+        <servlet-name>FlyingLessonReservationSubmit</servlet-name>
+        <servlet-class>org.example.FlyingLessonReservationSubmit</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ReservationFlyingLessonSubmit</servlet-name>
-        <url-pattern>/ReservationFlyingLessonSubmit</url-pattern>
+        <servlet-name>FlyingLessonReservationSubmit</servlet-name>
+        <url-pattern>/FlyingLessonReservationSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ReservationFlightSubmit</servlet-name>
-        <servlet-class>org.example.ReservationFlightSubmit</servlet-class>
+        <servlet-name>FlightReservationSubmit</servlet-name>
+        <servlet-class>org.example.FlightReservationSubmit</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ReservationFlightSubmit</servlet-name>
-        <url-pattern>/ReservationFlightSubmit</url-pattern>
+        <servlet-name>FlightReservationSubmit</servlet-name>
+        <url-pattern>/FlightReservationSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ReservationsManagement</servlet-name>

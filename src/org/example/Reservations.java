@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
@@ -169,7 +170,7 @@ public class Reservations {
     }
 
     //read reservations from database
-    public void readFromDatabase(String ReservationID)throws Exception
+    public void readFromDatabase(int ReservationID)throws Exception
     {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -214,7 +215,7 @@ public class Reservations {
     }
 
     //member add reservation to database as pending
-    protected void addNewReservation(int resBy, String resType, String resourcesRes, Date resDate, Time outTime, int instNo) throws Exception {
+    protected void addNewReservation(int resBy, String resType, String resourcesRes, String resDate, Time outTime, int instNo) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -226,28 +227,27 @@ public class Reservations {
         Class.forName(driver);
         connection = DriverManager.getConnection(url, username, password);
         try {
-            //create statement
             java.sql.Statement statement = connection.createStatement();
-            //create new account
-            String newRes = "INSERT INTO AscendDB.tblReservations () VALUES ()";
+            String newRes = "INSERT INTO tblReservations(ReservedBy, ReservationType, ResourcesReserved, ReservationDate, OutTime, InstructorNo) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(newRes);
+            ps.setInt(1, resBy);
+            ps.setString(2, resType);
+            ps.setString(3, resourcesRes);
+            ps.setDate(4, java.sql.Date.valueOf(resDate));
+            ps.setTime(5, outTime);
+            ps.setInt(6, instNo);
             ps.executeUpdate();
 
-            //get account just created
-            java.sql.ResultSet rs = statement.executeQuery("SELECT ReservationID FROM AscendDB.tblReservations ORDER BY ReservationID DESC LIMIT 1");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT ReservationID FROM tblReservations ORDER BY ReservationID DESC LIMIT 1");
             rs.next();
             this.resId = rs.getInt("ReservationID");
 
-            //update newly created account with reservation data
-            String updateReservation = "UPDATE AscendDB.tblReservation SET ReservedBy = ?, ReservationType = ?, ResourcesReserved = ?, ReservationDate = ?, OutTime = ?, InstructorNo = ? WHERE ReservationID =" + resId +";";
-            PreparedStatement pstmt = connection.prepareStatement(updateReservation);
-            pstmt.setInt(1, resBy);
-            pstmt.setString(2, resType);
-            pstmt.setString(3, resourcesRes);
-            pstmt.setDate(4, (java.sql.Date) resDate);
-            pstmt.setTime(5, outTime);
-            pstmt.setInt(6, instNo);
-            pstmt.executeUpdate();
+            //String updateRes = "UPDATE tblReservations SET ResourcesReserved = ?,  WHERE ReservationID =" + resId + ";";
+
+            //PreparedStatement pstmt = connection.prepareStatement(updateRes);
+
+
+            //pstmt.executeUpdate();
 
         } catch (Exception e) {
             System.err.println("err");
@@ -262,7 +262,7 @@ public class Reservations {
     }
 
     //check the availability of the member requested reservation
-    protected void checkAvailability(String reres) throws Exception {
+    protected String checkAvailability(String reres) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -273,16 +273,20 @@ public class Reservations {
         String driver = prop.getProperty("jdbc.driver");
         Class.forName(driver);
         connection = DriverManager.getConnection(url, username, password);
+
+       // ArrayList<ReservationsList> availableReservations = new ArrayList<>();
         try {
             java.sql.Statement statement = connection.createStatement();
 
             java.sql.ResultSet rs = statement.executeQuery("SELECT ResourcesReserved, ReservationDate, OutTime FROM tblReservations WHERE ResourcesReserved ='" + reres + "'AND ReservationDate > CurDate() ORDER BY ReservationDate, OutTime");
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
-                rs.next();
-                this.resourcesRes = rs.getString("ResourceReserved");
-                this.resDate = rs.getDate("ReservationDate");
-                this.outTime = rs.getTime("OutTime");
+                while (rs.next()) {
+                    return this.resourcesRes = rs.getString("ResourceReserved");
+                    //this.resDate = rs.getDate("ReservationDate");
+                    //this.outTime = rs.getTime("OutTime");
+
+                }
             }
         } catch (Exception e) {
             System.err.println("err");
@@ -294,7 +298,10 @@ public class Reservations {
                 e.printStackTrace();
             }
         }
+        return this.resourcesRes;
     }
+
+
 
     @Override
     public String toString() {

@@ -18,7 +18,8 @@ public class FlyingLessonReservation extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        String memberid = request.getParameter("memid");
+        //String memberemail = request.getParameter("memail");
+        String memberid = request.getParameter("memberid");
 
         AircraftList aircrafts = new AircraftList();
         ArrayList<AircraftList> aircrafttype;
