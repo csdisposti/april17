@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-sm-9"></div>
         <div class="col-sm-2 text-right">
-        <h4 class=text-center" >Welcome ${fn}!</h4>
+        <h4 class=text-center" >Hi ${fn}!</h4>
             <hr>
         </div>
         <div class="col-sm-1">

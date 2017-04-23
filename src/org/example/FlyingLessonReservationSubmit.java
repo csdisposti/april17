@@ -50,7 +50,7 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             //get instructor adminID for instructor column
             String[] insructornames = instructor.split("\\s+");
             String fname = insructornames[0];
-            String lname = insructornames[0];
+            String lname = insructornames[1];
             int instruct = I.getInstructorNumber(fname, lname);
 
             //parse memberid to int
@@ -70,15 +70,29 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             //  }
             // else {}
 
-
             int resID;
             //add reservation
             res.addNewReservation(mi, resType, rr, resdate, fullOutTime, instruct);
             resID = res.getResId();
             res.readFromDatabase(resID);
+            String rtype = res.getResType();  //not needed just for clarity
+            String rrr = res.getResourcesRes();
+            Date rdate = res.getResDate();
+            Time rtime = res.getOutTime();//not needed just for clarity
+            int insnum = res.getInstNo();//not needed just for clarity
+            Boolean resstat = res.getResStatus(); //not needed just for clarity
+            String flyinglesson = "Flying Lesson";
+            String pending = "pending";
+
             request.getSession().setAttribute("mi", mi);
             request.getSession().setAttribute("reservationsubmit", reservationsubmit);
             request.getSession().setAttribute("res", res);
+            request.getSession().setAttribute("flyinglesson", flyinglesson);
+            request.getSession().setAttribute("regsitration", rrr);
+            request.getSession().setAttribute("rdate", rdate);
+            request.getSession().setAttribute("restime", restime);
+            request.getSession().setAttribute("instructor", instructor);
+            request.getSession().setAttribute("pending", pending);
             System.out.println(res);
 
             request.getRequestDispatcher("/flyinglessonreservationsubmit.jsp").forward(request, response);

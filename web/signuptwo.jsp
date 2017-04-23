@@ -31,11 +31,11 @@
                 <input type="hidden" id="email" name="email" title="email" value="${email}">
                 <input type="hidden" id="password" name="password" title="password" value="${password}">
             <label for="fname">First Name:</label><br />
-                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="fname" name="fname" title="First Name - Letters/Numbers/Apostrophes Only" /> <br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="fname" name="fname" title="First Name - Letters/Numbers/Apostrophes Only" required/> <br />
             <label for="lname">Last Name:</label><br />
-                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="lname" name="lname" title="Last Name - Letters/Numbers/Apostrophes Only" /> <br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="lname" name="lname" title="Last Name - Letters/Numbers/Apostrophes Only" required/> <br />
             <label for="phone1">Phone 1:</label><br />
-            <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="phone1" name="phone1" title="Phone 1 - Please enter in the following format: 555-555-5555" />
+            <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="phone1" name="phone1" title="Phone 1 - Please enter in the following format: 555-555-5555" required/>
             <span> Example: 555-555-5555</span><br>
             <label for="phone2">Phone 2:</label><br />
             <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="phone2" name="phone2" title="Phone 2 - Please enter in the following format: 555-555-5555" />

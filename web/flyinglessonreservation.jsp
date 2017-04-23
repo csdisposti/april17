@@ -21,8 +21,21 @@
         <hr>
     </header>
     <!--begin main text-->
+    <div class="row">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-2 text-right">
+            <h4 class=text-center" >Hi ${fn}!</h4>
+            <hr>
+        </div>
+        <div class="col-sm-1">
+            <form action="Logout" method="post">
+                <input type="submit" class="btn btn-default" value="Log Out"/>
+            </form>
+        </div>
+        <hr>
+    </div>
     <div class="row gray">
-        <h3 class="text-center">Schedule a Flight Reservation</h3>
+        <h3 class="text-center">Flying Lesson Reservation</h3>
          <hr>
             <div class="col-sm-2">
             </div>
@@ -31,30 +44,30 @@
             <div class="col-sm-4">
                 <h4>Date you would like to schedule your reservation:</h4>
                 <label for="resdate">Reservation Date: </label>
-                <input type="date" value="YYYY-MM-DD" id="resdate" name="resdate" title="Reservation Date" required/> <br>
+                <input type="text" id="resdate" name="resdate" title="Reservation Date" required/> <br>
+                <span> enter as YYYY-MM-DD </span>
                 <br>
                 <h4>Time you would like to schedule your reservation:</h4>
                 <label for="restime">Reservation Time: </label>
-                <input type="text" pattern="^\d{2}:\d{2}$" id="restime" name="restime" title="Reservation Time" value="HH:MM" required/><br> <span> enter using 24 hour clock. ex: 13:30</span><br>
+                <input type="text" pattern="^\d{2}:\d{2}$" id="restime" name="restime" title="Reservation Time"  required/><br> <span> enter using 24 hour clock. ex: 13:30</span><br>
             </div>
             <div class="col-sm-4">
                 <h4>What type of aircraft would you like to reserve?</h4>
                 <input id="aircrafttype" type="hidden" value="${aircrafttype}"/>
                 <select name="act" title="Aircraft Type" required>
-                    <option value="Choose an aircraft" title="Aircraft Type">Choose an aircraft</option>
                 <c:forEach items="${aircrafttype}" var="at">
                 <option value="${at}">${at}</option>
                 </c:forEach>
             </select>
+                <span> (choose an Aircraft)</span><br>
                 <hr>
                 <h4>If scheduling a lesson,please choose desired instructor:</h4>
                 <input id="instructors" type="hidden" value="${instructortype}"/>
                 <select name="ins" title="Instructor" required>
-                    <option value="Choose an instructor" selected>Choose an instructor</option>
                     <c:forEach items="${instructortype}" var="it">
                         <option value="${it}">${it}</option>
                     </c:forEach>
-                </select><br>
+                </select> <span> (choose an Instructor)</span><br>
                 <p>&nbsp;</p>
                 <input type="submit" class="btn btn-default btn-sp" value="Submit Reservation Request"/>
                 <p>&nbsp;</p>

@@ -240,7 +240,7 @@ public class Admin {
         try {
             java.sql.Statement statement = connection.createStatement();
 
-            java.sql.ResultSet rs1 = statement.executeQuery("SELECT MemberID FROM tblMember WHERE tblMember.FName='" + fn +"'AND tblMember.LName='" + ln +"'");
+            java.sql.ResultSet rs1 = statement.executeQuery("SELECT * FROM tblMember WHERE tblMember.FName='" + fn +"'AND tblMember.LName='" + ln +"'");
             if (rs1 != null) {
                 //makes sure the resultSet isn't in the header info
                 while (rs1.next()) {
@@ -249,7 +249,7 @@ public class Admin {
                 }
 
             }
-            java.sql.ResultSet rs2 = statement.executeQuery("SELECT AdministratorID FROM tblAdmin INNER JOIN tblMember ON tblAdmin.MemberNo = tblMember.MemberID WHERE tblMember.MemberID='" + memNo +"'");
+            java.sql.ResultSet rs2 = statement.executeQuery("SELECT AdministratorID FROM AscendDB.tblAdmin WHERE tblAdmin.MemberNo='" + memNo +"'");
             if (rs2 != null) {
                 //makes sure the resultSet isn't in the header info
                 while (rs2.next()) {

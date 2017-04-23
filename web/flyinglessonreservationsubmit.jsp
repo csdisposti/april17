@@ -20,14 +20,39 @@
         <hr>
     </header>
     <!--begin main text-->
+    <div class="row">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-2 text-right">
+            <h4 class=text-center" >Hi ${fn}!</h4>
+            <hr>
+        </div>
+        <div class="col-sm-1">
+            <form action="Logout" method="post">
+                <input type="submit" class="btn btn-default" value="Log Out"/>
+            </form>
+        </div>
+        <hr>
+    </div>
     <div class="row gray">
+        <h3 class="text-center">Your reservation has been submitted for Admin approval</h3>
+        <hr>
+        <h4 class="text-center">Confirmation Details</h4>
+        <hr>
         <div class="col-sm-3">
         </div>
-        <div class="col-sm-6">
-            <h3 class="text-center">Your reservation has been submitted for Admin approval</h3>
+        <div class="col-sm-3">
+            <p>Reservation Type: ${flyinglesson}</p>
+            <p>Resources Reserved: ${regsitration}</p>
+            <p>Reservation Date: ${rdate}</p>
+            <p>Reservation Out Time: ${restime}</p>
+            <br>
+        </div>
+        <div class="col-sm-3">
+            <p>Instructor: ${instructor}</p>
+            <p>Reservation Status: ${pending}</p>
             <hr>
-            <p>${res}</p>
             <a href="/memberportal.jsp" class="btn btn-default btn-sp">Return to Member Portal</a>
+            <br>
         </div>
         <div class="col-sm-3">
         </div>

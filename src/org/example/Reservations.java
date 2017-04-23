@@ -100,7 +100,7 @@ public class Reservations {
     }
 
     //get Reservation Date
-    public Date getRseDate() {
+    public Date getResDate() {
         return resDate;
     }
 
@@ -157,6 +157,16 @@ public class Reservations {
     //set Reservation Approved by
     public void setResApprovedBy(int resApprovedBy) {
         this.resApprovedBy = resApprovedBy;
+    }
+
+    //get Reservation Status
+    public Boolean getResStatus() {
+        return resStatus;
+    }
+
+    //set Reservation Status
+    public void setResStatus(Boolean resStatus) {
+        this.resStatus = resStatus;
     }
 
     //get Reservation Comments
