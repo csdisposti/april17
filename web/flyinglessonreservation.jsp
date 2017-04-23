@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="http://ascend.2ndmm.com/css/style.css">
+    <jsp:include page="browserchecker.jsp" />
 </head>
 <body>
 <div class="container-fluid">
@@ -32,7 +34,7 @@
                 <h4>Date you would like to schedule your reservation:</h4>
                 <label for="resdate">Reservation Date: </label>
                 <input type="date" id="resdate" name="resdate" title="Reservation Date" required/> <br>
-                <span> enter as MM-DD-YYYY </span>
+                <span class="firefoxonly"> enter as YYYY-MM-DD</span>
                 <br>
                 <h4>Time you would like to schedule your reservation:</h4>
                 <label for="restime">Reservation Time: </label>

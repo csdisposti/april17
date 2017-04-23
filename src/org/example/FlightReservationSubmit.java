@@ -50,11 +50,11 @@ public class FlightReservationSubmit extends HttpServlet {
             int mi = Integer.parseInt(memberid);
 
             //get resdate as yyyy-mmm-dd
-            String[] reservationdate = resdate.split("\\-+");
-            String month = reservationdate[0];
-            String day = reservationdate[1];
-            String year = reservationdate[2];
-            String resdatenew = year + "-" + month + "-" + day;
+           // String[] reservationdate = resdate.split("\\-+");
+           // String month = reservationdate[0];
+           // String day = reservationdate[1];
+            //String year = reservationdate[2];
+           // String resdatenew = year + "-" + month + "-" + day;
 
             //add :00 to restime
             String fullouttime = restime + seconds;
@@ -84,7 +84,7 @@ public class FlightReservationSubmit extends HttpServlet {
 
             int resID;
             //add reservation
-            res.addNewFlightReservation(mi, resType, rr, resdatenew, fullouttime, intime);
+            res.addNewFlightReservation(mi, resType, rr, resdate, fullouttime, intime);
             resID = res.getResId();
             res.readFromDatabase(resID);
 
