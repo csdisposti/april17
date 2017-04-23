@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-sm-8">
-            <table class="table table-striped table-condensed">
+            <table class="table table-responsive table-striped table-condensed">
                 <thead>
                 <tr><td>Reservation ID</td><td>Reserved by</td><td>Reservation Type</td><td>Aircraft Reserved</td><td>Reservation Date</td><td>Start Time</td><td>End Time</td><td>Instructor Number
                     </td><td>Reservation Approved</td><td>Approved By</td></tr>

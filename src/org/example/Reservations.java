@@ -233,6 +233,7 @@ public class Reservations {
         }
     }
 
+    /*
     //read reservations from database
     public void viewMyReservations(int memberID)throws Exception
     {
@@ -278,7 +279,7 @@ public class Reservations {
             }
         }
     }
-
+*/
     //member add flying lesson reservation to database as pending
     protected void addNewFlyingLessonReservation(int resBy, String resType, String resourcesRes, String resDate, String outTime, String inTime, int instNo) throws Exception {
         java.sql.Connection connection;
@@ -307,13 +308,6 @@ public class Reservations {
             java.sql.ResultSet rs = statement.executeQuery("SELECT ReservationID FROM tblReservations ORDER BY ReservationID DESC LIMIT 1");
             rs.next();
             this.resId = rs.getInt("ReservationID");
-
-            //String updateRes = "UPDATE tblReservations SET ResourcesReserved = ?,  WHERE ReservationID =" + resId + ";";
-
-            //PreparedStatement pstmt = connection.prepareStatement(updateRes);
-
-
-            //pstmt.executeUpdate();
 
         } catch (Exception e) {
             System.err.println("err");
@@ -355,12 +349,6 @@ public class Reservations {
             rs.next();
             this.resId = rs.getInt("ReservationID");
 
-            //String updateRes = "UPDATE tblReservations SET ResourcesReserved = ?,  WHERE ReservationID =" + resId + ";";
-
-            //PreparedStatement pstmt = connection.prepareStatement(updateRes);
-
-
-            //pstmt.executeUpdate();
 
         } catch (Exception e) {
             System.err.println("err");
@@ -374,6 +362,7 @@ public class Reservations {
         }
     }
 
+    /*
     //check the availability of the member requested reservation
     protected String checkAvailability(String reres) throws Exception {
         java.sql.Connection connection;
@@ -387,7 +376,6 @@ public class Reservations {
         Class.forName(driver);
         connection = DriverManager.getConnection(url, username, password);
 
-       // ArrayList<ReservationsList> availableReservations = new ArrayList<>();
         try {
             java.sql.Statement statement = connection.createStatement();
 
@@ -396,9 +384,6 @@ public class Reservations {
                 //makes sure the resultSet isn't in the header info
                 while (rs.next()) {
                     return this.resourcesRes = rs.getString("ResourceReserved");
-                    //this.resDate = rs.getDate("ReservationDate");
-                    //this.outTime = rs.getTime("OutTime");
-
                 }
             }
         } catch (Exception e) {
@@ -415,7 +400,7 @@ public class Reservations {
     }
 
 
-
+*/
     @Override
     public String toString() {
         return "<p>Reservation ID: "+this.resId +"</p><p>Reserved by: "+this.resBy+"</p><p>Reservation Type: "+

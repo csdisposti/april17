@@ -24,7 +24,6 @@ public class ReservationsList extends Reservations {
     private boolean resStatus;
     private int resApprovedBy;
     private String resCom;
-    private String resStat;
     private String makemodel;
 
     //constructor
@@ -218,45 +217,6 @@ public class ReservationsList extends Reservations {
             return reservationsL;
         }
     }
-/*
-    public String getMakeModel(String registration) throws  Exception{
-        java.sql.Connection connection;
-        String username = "MasterAscend";
-        String password = "AscendMasterKey";
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
-        Properties prop = new Properties();
-        prop.load(inputStream);
-        String url = prop.getProperty("jdbc.url");
-        String driver = prop.getProperty("jdbc.driver");
-        Class.forName(driver);
-        connection = DriverManager.getConnection(url, username, password);
-
-        ArrayList<ReservationsList> reservationsL = new ArrayList<>();
-
-        try {
-            java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT Make_Model FROM tblAircraft WHERE ResourcesReserved='" + registration + "'");
-            if (rs != null) {
-                //makes sure the resultSet isn't in the header info
-                while (rs.next()) {
-                   this.makemodel = rs.getString("Make_Model");
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("err");
-            e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-        return this.makemodel;
-    }
-*/
-
             @Override
     public String toString() {
 
