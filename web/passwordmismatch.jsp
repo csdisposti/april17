@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Member Sign Up - Ascend</title>
+    <title>Ascend - Soaring to New Heights</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width">
     <!-- Latest compiled and minified CSS -->
@@ -18,27 +18,27 @@
     <header class="text-center">
         <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
         <hr>
+        <p class="text-right"><a href="index.jsp" class="btn btn-default">Home</a></p>
     </header>
     <!--begin main text-->
     <div class="row gray text-center">
-        <div class="col-sm-3">
-        </div>
-        <div class="col-sm-6">
-            <h2 class="text-center">New Member - Create Account</h2>
-            <form action="SignupTwo" method="POST">
+        <h2 class="text-center">New Member - Create Account</h2>
+        <hr>
+        <h3 class="error">ERROR - Passwords do not match, please try again</h3>
+        <form action="SignupTwo" method="POST">
             <input type="hidden"  name="action" value="login">
-                <label for="email">Email:</label><br />
-                <input type="email" id="email" name="email" title="Signup-Email" required/><br />
+            <label for="email">Email:</label><br />
+            <input type="email" id="email" name="email" title="Signup-Email" required/><br />
             <label for="password">Password:</label><br />
             <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" name="password"
                    title="Password must be at least 8 charcaters long and must include at least 1 uppercase, 1 lowercase, and 1 number" required/> <br />
-                <span>Password must be at least 8 charcaters long</span><br><span>and must include at least 1 uppercase, 1 lowercase, and 1 number</span><br>
-                <label for="password">Re-Enter Password:</label><br />
-                <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="passwordcheck"
-                       name="passwordcheck" title="Passwords do not match" required/> <br />
+            <span>Password must be at least 8 charcaters long</span><br><span>and must include at least 1 uppercase, 1 lowercase, and 1 number</span><br>
+            <label for="password">Re-Enter Password:</label><br />
+            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="passwordcheck"
+                   name="passwordcheck" title="Passwords do not match" required/> <br />
             <input type="submit"  class="btn btn-default btn-sp" value="Create Account" />
         </form>
-        </div>
+    </div>
         <div class="col-sm-3">
         </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
@@ -59,7 +59,7 @@
         <p>Copyright 2017 Ascend, Inc.<br>All rights reserved</p>
     </footer>
     <hr>
-    </div>
+</div>
 </div>
 <!--end main text-->
 </body>

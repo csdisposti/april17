@@ -19,6 +19,7 @@ public class SignupTwo extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String passwordcheck = request.getParameter("passwordcheck");
         String emailCheck;
 
         CheckEmail ce = new CheckEmail();
@@ -28,9 +29,14 @@ public class SignupTwo extends HttpServlet {
             emailCheck = ce.readFromDatabase(email);
             request.getSession().setAttribute("email", email);
             request.getSession().setAttribute("password", password);
-            //if email is not already registered send to next step in signup process
+            //if email is not already registered send to check password
             if (emailCheck == null) {
-                request.getRequestDispatcher("/signuptwo.jsp").forward(request, response);
+                if (password.equals(passwordcheck)) {
+                    request.getRequestDispatcher("/signuptwo.jsp").forward(request, response);
+                }
+                else {
+                    request.getRequestDispatcher("/passwordmismatch.jsp").forward(request, response);
+                }
             }
             //if email is already registered send back to index to have user sign in
             else {
