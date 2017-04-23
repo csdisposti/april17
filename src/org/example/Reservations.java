@@ -225,7 +225,7 @@ public class Reservations {
     }
 
     //member add reservation to database as pending
-    protected void addNewReservation(int resBy, String resType, String resourcesRes, String resDate, String outTime, int instNo) throws Exception {
+    protected void addNewReservation(int resBy, String resType, String resourcesRes, String resDate, String outTime, String inTime, int instNo) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -238,14 +238,15 @@ public class Reservations {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            String newRes = "INSERT INTO tblReservations(ReservedBy, ReservationType, ResourcesReserved, ReservationDate, OutTime, InstructorNo) VALUES (?, ?, ?, ?, ?, ?)";
+            String newRes = "INSERT INTO tblReservations(ReservedBy, ReservationType, ResourcesReserved, ReservationDate, OutTime, InTime, InstructorNo) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(newRes);
             ps.setInt(1, resBy);
             ps.setString(2, resType);
             ps.setString(3, resourcesRes);
             ps.setDate(4, java.sql.Date.valueOf(resDate));
             ps.setTime(5, java.sql.Time.valueOf(outTime));
-            ps.setInt(6, instNo);
+            ps.setTime(6, java.sql.Time.valueOf(inTime));
+            ps.setInt(7, instNo);
             ps.executeUpdate();
 
             java.sql.ResultSet rs = statement.executeQuery("SELECT ReservationID FROM tblReservations ORDER BY ReservationID DESC LIMIT 1");

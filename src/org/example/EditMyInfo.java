@@ -18,8 +18,9 @@ public class EditMyInfo extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         //get form values
-        String memberpassword = request.getParameter("memberpwd");
-        String memberemail = request.getParameter("memberemail");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
 
         //variables
         int accountID;
@@ -45,7 +46,7 @@ public class EditMyInfo extends HttpServlet {
 
         try{
 
-            medit.readFromDatabase(memberemail);
+            medit.readFromDatabase(username);
             accountID = medit.getAcctNo();
             aedit.readFromDatabase(accountID);
 
@@ -60,8 +61,8 @@ public class EditMyInfo extends HttpServlet {
             city = aedit.getCity();
             zip = aedit.getZip();
 
-            request.getSession().setAttribute("em" , memberemail);
-            request.getSession().setAttribute("pw" , memberpassword);
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
             request.getSession().setAttribute("mi" , memberID);
             request.getSession().setAttribute("ai" , accountID);
             request.getSession().setAttribute("fn" , fname);

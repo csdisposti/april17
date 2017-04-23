@@ -29,8 +29,8 @@
             <h3>Existing Members</h3>
             <p>If you are an existing member, please login.</p>
             <form action="MemberPortal" method="post">
-                <label for="email">Username:</label><br />
-                <input type="email" id="email" name="email" title="Login-Username" required/><br />
+                <label for="username">Username:</label><br />
+                <input type="email" id="username" name="username" title="Login-Username" required/><br />
                 <label for="password">Password:</label><br />
                 <input type="password" id="password" name="password" title="Login-Password" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Login"/>

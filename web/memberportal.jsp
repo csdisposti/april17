@@ -15,26 +15,10 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
-    <div class="row">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-2 text-right">
-        <h4 class=text-center" >Hi ${fn}!</h4>
-            <hr>
-        </div>
-        <div class="col-sm-1">
-        <form action="Logout" method="post">
-            <input type="submit" class="btn btn-default" value="Log Out"/>
-        </form>
-        </div>
-        <hr>
-    </div>
+    <jsp:include page="membernav.jsp" />
     <div class="row gray text-center">
-
         <hr>
         <h3>Member Portal</h3>
         <hr>
@@ -42,13 +26,15 @@
         </div>
         <div class="col-sm-3">
             <form action="FlightReservation" method="post">
-                <input type="hidden" id="memberf" name="member" value="${memail}"/>
+                <input type="hidden" id="memberf" name="username" value="${username}"/>
+                <input type="hidden" id="memberfp" name="password" value="${password}"/>
                 <input type="hidden" id="memberfid" name="memberid" value="${memid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Make a Flight Reservation"/>
             </form>
             <hr>
             <form action="FlyingLessonReservation" method="post">
-                <input type="hidden" id="memberfl" name="member" value="${memail}"/>
+                <input type="hidden" id="memberfl" name="username" value="${username}"/>
+                <input type="hidden" id="memberflp" name="password" value="${password}"/>
                 <input type="hidden" id="memberflid" name="memberid" value="${memid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Make a Flying Lesson Reservation"/>
             </form>
@@ -57,14 +43,16 @@
         </div>
         <div class="col-sm-3">
             <form action="ViewMyReservations" method="post">
-                <input type="hidden" id="membervmr" name="member" value="${memail}"/>
+                <input type="hidden" id="membervmr" name="username" value="${username}"/>
+                <input type="hidden" id="membervmrp" name="password" value="${password}"/>
                 <input type="hidden" id="membervmrid" name="memberid" value="${memid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="View My Reservations"/>
             </form>
             <hr>
             <form action="EditMyInfo" method="post">
-                <input type="hidden" id="membere" name="memberemail" value="${memail}"/>
-                <input type="hidden" id="memberp" name="memberpwd" value="${mpassword}"/>
+                <input type="hidden" id="membere" name="username" value="${username}"/>
+                <input type="hidden" id="memberp" name="password" value="${password}"/>
+                <input type="hidden" id="memberid" name="memberid" value="${memid}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Edit My Info"/>
             </form>
         </div>

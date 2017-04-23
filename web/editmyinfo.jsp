@@ -15,24 +15,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
-    <div class="row">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-2 text-right">
-            <h4 class=text-center" >Hi ${fn}!</h4>
-            <hr>
-        </div>
-        <div class="col-sm-1">
-            <form action="Logout" method="post">
-                <input type="submit" class="btn btn-default" value="Log Out"/>
-            </form>
-        </div>
-        <hr>
-    </div>
+    <jsp:include page="membernav.jsp" />
     <div class="row gray">
         <h3 class="text-center">Edit Your Info</h3>
         <hr>
@@ -43,6 +28,7 @@
             <input type="hidden"  name="action" value="login">
             <input type="hidden" id="accountid" name="accountid" value="${ai}"/>
             <input type="hidden" id="memberid" name="memberid" value="${mi}"/>
+            <input type="hidden" id="passwordemis" name="password" value="${password}"/>
         <div class="col-sm-3">
             <label for="fname">First Name:</label><br />
                 <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="fname" name="fname" title="First Name - Letters/Numbers/Apostrophes Only" value="${fn}" required/> <br />
@@ -133,9 +119,9 @@
             <input type="radio" name="accttype" title="Account Type" value="D" ${atdc}> D = Donor
             <input type="radio" name="accttype" title="Account Type" value="T" ${attc}> T = Trial<br>
             <hr>
-            <input type="email" id="email" name="email" title="Signup-Email" value="${em}" disabled/><br />
-            <label for="password">Password:</label><br />
-            <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" name="password" title="Password must be at least 8 charcaters long and must include at least 1 uppercase, 1 lowercase, and 1 number" value="${pw}" required/> <br />
+            <input type="email" id="email" name="username" title="Signup-Email" value="${username}" disabled/><br />
+            <label for="passwordedit">Password:</label><br />
+            <input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="passwordedit" name="passwordedit" title="Password must be at least 8 charcaters long and must include at least 1 uppercase, 1 lowercase, and 1 number" value="${password}" required/> <br />
             <span>Password must be at least 8 charcaters long</span><br><span>and must include at least 1 uppercase, 1 lowercase, and 1 number</span><br>
             <input type="submit"  class="btn btn-default btn-sp" value="Edit My Info" />
         <hr>

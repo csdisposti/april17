@@ -20,8 +20,9 @@ public class EditMyInfoSubmit extends HttpServlet {
         //get form values
         String accountID = request.getParameter("accountid");
         String memberID = request.getParameter("memberid");
-        String username = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String passwordedit = request.getParameter("passwordedit");
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
         String phoneone = request.getParameter("phone1");
@@ -48,6 +49,8 @@ public class EditMyInfoSubmit extends HttpServlet {
             request.getSession().setAttribute("fn", fname);
             request.getSession().setAttribute("nm", ua);
             request.getSession().setAttribute("ac", um);
+            request.getSession().setAttribute("useranme" , username);
+            request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/editmyinfosubmit.jsp").forward(request, response);
         }
             catch (Exception e2)

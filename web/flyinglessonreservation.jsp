@@ -16,40 +16,37 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
-    <div class="row">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-2 text-right">
-            <h4 class=text-center" >Hi ${fn}!</h4>
-            <hr>
-        </div>
-        <div class="col-sm-1">
-            <form action="Logout" method="post">
-                <input type="submit" class="btn btn-default" value="Log Out"/>
-            </form>
-        </div>
-        <hr>
-    </div>
+    <jsp:include page="membernav.jsp" />
     <div class="row gray">
         <h3 class="text-center">Flying Lesson Reservation</h3>
          <hr>
             <div class="col-sm-2">
             </div>
         <form action="FlyingLessonReservationSubmit" method="post">
+            <input type="hidden" id="usernameflr" name="username" value="${username}"/>
+            <input type="hidden" id="passwordflr" name="password" value="${password}"/>
             <input type="hidden" id="memberfid" name="memberid" value="${memid}"/>
             <div class="col-sm-4">
                 <h4>Date you would like to schedule your reservation:</h4>
                 <label for="resdate">Reservation Date: </label>
-                <input type="text" id="resdate" name="resdate" title="Reservation Date" required/> <br>
-                <span> enter as YYYY-MM-DD </span>
+                <input type="date" id="resdate" name="resdate" title="Reservation Date" required/> <br>
+                <span> enter as MM-DD-YYYY </span>
                 <br>
                 <h4>Time you would like to schedule your reservation:</h4>
                 <label for="restime">Reservation Time: </label>
-                <input type="text" pattern="^\d{2}:\d{2}$" id="restime" name="restime" title="Reservation Time"  required/><br> <span> enter using 24 hour clock. ex: 13:30</span><br>
+                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0,1,3,4][0,5]"  id="restime" name="restime" title="Reservation Time"  required/><br>
+                <span> enter using 24 hour clock ex: 13:30</span><br>
+                <span> reservations are available at :00, :15, :30, and :45</span><br>
+                <h4>Length of time you would like for your Flying Lesson:</h4>
+                <label for="lengthoftime">Length of Flying Lesson:</label>
+                <select id="lengthoftime" name="lengthoftime" title="lengthoftime">
+                    <option value="1">1 Hour</option>
+                    <option value="2">2 Hour</option>
+                    <option value="3">3 Hour</option>
+                </select><br>
+                <p>&nbsp;</p>
             </div>
             <div class="col-sm-4">
                 <h4>What type of aircraft would you like to reserve?</h4>

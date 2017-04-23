@@ -22,7 +22,7 @@ public class MemberPortal extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        String username = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         String memberLogin;
@@ -51,8 +51,9 @@ public class MemberPortal extends HttpServlet {
 
                 request.getSession().setAttribute("fn" , fn);
                 request.getSession().setAttribute("memid", memid);
-                request.getSession().setAttribute("mpassword", password);
-                request.getSession().setAttribute("memail", username);
+                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("password", password);
+
                 request.getRequestDispatcher("/memberportal.jsp").forward(request, response);
             }
         }catch (Exception e2)

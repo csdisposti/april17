@@ -18,6 +18,8 @@ public class FlyingLessonReservation extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         String memberid = request.getParameter("memberid");
 
         AircraftList aircrafts = new AircraftList();
@@ -33,6 +35,8 @@ public class FlyingLessonReservation extends HttpServlet {
             request.getSession().setAttribute("aircrafttype", aircrafttype);
             request.getSession().setAttribute("instructortype", instructortype);
             request.getSession().setAttribute("mid", mid);
+            request.getSession().setAttribute("username", username);
+            request.getSession().setAttribute("password", password);
             request.getRequestDispatcher("/flyinglessonreservation.jsp").forward(request, response);
         }
         catch (Exception e2)

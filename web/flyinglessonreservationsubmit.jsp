@@ -15,24 +15,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
-    <div class="row">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-2 text-right">
-            <h4 class=text-center" >Hi ${fn}!</h4>
-            <hr>
-        </div>
-        <div class="col-sm-1">
-            <form action="Logout" method="post">
-                <input type="submit" class="btn btn-default" value="Log Out"/>
-            </form>
-        </div>
-        <hr>
-    </div>
+    <jsp:include page="membernav.jsp" />
     <div class="row gray">
         <h3 class="text-center">Your reservation has been submitted for Admin approval</h3>
         <hr>
@@ -44,14 +29,20 @@
             <p>Reservation Type: ${flyinglesson}</p>
             <p>Resources Reserved: ${regsitration}</p>
             <p>Reservation Date: ${rdate}</p>
-            <p>Reservation Out Time: ${restime}</p>
+            <p>Reservation Start Time: ${resouttime}</p>
             <br>
         </div>
         <div class="col-sm-3">
+            <p>Length of Lesson: ${lessonlength} hour</p>
+            <p>Reservation End Time: ${resintime}</p>
             <p>Instructor: ${instructor}</p>
             <p>Reservation Status: ${pending}</p>
             <hr>
-            <a href="/memberportal.jsp" class="btn btn-default btn-sp">Return to Member Portal</a>
+            <form action="MemberPortal" method="post">
+                <input type="hidden" id="usernamemp" name="username" value="${username}"/>
+                <input type="hidden" id="passwordmp" name="password" value="${password}"/>
+                <input type="submit" class="btn btn-default" value="Return to Member Portal"/>
+            </form>
             <br>
         </div>
         <div class="col-sm-3">

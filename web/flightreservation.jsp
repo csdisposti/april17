@@ -16,11 +16,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
+    <jsp:include page="membernav.jsp" />
     <div class="row gray">
         <h3 class="text-center">Schedule a Flight Reservation</h3>
          <hr>
