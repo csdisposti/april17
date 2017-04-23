@@ -45,6 +45,10 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             //get registrationID only for resources rserved column
             String[] registrationid = aircrafttype.split("\\s+");
             String rr = registrationid[0];
+            String make = registrationid[1];
+            String model = registrationid[2];
+
+            String makemodel = make + " " + model;
 
             //get instructor adminID for instructor column
             String[] insructornames = instructor.split("\\s+");
@@ -116,6 +120,7 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             request.getSession().setAttribute("res", res);
             request.getSession().setAttribute("flyinglesson", flyinglesson);
             request.getSession().setAttribute("regsitration", rrr);
+            request.getSession().setAttribute("makemodel", makemodel);
             request.getSession().setAttribute("rdate", rdate);
             request.getSession().setAttribute("resouttime", restime);
             request.getSession().setAttribute("resintime", resintime);

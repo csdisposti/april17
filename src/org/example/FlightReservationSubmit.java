@@ -42,7 +42,10 @@ public class FlightReservationSubmit extends HttpServlet {
             //get registrationID only for resources rserved column
             String[] registrationid = aircrafttype.split("\\s+");
             String rr = registrationid[0];
+            String make = registrationid[1];
+            String model = registrationid[2];
 
+            String makemodel = make + " " + model;
             //parse memberid to int
             int mi = Integer.parseInt(memberid);
 
@@ -107,6 +110,7 @@ public class FlightReservationSubmit extends HttpServlet {
             request.getSession().setAttribute("res", res);
             request.getSession().setAttribute("flight", flight);
             request.getSession().setAttribute("regsitration", rrr);
+            request.getSession().setAttribute("makemodel", makemodel);
             request.getSession().setAttribute("rdate", rdate);
             request.getSession().setAttribute("resouttime", restime);
             request.getSession().setAttribute("resintime", resintime);

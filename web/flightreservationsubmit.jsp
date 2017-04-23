@@ -27,7 +27,7 @@
         </div>
         <div class="col-sm-3">
             <p>Reservation Type: ${flight}</p>
-            <p>Resources Reserved: ${regsitration}</p>
+            <p>Resources Reserved: ${regsitration} ${makemodel}</p>
             <p>Reservation Date: ${rdate}</p>
             <p>Reservation Start Time: ${resouttime}</p>
             <br>

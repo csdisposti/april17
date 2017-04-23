@@ -16,6 +16,7 @@ public class Reservations {
     private int resBy;
     private String resType;
     private String resourcesRes;
+    private String makemodel;
     private Date resDate;
     private Time outTime;
     private Time inTime;
@@ -27,11 +28,12 @@ public class Reservations {
 
 
     //constructor
-    public Reservations(int resId, int resBy, String resType, String resourcesRes, Date resDate, Time outTime, Time inTime, String dest, int instNo, Boolean resStatus, int resApprovedBy, String resCom) {
+    public Reservations(int resId, int resBy, String resType, String resourcesRes, String makemodel, Date resDate, Time outTime, Time inTime, String dest, int instNo, Boolean resStatus, int resApprovedBy, String resCom) {
         this.resId = resId;
         this.resBy = resBy;
         this.resType = resType;
         this.resourcesRes = resourcesRes;
+        this.makemodel = makemodel;
         this.resDate = resDate;
         this.outTime = outTime;
         this.inTime = inTime;
@@ -48,6 +50,7 @@ public class Reservations {
         this.resBy = 0;
         this.resType = null;
         this.resourcesRes = null;
+        this.makemodel = null;
         this.resDate = null;
         this.outTime = null;
         this.inTime = null;
@@ -174,10 +177,16 @@ public class Reservations {
         return resCom;
     }
 
-    //set Reservation Comments
-    public void setResCom(String resCom) {
-        this.resCom = resCom;
+    //get make model
+    public String getMakeModel() {
+        return makemodel;
     }
+
+    //set Rmake model
+    public void setMakeModel(String makemodel) {
+        this.makemodel = makemodel;
+    }
+
 
     //read reservations from database
     public void readFromDatabase(int ReservationID)throws Exception
