@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New Member Sign Up - Ascend</title>
+    <title>Member Info Updated - Ascend</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width">
     <!-- Latest compiled and minified CSS -->
@@ -17,27 +17,30 @@
 <div class="container-fluid">
     <jsp:include page="header.jsp" />
     <!--begin main text-->
+    <div class="text-right">
+        <a href="index.jsp" class="btn btn-default">Login</a>
+        <hr>
+    </div>
     <div class="row gray text-center">
-        <div class="col-sm-3">
+        <h2>Thanks ${fn}!</h2>
+        <p>${um}</p>
+        <p>${ua}</p>
+        <br>
+        <h3>Your info has been updated</h3>
+        <h3>Please login with your new password</h3>
+        <br>
+        <div class="col-sm-5">
         </div>
-        <div class="col-sm-6">
-            <h2 class="text-center">New Member - Create Account</h2>
-            <form action="SignupTwo" method="POST">
-            <input type="hidden"  name="action" value="login">
-                <label for="email">Email:</label><br />
-                <input type="email" id="email" name="email" title="Signup-Email" required/><br />
-            <label for="password">Password:</label><br />
-            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="password" name="password"
-                   title="Password must be at least 8 characters long and must include at least 1 uppercase, 1 lowercase, and 1 number" required/> <br />
-                <span>Password must be at least 8 characters long</span><br><span>and must include at least 1 uppercase, 1 lowercase, and 1 number</span><br>
-                <label for="password">Re-Enter Password:</label><br />
-                <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="passwordcheck"
-                       name="passwordcheck" title="Passwords do not match" required/> <br />
-            <input type="submit"  class="btn btn-default btn-sp" value="Create Account" />
-        </form>
+        <div class="col-sm-2">
+            <form action="Home" method="post">
+                <input type="hidden" id="username" name="username" title="Login-Username" required/><br />
+                <input type="hidden" id="password" name="password" title="Login-Password" required/><br />
+                <input type="submit" class="btn btn-default btn-sp" value="Login"/>
+            </form>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-5">
         </div>
+        <hr>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
     <footer class="text-center">

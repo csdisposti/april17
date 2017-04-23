@@ -112,8 +112,10 @@ public class Credentials {
     }
 
     //member update credentials
-    protected void updateCredentials(String user, String pwd) throws Exception {
+    protected void updatePassword(String em, String pw) throws Exception
+    {
         java.sql.Connection connection;
+
         String username = "MasterAscend";
         String password = "AscendMasterKey";
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
@@ -123,12 +125,13 @@ public class Credentials {
         String driver = prop.getProperty("jdbc.driver");
         Class.forName(driver);
         connection = DriverManager.getConnection(url, username, password);
+
         try {
             java.sql.Statement statement = connection.createStatement();
 
-            String updateCredentials = "UPDATE AscendDB.tblCredentials SET MemberPW = ? WHERE Email_Username =" + user + ";";
-            PreparedStatement pstmt = connection.prepareStatement(updateCredentials);
-            pstmt.setString(1, pwd);
+            String updateMember = "UPDATE AscendDB.tblCredentials SET MemberPW = ? WHERE Email_Username ='" + em + "'";
+            PreparedStatement pstmt = connection.prepareStatement(updateMember);
+            pstmt.setString(1, pw);
             pstmt.executeUpdate();
 
         } catch (Exception e) {
@@ -136,5 +139,4 @@ public class Credentials {
             e.printStackTrace();
         }
     }
-
 }

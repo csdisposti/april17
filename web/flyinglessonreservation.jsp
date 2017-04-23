@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Schedule a Reservation - Ascend</title>
+    <title>Flying Lesson Reservation - Ascend</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width">
     <!-- Latest compiled and minified CSS -->
@@ -58,7 +58,7 @@
             </select>
                 <span> (choose an Aircraft)</span><br>
                 <hr>
-                <h4>If scheduling a lesson,please choose desired instructor:</h4>
+                <h4>Instructor you would you like to schedule for your reservation:</h4>
                 <input id="instructors" type="hidden" value="${instructortype}"/>
                 <select name="ins" title="Instructor" required>
                     <c:forEach items="${instructortype}" var="it">

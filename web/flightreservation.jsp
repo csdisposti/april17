@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Schedule a Reservation - Ascend</title>
+    <title>Flight Reservation - Ascend</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width">
     <!-- Latest compiled and minified CSS -->
@@ -20,46 +20,50 @@
     <!--begin main text-->
     <jsp:include page="membernav.jsp" />
     <div class="row gray">
-        <h3 class="text-center">Schedule a Flight Reservation</h3>
-         <hr>
-            <div class="col-sm-1">
-            </div>
-        <form action="ReservationSubmit" method="post">
-            <div class="col-sm-3">
+        <h3 class="text-center">Flight Reservation</h3>
+        <hr>
+        <div class="col-sm-2">
+        </div>
+        <form action="FlightReservationSubmit" method="post">
+            <input type="hidden" id="usernameflr" name="username" value="${username}"/>
+            <input type="hidden" id="passwordflr" name="password" value="${password}"/>
+            <input type="hidden" id="memberfid" name="memberid" value="${memid}"/>
+            <div class="col-sm-4">
                 <h4>Date you would like to schedule your reservation:</h4>
                 <label for="resdate">Reservation Date: </label>
-                <input type="date" value="2017-04-21" id="resdate" name="resdate" title="Reservation Date" required/> <br>
-                <span> enter in following format: MM-DD-YYYY</span><br>
+                <input type="date" id="resdate" name="resdate" title="Reservation Date" required/> <br>
+                <span> enter as MM-DD-YYYY </span>
                 <br>
                 <h4>Time you would like to schedule your reservation:</h4>
                 <label for="restime">Reservation Time: </label>
-                <input type="text" pattern="^\d{2}:\d{2}$" id="restime" name="restime" title="Reservation Time" required/><br> <span> enter using 24 hour clock. ex: 13:30</span><br>
+                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0,1,3,4][0,5]"  id="restime" name="restime" title="Reservation Time"  required/><br>
+                <span> enter using 24 hour clock ex: 13:30</span><br>
+                <span> reservations are available at :00, :15, :30, and :45</span><br>
+                <h4>Length of time you would like for your Flight:</h4>
+                <label for="lengthoftime">Length of Flight:</label>
+                <select id="lengthoftime" name="lengthoftime" title="lengthoftime">
+                    <option value="1">1 Hour</option>
+                    <option value="2">2 Hour</option>
+                    <option value="3">3 Hour</option>
+                </select><br>
+                <p>&nbsp;</p>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <h4>What type of aircraft would you like to reserve?</h4>
                 <input id="aircrafttype" type="hidden" value="${aircrafttype}"/>
-                <select name="type" required>
-                    <option value="Choose an aircraft" title="Aircraft Type">Choose an aircraft</option>
-                <c:forEach items="${aircrafttype}" var="at">
-                <option id="at" name="rer">${at}</option>
-                </c:forEach>
-            </select>
-                <hr>
-                <h4>If scheduling a lesson,please choose desired instructor:</h4>
-                <input id="ir" type="hidden" value="${ir}"/>
-                <select name="type">
-                    <option value="Choose an instructor" selected>Choose an instructor</option>
-                    <c:forEach items="${ir}" var="rir">
-                        <option value="${rir}" name="instructor" Title="Instructor" >${rir}</option>
+                <select name="act" title="Aircraft Type" required>
+                    <c:forEach items="${aircrafttype}" var="at">
+                        <option value="${at}">${at}</option>
                     </c:forEach>
-                </select><br>
+                </select>
+                <span> (choose an Aircraft)</span><br>
                 <p>&nbsp;</p>
                 <input type="submit" class="btn btn-default btn-sp" value="Submit Reservation Request"/>
                 <p>&nbsp;</p>
             </div>
         </form>
-            <div class="col-sm-2">
-            </div>
+        <div class="col-sm-2">
+        </div>
         <hr>
         <p><img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block"></p>
         <hr>

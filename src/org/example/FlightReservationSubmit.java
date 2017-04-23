@@ -10,7 +10,7 @@ import java.sql.Time;
 import java.util.Date;
 
 
-public class FlyingLessonReservationSubmit extends HttpServlet {
+public class FlightReservationSubmit extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
 
@@ -27,30 +27,21 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
         String restime = request.getParameter("restime"); //reservation time
         String lengthoftime = request.getParameter("lengthoftime");
         String aircrafttype = request.getParameter("act"); //aircraft type
-        String instructor = request.getParameter("ins"); //instructor type
 
         Reservations res = new Reservations();
-        Admin ins = new Admin();
 
-        //Reservation here is always L for lesson
-        String resType = "L";
-        String available;
+        //Reservation here is always F for flight
+        String resType = "F";
+        //String available;
         String seconds = ":00";
 
         ReservationsList reservationsubmit = new ReservationsList();
         Aircraft act = new Aircraft();
-        Admin I = new Admin();
 
         try {
             //get registrationID only for resources rserved column
             String[] registrationid = aircrafttype.split("\\s+");
             String rr = registrationid[0];
-
-            //get instructor adminID for instructor column
-            String[] insructornames = instructor.split("\\s+");
-            String fname = insructornames[0];
-            String lname = insructornames[1];
-            int instruct = I.getInstructorNumber(fname, lname);
 
             //parse memberid to int
             int mi = Integer.parseInt(memberid);
@@ -90,13 +81,13 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
 
             int resID;
             //add reservation
-            res.addNewFlyingLessonReservation(mi, resType, rr, resdatenew, fullouttime, intime, instruct);
+            res.addNewFlightReservation(mi, resType, rr, resdatenew, fullouttime, intime);
             resID = res.getResId();
             res.readFromDatabase(resID);
 
             String rrr = res.getResourcesRes();
             Date rdate = res.getResDate();
-            String flyinglesson = "Flying Lesson";
+            String flight = "Flight";
             String pending = "pending";
 
             //used for testing purposes
@@ -114,21 +105,20 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             request.getSession().setAttribute("mi", mi);
             request.getSession().setAttribute("reservationsubmit", reservationsubmit);
             request.getSession().setAttribute("res", res);
-            request.getSession().setAttribute("flyinglesson", flyinglesson);
+            request.getSession().setAttribute("flight", flight);
             request.getSession().setAttribute("regsitration", rrr);
             request.getSession().setAttribute("rdate", rdate);
             request.getSession().setAttribute("resouttime", restime);
             request.getSession().setAttribute("resintime", resintime);
-            request.getSession().setAttribute("instructor", instructor);
             request.getSession().setAttribute("pending", pending);
-            request.getSession().setAttribute("lessonlength", lengthoftime);
+            request.getSession().setAttribute("flightlength", lengthoftime);
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("password", password);
-            request.getRequestDispatcher("/flyinglessonreservationsubmit.jsp").forward(request, response);
+            request.getRequestDispatcher("/flightreservationsubmit.jsp").forward(request, response);
 
 
         }
-            catch (Exception e2)
+        catch (Exception e2)
         {
             e2.printStackTrace();
         }

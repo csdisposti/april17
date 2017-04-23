@@ -12,16 +12,6 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="http://ascend.2ndmm.com/css/style.css">
-    <script>
-        function myFunction() {
-        var x = document.getElementById('passwordChange');
-        if (x.style.display === 'none') {
-            x.style.display = 'block';
-        } else {
-            x.style.display = 'none';
-        }
-    }</script>
-
 </head>
 <body>
 <div class="container-fluid">
@@ -31,6 +21,7 @@
     <div class="row gray">
         <h3 class="text-center">Edit Your Info</h3>
         <hr>
+        <h3 class="text-center error">ERROR - Password did not match current password, please try again.</h3>
         <div class="col-sm-2">
         </div>
 
@@ -39,7 +30,7 @@
             <input type="hidden" id="accountid" name="accountid" value="${ai}"/>
             <input type="hidden" id="memberid" name="memberid" value="${mi}"/>
             <input type="hidden" id="username" name="username" value="${username}"/>
-            <input type="hidden" id="password" name="password" value="${password}"/>
+
         <div class="col-sm-3">
             <label for="fname">First Name:</label><br />
                 <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="fname" name="fname" title="First Name - Letters/Numbers/Apostrophes Only" value="${fn}" required/> <br />
@@ -134,17 +125,12 @@
             <label for="passwordcurrent">Current Password:</label><br />
             <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="passwordcurrent"
                    name="passwordcurrent" title="Current Password" required/> <br />
-           <!-- <button onclick="myFunction()">Change Password</button>-->
-
-           <!-- <div class="passwordChange">-->
             <label for="passwordnew">New Password:</label><br />
             <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="passwordnew" name="passwordnew" title="Password must be at least 8 charcaters long and must include at least 1 uppercase, 1 lowercase, and 1 number" /> <br />
             <span>Password must be at least 8 characters long</span><br><span>and must include at least 1 uppercase, 1 lowercase, and 1 number</span><br>
             <label for="passwordnewcheck">Re-Enter Password:</label><br />
             <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" id="passwordnewcheck"
                    name="passwordnewcheck" title="Passwords do not match" /> <br />
-           <!-- </div>-->
-
             <input type="submit"  class="btn btn-default btn-sp" value="Edit My Info" />
         <hr>
         </div>

@@ -18,16 +18,25 @@ public class FlightReservation extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String memberid = request.getParameter("memberid");
+
         AircraftList aircrafts = new AircraftList();
-        ArrayList<AircraftList> ResourcesReserved;
+        ArrayList<AircraftList> aircrafttype;
+
 
         try{
 
-            ResourcesReserved = aircrafts.populateResourcesReserved();
-            request.getSession().setAttribute("aircrafttype", ResourcesReserved);
-                request.getRequestDispatcher("/signupone.jsp").forward(request, response);
+            int mid = Integer.parseInt(memberid);
+            aircrafttype = aircrafts.populateResourcesReserved();
+            request.getSession().setAttribute("aircrafttype", aircrafttype);
+            request.getSession().setAttribute("mid", mid);
+            request.getSession().setAttribute("username", username);
+            request.getSession().setAttribute("password", password);
+            request.getRequestDispatcher("/flightreservation.jsp").forward(request, response);
         }
-            catch (Exception e2)
+        catch (Exception e2)
         {
             e2.printStackTrace();
         }

@@ -22,7 +22,9 @@ public class EditMyInfoSubmit extends HttpServlet {
         String memberID = request.getParameter("memberid");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String passwordedit = request.getParameter("passwordedit");
+        String passwordcurrent = request.getParameter("passwordcurrent");
+        String passwordnew = request.getParameter("passwordnew");
+        String passwordnewcheck = request.getParameter("passwordnewcheck");
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
         String phoneone = request.getParameter("phone1");
@@ -36,22 +38,48 @@ public class EditMyInfoSubmit extends HttpServlet {
         String accttype = request.getParameter("accttype");
 
         Credentials uc = new Credentials();
+        Credentials newuc = new Credentials();
         Account ua = new Account();
         Member um = new Member();
 
-        try{
-            uc.updateCredentials(username, password);
-            int ai = Integer.parseInt(accountID);
-            ua.memberupdateAccount(ai, accttype, street, city, state, zip);
-            int mi = Integer.parseInt(memberID);
-            um.updateMyInfo(mi, fname, lname, phoneone, phonetwo, emerconname, emerconphone);
 
-            request.getSession().setAttribute("fn", fname);
-            request.getSession().setAttribute("nm", ua);
-            request.getSession().setAttribute("ac", um);
-            request.getSession().setAttribute("useranme" , username);
-            request.getSession().setAttribute("password" , password);
-            request.getRequestDispatcher("/editmyinfosubmit.jsp").forward(request, response);
+        try {
+           // System.out.println(password);
+           // System.out.println(passwordcurrent);
+            if (!passwordcurrent.equals(password)) {
+               request.getRequestDispatcher("/editmyinfopasswordfail.jsp").forward(request, response);
+           } else if (!passwordnew.isEmpty()){
+                String required = "required";
+                request.getSession().setAttribute("required", required);
+               // System.out.println(username);
+               // System.out.println(passwordnew);
+                uc.updatePassword(username, passwordnew);
+                //newuc.readFromDatabase(username, passwordnew);
+               // password = newuc.getPassword();
+               // System.out.println(password);
+                int ai = Integer.parseInt(accountID);
+                ua.memberupdateAccount(ai, accttype, street, city, state, zip);
+                int mi = Integer.parseInt(memberID);
+                um.updateMyInfo(mi, fname, lname, phoneone, phonetwo, emerconname, emerconphone);
+
+                request.getSession().setAttribute("fn", fname);
+                request.getSession().setAttribute("nm", ua);
+                request.getSession().setAttribute("ac", um);
+                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("password", password);
+                request.getRequestDispatcher("/editmyinfosubmitpasswordchanged.jsp").forward(request, response);
+          } else {
+               int ai = Integer.parseInt(accountID);
+                ua.memberupdateAccount(ai, accttype, street, city, state, zip);
+                int mi = Integer.parseInt(memberID);
+                um.updateMyInfo(mi, fname, lname, phoneone, phonetwo, emerconname, emerconphone);
+                request.getSession().setAttribute("fn", fname);
+                request.getSession().setAttribute("nm", ua);
+                request.getSession().setAttribute("ac", um);
+                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("password", password);
+                request.getRequestDispatcher("/editmyinfosubmit.jsp").forward(request, response);
+                }
         }
             catch (Exception e2)
         {

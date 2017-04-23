@@ -224,8 +224,8 @@ public class Reservations {
         }
     }
 
-    //member add reservation to database as pending
-    protected void addNewReservation(int resBy, String resType, String resourcesRes, String resDate, String outTime, String inTime, int instNo) throws Exception {
+    //member add flying lesson reservation to database as pending
+    protected void addNewFlyingLessonReservation(int resBy, String resType, String resourcesRes, String resDate, String outTime, String inTime, int instNo) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -247,6 +247,53 @@ public class Reservations {
             ps.setTime(5, java.sql.Time.valueOf(outTime));
             ps.setTime(6, java.sql.Time.valueOf(inTime));
             ps.setInt(7, instNo);
+            ps.executeUpdate();
+
+            java.sql.ResultSet rs = statement.executeQuery("SELECT ReservationID FROM tblReservations ORDER BY ReservationID DESC LIMIT 1");
+            rs.next();
+            this.resId = rs.getInt("ReservationID");
+
+            //String updateRes = "UPDATE tblReservations SET ResourcesReserved = ?,  WHERE ReservationID =" + resId + ";";
+
+            //PreparedStatement pstmt = connection.prepareStatement(updateRes);
+
+
+            //pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //member add flying lesson reservation to database as pending
+    protected void addNewFlightReservation(int resBy, String resType, String resourcesRes, String resDate, String outTime, String inTime) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+            String newRes = "INSERT INTO tblReservations(ReservedBy, ReservationType, ResourcesReserved, ReservationDate, OutTime, InTime) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(newRes);
+            ps.setInt(1, resBy);
+            ps.setString(2, resType);
+            ps.setString(3, resourcesRes);
+            ps.setDate(4, java.sql.Date.valueOf(resDate));
+            ps.setTime(5, java.sql.Time.valueOf(outTime));
+            ps.setTime(6, java.sql.Time.valueOf(inTime));
             ps.executeUpdate();
 
             java.sql.ResultSet rs = statement.executeQuery("SELECT ReservationID FROM tblReservations ORDER BY ReservationID DESC LIMIT 1");

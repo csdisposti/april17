@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.InputStream;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSetMetaData;
 import java.util.Date;
 import java.util.Properties;
@@ -18,6 +19,10 @@ public class Test2  {
     private int memNo;
     private int adminID;
     private String adminLev;
+   // private String username;
+   // private String password;
+
+    private String E = "ZimaZima@aol.com";
     //constructor
     public Test2(String eu, String pw) {
 
@@ -77,22 +82,31 @@ public class Test2  {
             java.sql.Statement statement = connection.createStatement();
 
         String I = "I";
+
             //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblCredentials WHERE Email_Username='" + email + "';");
             //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User='" + email + "';");
            // java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAdmin WHERE MemberNo=" + mn + ";");
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAdmin");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblCredentials WHERE Email_Username='" + E + "'");
             if (rs != null) {
-                rs.next();
-                //this.eu = rs.getString("Email_Username");
-                //this.pw = rs.getString("MemberPW");
-                //this.adminID = rs.getInt("AdministratorID");
-                //this.adminLev = rs.getString("AdminLevel");
-                ResultSetMetaData rsMetaData = rs.getMetaData();
-                System.out.print(rsMetaData);
+                while (rs.next()) {
+                    //this.eu = rs.getString("Email_Username");
+                    //this.pw = rs.getString("MemberPW");
+                    //this.adminID = rs.getInt("AdministratorID");
+                    //this.adminLev = rs.getString("AdminLevel");*/
+                    ResultSetMetaData rsMetaData = rs.getMetaData();
+                    System.out.print(rsMetaData);
+                    this.eu = rs.getString("Email_Username");
+                    this.pw = rs.getString("MemberPW");
+                    System.out.println(eu);
+                    System.out.println(pw);
+
+
+                    String updateMember = "UPDATE AscendDB.tblCredentials SET MemberPW = ? WHERE Email_Username ='" + E + "'";
+                    PreparedStatement pstmt = connection.prepareStatement(updateMember);
+                    pstmt.setString(1, "Zima19995");
+                    pstmt.executeUpdate();
+                }
             }
-
-
-
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
