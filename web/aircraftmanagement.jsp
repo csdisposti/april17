@@ -16,24 +16,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
-    <div class="row">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-2 text-right">
-            <h4 class=text-center" >Welcome ${fnad}!</h4>
-            <hr>
-        </div>
-        <div class="col-sm-1">
-            <form action="Logout" method="post">
-                <input type="submit" class="btn btn-default" value="Log Out"/>
-            </form>
-        </div>
-        <hr>
-    </div>
+    <jsp:include page="adminnav.jsp" />
     <div class="row gray">
         <h3 class="text-center">Aircraft Management</h3>
         <hr>
@@ -52,8 +37,8 @@
                 <input id="aircraft" type="hidden" value="${acftup}"/>
                 <select name="aircrafttype" required>
                  <option value="Choose an aircraft">Choose an aircraft</option>
-                    <c:forEach items="${acftup}"  var="item">
-                        <option value="${item}">${item}</option>
+                    <c:forEach items="${acftup}"  var="airc">
+                        <option value="${airc}">${airc}</option>
                     </c:forEach>
                 </select><br/>
                 <input type="submit" class="btn btn-default btn-sp" value="Update Existing Aircraft"/>

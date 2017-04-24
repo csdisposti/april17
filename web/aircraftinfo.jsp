@@ -15,11 +15,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
+    <jsp:include page="adminnav.jsp" />
     <div class="row gray">
         <h3 class="text-center">Update Existing Aircraft</h3>
         <hr>
@@ -27,31 +25,31 @@
         <form action="AircraftManagementSubmit" method="POST">
         <div class="col-sm-4">
                 <input type="hidden"  name="action" value="login">
-                <label for="registrationID">Registration ID:</label><br />
-                <input type="text" id="registrationID" name="registrationID" title="registrationID" value="${registrationID}"><br/>
-                <input type="hidden" id="email" name="email" title="email" value="${em}">
-                <label for="ownerID">Owner ID:</label><br />
-                <input type="text" id="ownerID" name="ownerID" title="ownerID" value="${ownerID}"/><br />
-                <label for="makeModel">Make &amp; Model:</label><br />
-                <input type="text" id="makeModel" name="makeModel" title="makeModel" value="${makeModel}"/><br />
-                <label for="aircraftType">Aircraft Type:</label><br />
-                <input type="text" id="aircraftType" name="aircraftType" title="aircraftType" value="${aircraftType}"/><br />
-                 <label for="rentalFee">Rental Fee:</label><br />
-                 <input type="text" id="rentalFee" name="rentalFee" title="rentalFee" value="${rentalFee}"/><br />
+            <input type="hidden" id="oldreg" name="oldreg" title="Registration ID" value="${registrationID}" required/><br/>
+            <label for="registrationID">Registration ID:</label><br />
+                <input type="text" id="registrationID" name="registrationID" title="Registration ID" value="${registrationID}" required/><br/>
+            <label for="ownerID">Owner ID:</label><br />
+                <input type="text" id="ownerID" name="ownerID" title="Owner ID" value="${ownerID}" required/><br />
+            <label for="makeModel">Make &amp; Model:</label><br />
+                <input type="text" id="makeModel" name="makeModel" title="Make and Model" value="${makeModel}" required/><br />
+            <label for="aircraftType">Aircraft Type:</label><br />
+                <input type="text" id="aircraftType" name="aircraftType" title="Aircraft Type" value="${aircraftType}" required/><br />
+            <label for="rentalFee">Rental Fee:</label><br />
+                 <input type="text" id="rentalFee" pattern="{\d+(\.\d{2})?}" name="rentalFee" title="Rental Fee" value="${rentalFee}" required/><br />
             <label for="aircraftAge">Aircraft Age:</label><br />
-            <input type="text" id="aircraftAge" name="aircraftAge" title="aircraftAge" value="${aircraftAge}"/><br />
+                <input type="text" id="aircraftAge" name="aircraftAge" title="Aircraft Age" value="${aircraftAge}" required/><br />
         </div>
             <div class="col-sm-4">
             <label for="flightHours">Flight Hours:</label><br />
-            <input type="text" id="flightHours" name="flightHours" title="flightHours" value="${flightHours}"/><br />
+            <input type="number" id="flightHours" name="flightHours" title="Flight Hours" value="${flightHours}" required/><br />
             <label for="flightDistance">Flight Distance:</label><br />
-            <input type="text" id="flightDistance" name="flightDistance" title="flightDistance" value="${flightDistance}"/><br />
+            <input type="number" id="flightDistance" name="flightDistance" title="Flight Distance" value="${flightDistance}" required/><br />
             <label for="lastMaintType">Last Maintenance Type:</label><br />
-            <input type="text" id="lastMaintType" name="lastMaintType" title="lastMaintType" value="${lastMaintType}"/><br />
+            <input type="text" id="lastMaintType" name="lastMaintType" title="Last Maintenance Type" value="${lastMaintType}" required/><br />
             <label for="lastMaintDate">Last Maintenance Date:</label><br />
-            <input type="text" id="lastMaintDate" name="lastMaintDate" title="paymeth" value="${lastMaintDate}"/><br />
+            <input type="date" id="lastMaintDate" name="lastMaintDate" title="Last Maintenance Date" value="${lastMaintDate}" required/><br />
             <label for="aircraftComms">Aicraft Comments:</label><br />
-            <textarea rows="10" cols="30" id="aircraftComms" name="aircraftComms" title="aircraftComms">${aircraftComms}</textarea> <br />
+            <textarea rows="10" cols="30" id="aircraftComms" name="aircraftComms" title="Aircraft Comments">${aircraftComms}</textarea> <br />
             <input type="submit"  class="btn btn-default btn-sp" value="Update Existing Aircraft" />
         </div>
         </form>

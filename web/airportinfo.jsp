@@ -38,9 +38,9 @@
                 <label for="airportcity">City:</label><br />
                 <input type="text" id="airportcity" name="airportcity" title="Airport City" value=""/><br />
                 <label for="latitude">Latitude:</label><br />
-                <input type="text" id="latitude" name="latitude" title="Latitude" value=""/><br />
+                <input type="number" pattern="{-?\d{1,3}\.\d+}" id="latitude" name="latitude" title="Latitude" value=""/><br />
                 <label for="logitude">Longitude:</label><br />
-                <input type="text" id="logitude" name="logitude" title="Logitude" value=""/><br />
+                <input type="number" pattern="{-?\d{1,3}\.\d+}" id="logitude" name="logitude" title="Logitude" value=""/><br />
                 <label for="apcontactn">Contact Name:</label><br />
                 <input type="text" id="apcontactn" name="apcontactn" title="Contact Name" value=""/><br />
                 <label for="apcontactp">Contact Phone:</label><br />

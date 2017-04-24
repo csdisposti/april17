@@ -15,28 +15,12 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
-    <div class="row">
-        <div class="col-sm-9"></div>
-        <div class="col-sm-2 text-right">
-            <h4 class=text-center" >Welcome ${fnad}!</h4>
-            <hr>
-        </div>
-        <div class="col-sm-1">
-            <form action="Logout" method="post">
-                <input type="submit" class="btn btn-default" value="Log Out"/>
-            </form>
-        </div>
-        <hr>
-    </div>
+    <jsp:include page="adminnav.jsp" />
     <div class="row gray text-center">
         <h3 class="text-center">Admin Portal</h3>
-            <div class="container-fluid">
-                <div class="row">
+
             <div class="col-sm-3">
             </div>
             <div class="col-sm-3">
@@ -49,19 +33,20 @@
                 <form action="AdminManagementMember" method="post">
                     <input type="submit" class="btn btn-default btn-sp" value="Member Management"/>
                 </form>
+                <br>
             </div>
-                    <div class="col-sm-3">
+        <div class="col-sm-3">
                 <form action="AdminManagementAircraft" method="post">
                     <input type="submit" class="btn btn-default btn-sp" value="Aircraft Management"/>
                 </form>
                 <form action="AdminManagementAirport" method="post">
                     <input type="submit" class="btn btn-default btn-sp" value="Airport Management"/>
                 </form>
-            </div>
-                    <div class="col-sm-3">
-                    </div>
-            </div>
-        <hr>
+        </div>
+        <div class="col-sm-3">
+        </div>
+
+        <br>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
     <footer class="text-center">

@@ -262,9 +262,9 @@ public void setMakeModel(String makemodel) {
             //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblCredentials WHERE Email_Username='" + email + "';");
             //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User='" + email + "';");
            // java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAdmin WHERE MemberNo=" + mn + ";");
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblReservations ");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAircraft ");
 
-            if (rs != null) {
+            /*if (rs != null) {
                 //makes sure the resultSet isn't in the header info
                 while(rs.next()) {
                     this.resId = rs.getInt("ReservationID");
@@ -280,21 +280,21 @@ public void setMakeModel(String makemodel) {
                     this.resApprovedBy = rs.getInt("ReservationApprovedBy");
                     this.resCom = rs.getString("ReservationComments");
                     System.out.println(resBy + " " + resDate);
-                }
-            /*if (rs != null) {
-                while (rs.next()) {*/
+                }*/
+            if (rs != null) {
+                while (rs.next()) {
                     //this.eu = rs.getString("Email_Username");
                     //this.pw = rs.getString("MemberPW");
                     //this.adminID = rs.getInt("AdministratorID");
                     //this.adminLev = rs.getString("AdminLevel");*/
-                    /*ResultSetMetaData rsMetaData = rs.getMetaData();
+                    ResultSetMetaData rsMetaData = rs.getMetaData();
                     System.out.print(rsMetaData);
-                    this.eu = rs.getString("Email_Username");
+                   /* this.eu = rs.getString("Email_Username");
                     this.pw = rs.getString("MemberPW");
                     System.out.println(eu);
                     System.out.println(pw);
 */
-
+                }
                    /* String updateMember = "UPDATE AscendDB.tblCredentials SET MemberPW = ? WHERE Email_Username ='" + E + "'";
                     PreparedStatement pstmt = connection.prepareStatement(updateMember);
                     pstmt.setString(1, "Zima19995");

@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Array;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -190,21 +191,20 @@ public class Aircraft {
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
-                rs.next();
-
-                this.reg = rs.getString("Registration");
-                this.ownId = rs.getInt("OwnerID");
-                this.makeModel = rs.getString("Make_Model");
-                this.airType = rs.getString("AircraftType");
-                this.rentFee = rs.getInt("RentalFee");
-                this.airAge = rs.getInt("AircraftAge");
-                this.flightHrs = rs.getDouble("FlightHours");
-                this.flightDist = rs.getDouble("FlightDistance");
-                this.lastMaintType = rs.getString("LastMaintenanceType");
-                this.lastMaintDate = rs.getDate("LastMaintenanceDate");
-                this.airCom = rs.getString("AircraftComments");
+                while (rs.next()) {
+                    this.reg = rs.getString("Registration");
+                    this.ownId = rs.getInt("OwnerID");
+                    this.makeModel = rs.getString("Make_Model");
+                    this.airType = rs.getString("AircraftType");
+                    this.rentFee = rs.getInt("RentalFee");
+                    this.airAge = rs.getInt("AircraftAge");
+                    this.flightHrs = rs.getDouble("FlightHours");
+                    this.flightDist = rs.getDouble("FlightDistance");
+                    this.lastMaintType = rs.getString("LastMaintenanceType");
+                    this.lastMaintDate = rs.getDate("LastMaintenanceDate");
+                    this.airCom = rs.getString("AircraftComments");
+                }
             }
-
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
@@ -217,9 +217,48 @@ public class Aircraft {
         }
     }
 
+    //admin update aircraft info
+    protected void updateAircraft(String oldReg, String registration, int ownID, String makemodel, String aircrafttype, int rentfee, int aircraftage, double flighthours, double flightdistance,
+                                  String lastmtype, String lastmdate, String aircomms) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+
+            String updateMember = "UPDATE AscendDB.tblAircraft SET Registration = ?, OwnerID = ?, Make_Model = ?, AircraftType = ?, RentalFee = ?, AircraftAge = ?, FlightHours = ?, FlightDistance = ?, LastMaintenanceType = ?, LastMaintenanceDate = ?," +
+                    "AircraftComments = ? WHERE Registration='" + oldReg + "';";
+            PreparedStatement pstmt = connection.prepareStatement(updateMember);
+            pstmt.setString(1, registration);
+            pstmt.setInt(2, ownID);
+            pstmt.setString(3, makemodel);
+            pstmt.setString(4, aircrafttype);
+            pstmt.setInt(5, rentfee);
+            pstmt.setInt(6, aircraftage);
+            pstmt.setDouble(7, flighthours);
+            pstmt.setDouble(8, flightdistance);
+            pstmt.setString(9, lastmtype);
+            pstmt.setDate(10, java.sql.Date.valueOf(lastmdate));
+            pstmt.setString(11, aircomms);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public String toString() {
-        return "<p>Registration: " + this.reg + "</p><p>" + this.ownId + "</p><p>" + this.makeModel + "</p><p>" + this.airType +"</p><p>" + this.rentFee +
-               "</p><p>" + this.airAge + "</p><p>" + this.flightHrs + "</p><p>" + this.flightDist + "</p><p>" + this.lastMaintType + "</p><p>" + this.lastMaintDate + "</p><p>" + this.airCom  +"</p>";
+        return "<p>Registration: " + this.reg + "</p><p>Owner ID: " + this.ownId + "</p><p>Make/Model: " + this.makeModel + "</p><p>Aircraft Type: " + this.airType +"</p><p>Rental Fee: " + this.rentFee +
+               "</p><p>Aircraft Age: " + this.airAge + "</p><p>Flight Hours: " + this.flightHrs + "</p><p>Flight Distance: " + this.flightDist + "</p><p>Last Maintenance Type: " +
+                this.lastMaintType + "</p><p>Last Maintenance Date: " + this.lastMaintDate + "</p><p>Aircraft Comments: " + this.airCom  +"</p>";
     }
 }

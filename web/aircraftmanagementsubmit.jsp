@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Aircraft Managemnt - Ascend</title>
+    <title>Aircraft Management - Ascend</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width">
     <!-- Latest compiled and minified CSS -->
@@ -15,21 +15,27 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
+    <jsp:include page="adminnav.jsp" />
     <div class="row gray">
-        <div class="col-sm-3">
+        <h3 class="text-center">The Aircraft has been updated</h3>
+        <div class="col-sm-4">
         </div>
-        <div class="col-sm-6">
-            <h3 class="text-center">Your reservation has been submitted for Admin approval</h3>
+        <div class="col-sm-4">
             <hr>
-            <p>${ressub}</p>
-            <a href="/member.jsp" class="btn btn-default btn-sp">Return to Member Page</a>
+            <h4>Updated Aircraft Info</h4>
+            <p>${acnew}</p>
+            <hr>
+            <form action="AdminPortal" method="post">
+                <input type="hidden" id="username" name="username" value="${username}"/>
+                <input type="hidden" id="password" name="password" value="${password}"/>
+                <input type="submit" class="btn btn-default" value="Return to Admin Portal"/>
+            </form>
+            <br>
+            <hr>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
         </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>

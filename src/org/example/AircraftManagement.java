@@ -33,7 +33,6 @@ public class AircraftManagement extends HttpServlet {
             Date lastMaintDate;
             String aircraftComms;
 
-
             Aircraft act = new Aircraft();
 
             try {

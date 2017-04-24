@@ -15,11 +15,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
+    <jsp:include page="homenav.jsp" />
     <div class="row gray text-center">
         <h2>Welcome to the 289 Flight Club</h2>
         <h4><em>powered by Ascend</em></h4>
@@ -28,8 +26,8 @@
         <div class="col-sm-6">
             <h3>Admin Login</h3>
             <form action="AdminPortal" method="post">
-                <label for="email">Username:</label><br />
-                <input type="text" id="email" name="email" title="Login-Username" required/><br />
+                <label for="username">Username:</label><br />
+                <input type="text" id="username" name="username" title="Login-Username" required/><br />
                 <label for="password">Password:</label><br />
                 <input type="password" id="password" name="password" title="Login-Password" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Login"/>

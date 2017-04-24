@@ -25,6 +25,7 @@ public class Test extends HttpServlet {
         Test2 t2 = new Test2();
         try{
 
+
           t2.test();
             request.getSession().setAttribute("t2", t2);
             request.getRequestDispatcher("/test2.jsp").forward(request, response);

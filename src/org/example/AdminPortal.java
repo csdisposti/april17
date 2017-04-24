@@ -17,7 +17,7 @@ public class AdminPortal extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        String username = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         String memInfo;
@@ -56,6 +56,9 @@ public class AdminPortal extends HttpServlet {
                 //get admin info
                 a.readFromDatabase(adminLogin);
                 request.getSession().setAttribute("a", a);
+
+                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("password", password);
 
                 request.getRequestDispatcher("/adminportal.jsp").forward(request, response);
             }

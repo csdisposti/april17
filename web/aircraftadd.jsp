@@ -15,11 +15,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
+    <jsp:include page="adminnav.jsp" />
     <div class="row gray">
         <h3 class="text-center">Add New Aircraft</h3>
         <hr>
@@ -31,7 +29,7 @@
                 <input type="text" id="registrationID" name="registrationID" title="registrationID" value=""><br/>
                 <input type="hidden" id="email" name="email" title="email" value="">
                 <label for="ownerID">Owner ID:</label><br />
-                <input type="text" id="ownerID" name="ownerID" title="ownerID" value="}"/><br />
+                <input type="text" id="ownerID" name="ownerID" title="ownerID" value=""/><br />
                 <label for="makeModel">Make &amp; Model:</label><br />
                 <input type="text" id="makeModel" name="makeModel" title="makeModel" value=""/><br />
                 <label for="aircraftType">Aircraft Type:</label><br />
