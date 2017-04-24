@@ -282,7 +282,7 @@ public class Member {
         try {
             java.sql.Statement statement = connection.createStatement();
 
-            String updateMember = "UPDATE tblMember SET Email_User = ?, FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ?, MemberComments = ? WHERE MemberID =" + memid + ";";
+            String updateMember = "UPDATE tblMember SET Email_User = ?, FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ?, MemberComments = '?' WHERE MemberID =" + memid + ";";
             PreparedStatement pstmt = connection.prepareStatement(updateMember);
             pstmt.setString(1, email);
             pstmt.setString(2, fname);
