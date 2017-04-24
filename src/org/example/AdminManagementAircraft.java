@@ -19,13 +19,12 @@ public class AdminManagementAircraft extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         AircraftList aircrafts = new AircraftList();
-        ArrayList<AircraftList> ResourcesReserved = new ArrayList<>();
+        ArrayList<AircraftList> aircraftindb = new ArrayList<>();
 
         try{
-
-            ResourcesReserved = aircrafts.populateResourcesReserved();
-            request.getSession().setAttribute("acftup", ResourcesReserved);
-               request.getRequestDispatcher("/aircraftmanagement.jsp").forward(request, response);
+            aircraftindb = aircrafts.populateResources();
+            request.getSession().setAttribute("acftup", aircraftindb);
+            request.getRequestDispatcher("/aircraftmanagement.jsp").forward(request, response);
 
         }catch (Exception e2)
 

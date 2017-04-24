@@ -25,10 +25,10 @@ public class MaintenanceUpdate extends HttpServlet {
 
         try{
 
-            ResourcesReserved = aircrafts.populateResourcesReserved();
+            ResourcesReserved = aircrafts.populateResources();
             request.getSession().setAttribute("rr", ResourcesReserved);
 
-            InstructorReserved = instructors.populateResourcesReserved();
+            InstructorReserved = instructors.populateResources();
             request.getSession().setAttribute("ir", InstructorReserved);
 
             request.getRequestDispatcher("/maintenanceinfo.jsp").forward(request, response);

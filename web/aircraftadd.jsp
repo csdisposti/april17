@@ -22,35 +22,50 @@
         <h3 class="text-center">Add New Aircraft</h3>
         <hr>
 <div class="col-sm-2"></div>
-        <form action="AircraftManagementSubmit" method="POST">
+        <form action="AircraftAddSubmit" method="POST">
             <div class="col-sm-4">
                 <input type="hidden"  name="action" value="login">
+                <input type="hidden" id="oldreg" name="oldreg" title="Registration ID" required/><br/>
                 <label for="registrationID">Registration ID:</label><br />
-                <input type="text" id="registrationID" name="registrationID" title="registrationID" value=""><br/>
-                <input type="hidden" id="email" name="email" title="email" value="">
+                <input type="text" pattern="^N?([a-zA-Z0-9-.-'\s]{3,6})$" id="registrationID" name="registrationID" title="Registration ID"  required/><br/>
+                <span> No more than five characters<br>must start with "N" Example: N1234</span><br>
                 <label for="ownerID">Owner ID:</label><br />
-                <input type="text" id="ownerID" name="ownerID" title="ownerID" value=""/><br />
+                <input type="text" id="ownerID" name="ownerID" title="Owner ID" required/><br />
                 <label for="makeModel">Make &amp; Model:</label><br />
-                <input type="text" id="makeModel" name="makeModel" title="makeModel" value=""/><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="makeModel" name="makeModel" title="Make and Model" required/><br />
+                <span> Example: Cirrus SR20</span><br>
                 <label for="aircraftType">Aircraft Type:</label><br />
-                <input type="text" id="aircraftType" name="aircraftType" title="aircraftType" value=""/><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="aircraftType" name="aircraftType" title="Aircraft Type" required/><br />
+                <label for="airportHome">Airport Home:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="airportHome" name="airportHome" title="Airport Home" required/><br />
+                <label for="airportCurrent">Airport Current:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="airportCurrent" name="airportCurrent" title="Airport Current" /><br />
+                <span> Example: Piston</span><br>
                 <label for="rentalFee">Rental Fee:</label><br />
-                <input type="text" id="rentalFee" name="rentalFee" title="rentalFee" value=""/><br />
+                <input type="number" id="rentalFee" pattern="{\d+(\.\d{2})?}" name="rentalFee" title="Rental Fee" required/><br />
+                <span> Numbers only, Example: 450</span><br>
                 <label for="aircraftAge">Aircraft Age:</label><br />
-                <input type="text" id="aircraftAge" name="aircraftAge" title="aircraftAge" value=""/><br />
+                <input type="number" pattern="[0-9]{,3}" id="aircraftAge" name="aircraftAge" title="Aircraft Age" required/><br />
+                <span> Whole numbers only, Example: 5</span><br>
             </div>
             <div class="col-sm-4">
                 <label for="flightHours">Flight Hours:</label><br />
-                <input type="text" id="flightHours" name="flightHours" title="flightHours" value=""/><br />
+                <input type="number" id="flightHours" name="flightHours" title="Flight Hours" required/><br />
+                <span> Whole numbers only, Example: 1250</span><br/>
                 <label for="flightDistance">Flight Distance:</label><br />
-                <input type="text" id="flightDistance" name="flightDistance" title="flightDistance" value=""/><br />
+                <input type="number" id="flightDistance" name="flightDistance" title="Flight Distance" required/><br />
+                <span> Whole numbers only, Example: 5250</span><br/>
                 <label for="lastMaintType">Last Maintenance Type:</label><br />
-                <input type="text" id="lastMaintType" name="lastMaintType" title="lastMaintType" value=""/><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="lastMaintType" name="lastMaintType" title="Last Maintenance Type" required/><br />
+                <span> Example: A Check</span><br/>
                 <label for="lastMaintDate">Last Maintenance Date:</label><br />
-                <input type="text" id="lastMaintDate" name="lastMaintDate" title="paymeth" value=""/><br />
+                <input type="date" id="lastMaintDate" name="lastMaintDate" title="Last Maintenance Date" required/><br />
+                <span class="firefoxonly"> Enter as YYYY-MM-DD </span>
                 <label for="aircraftComms">Aicraft Comments:</label><br />
-                <textarea rows="10" cols="30" id="aircraftComms" name="aircraftComms" title="aircraftComms"></textarea> <br />
-                <input type="submit"  class="btn btn-default btn-sp" value="Add New Aircraft" />
+                <textarea rows="10" cols="30" id="aircraftComms" name="aircraftComms" title="Aircraft Comments"></textarea> <br />
+               <hr>
+                <input type="submit"  class="btn btn-default btn-sp" value="Add Aircraft" />
+                <hr>
             </div>
         </form>
     <div class="col-sm-2">

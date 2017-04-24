@@ -15,54 +15,58 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
+    <jsp:include page="adminnav.jsp" />
     <div class="row gray">
         <h3 class="text-center">Add New Airport</h3>
         <hr>
 <div class="col-sm-2"></div>
-        <form action="AirportManagementSubmit" method="POST">
-        <div class="col-sm-4">
+        <form action="AirportAddSubmit" method="POST">
+            <div class="col-sm-3">
                 <input type="hidden"  name="action" value="login">
-                <label for="FAA">FAA Code:</label><br />
-                <input type="text" id="FAA" name="FAA" title="FAA Code" value=""><br/>
-                <label for="airportname">Airport Name:</label><br />
-            <input type="text" id="airportname" name="airportname" title="Airport Name" value=""/><br />
-            <label for="airporttype">Airport Type:</label><br />
-            <input type="text" id="airporttype" name="airporttype" title="Airport Title" value=""/><br />
-            <label for="airportstreet">Street Address:</label><br />
-            <input type="text" id="airportstreet" name="airportstreet" title="Airport Street" value=""/><br />
-            <label for="airportcity">City:</label><br />
-            <input type="text" id="airportcity" name="airportcity" title="Airport City" value=""/><br />
-            <label for="latitude">Latitude:</label><br />
-            <input type="text" id="latitude" name="latitude" title="Latitude" value=""/><br />
-            <label for="logitude">Longitude:</label><br />
-            <input type="text" id="logitude" name="logitude" title="Logitude" value=""/><br />
-            <label for="apcontactn">Contact Name:</label><br />
-            <input type="text" id="apcontactn" name="apcontactn" title="Contact Name" value=""/><br />
-            <label for="apcontactp">Contact Phone:</label><br />
-            <input type="text" id="apcontactp" name="apcontactp" title="Contact Phone" value=""/><br />
-        </div>
-            <div class="col-sm-4">
-            <label for="ctaf">CTAF_UNICOM:</label><br />
-            <input type="text" id="ctaf" name="cfat" title="CTAF_UNICOM" value=""/><br />
-            <label for="runway">Runway Type:</label><br />
-            <input type="text" id="runway" name="runway" title="Runway Type" value=""/><br />
-            <label for="towerfreq">Tower Frequency:</label><br />
-            <input type="text" id="towerfreq" name="towerfreq" title="Tower Frequency" value=""/><br />
-            <label for="fuel">Fuel:</label><br />
-            <input type="text" id="fuel" name="fuel" title="Fuel" value=""/><br />
-            <label for="storage">Storage:</label><br />
-            <input type="text" id="storage" name="storage" title="Storage" value=""/><br />
-            <label for="airportcomms">Airport Comments:</label><br />
-            <textarea rows="10" cols="30" id="airportcomms" name="airportcomms" value=" " title="Airport Comments"></textarea> <br />
-            <input type="submit"  class="btn btn-default btn-sp" value="Add New Airport" />
+                <label for="faa">FAA Code:</label><br />
+                <input type="text" pattern="^N?([a-zA-Z0-9-.-'\s]{1,6})$" id="faa" name="faa" title="FAA Code" value="" required><br/>
+                <span> No more than six characters</span><br>
+                <label for="airportName">Airport Name:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="airportName" name="airportName" title="Airport Name" value="" required/><br />
+                <label for="airportType">Airport Type:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="airportType" name="airportType" title="Airport Title" value="" required/><br />
+                <label for="streetAddress">Street Address:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="streetAddress" name="streetAddress" title="Airport Street" value="" required/><br />
+                <label for="city">City:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-#-.-'\s]{1,24}$" id="city" name="city" title="Airport City" value="" required/><br />
+            </div>
+            <div class="col-sm-3">
+                <label for="latitude">Latitude:</label><br />
+                <input type="text" pattern="{-?\d{1,3}\.\d+}" id="latitude" name="latitude" title="Latitude" value="" required/><br />
+                <label for="longitude">Longitude:</label><br />
+                <input type="text" pattern="{-?\d{1,3}\.\d+}" id="longitude" name="longitude" title="Logitude" value="" required/><br />
+                <label for="ctaf">CTAF_UNICOM:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="ctaf" name="ctaf" title="CTAF_UNICOM" value="" required/><br />
+                <label for="runwayType">Runway Type:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="runwayType" name="runwayType" title="Runway Type" value="" required/><br />
+                <label for="towerFreq">Tower Frequency:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="towerFreq" name="towerFreq" title="Tower Frequency" value="" required/><br />
+                <label for="fuel">Fuel:</label><br />
+                <input type="number" pattern="[0-9]{1,10}" id="fuel" name="fuel" title="Fuel" value="" required/><br />
+                <label for="storage">Storage:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="storage" name="storage" title="Storage" value="" required/><br />
+            </div>
+            <div class="col-sm-3">
+                <label for="contactName">Contact Name:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="contactName" name="contactName" title="Contact Name" value="" required/><br />
+                <label for="contactPhone">Contact Phone:</label><br />
+                <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="contactPhone" name="contactPhone" title="Contact Phone" value="" required/><br />
+                <span> Example: 555-555-5555</span><br>
+                <label for="airportComms">Airport Comments:</label><br />
+                <textarea rows="10" cols="30" id="airportComms" name="airportComms" title="Airport Comments"></textarea> <br />
+                <hr>
+                <input type="submit"  class="btn btn-default btn-sp" value="Add Airport" />
+                <hr>
             </div>
         </form>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
     </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>

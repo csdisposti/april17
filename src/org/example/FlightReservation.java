@@ -29,7 +29,7 @@ public class FlightReservation extends HttpServlet {
         try{
 
             int mid = Integer.parseInt(memberid);
-            aircrafttype = aircrafts.populateResourcesReserved();
+            aircrafttype = aircrafts.populateResources();
             request.getSession().setAttribute("aircrafttype", aircrafttype);
             request.getSession().setAttribute("memberid", mid);
             request.getSession().setAttribute("username", username);

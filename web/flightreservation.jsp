@@ -34,7 +34,7 @@
                 <h4>Date you would like to schedule your reservation:</h4>
                 <label for="resdate">Reservation Date: </label>
                 <input type="date" id="resdate" name="resdate" title="Reservation Date" required/> <br>
-                <span class="firefoxonly"> enter as YYYY--MM-DD </span>
+                <span class="firefoxonly"> enter as YYYY-MM-DD </span>
                 <br>
                 <h4>Time you would like to schedule your reservation:</h4>
                 <label for="restime">Reservation Time: </label>

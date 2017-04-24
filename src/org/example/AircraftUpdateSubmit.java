@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
-public class AircraftManagementSubmit extends HttpServlet {
+public class AircraftUpdateSubmit extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
 
@@ -29,6 +29,8 @@ public class AircraftManagementSubmit extends HttpServlet {
         String ownerID = request.getParameter("ownerID");
         String makeModel = request.getParameter("makeModel");
         String aircraftType = request.getParameter("aircraftType");
+        String airportHome = request.getParameter("airportHome");
+        String airportCurrent = request.getParameter("airportCurrent");
         String rentalFee = request.getParameter("rentalFee");
         String aircraftAge = request.getParameter("aircraftAge");
         String flightHours = request.getParameter("flightHours");
@@ -49,10 +51,10 @@ public class AircraftManagementSubmit extends HttpServlet {
             double fh = Double.parseDouble(flightHours);
             double fd = Double.parseDouble(flightDistance);
 
-            ac.updateAircraft(oldreg, registrationID, oi, makeModel, aircraftType, rf, aa, fh, fd, lastMaintType, lastMaintDate, aircraftComms);
+            ac.updateAircraft(oldreg, registrationID, oi, makeModel, aircraftType, airportHome, airportCurrent, rf, aa, fh, fd, lastMaintType, lastMaintDate, aircraftComms);
             acnew.readFromDatabase(registrationID);
             request.getSession().setAttribute("acnew", acnew);
-            request.getRequestDispatcher("/aircraftmanagementsubmit.jsp").forward(request, response);
+            request.getRequestDispatcher("/aircraftupdatesubmit.jsp").forward(request, response);
         }
             catch (Exception e2)
         {

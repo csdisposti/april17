@@ -262,6 +262,7 @@ public void setMakeModel(String makemodel) {
             //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblCredentials WHERE Email_Username='" + email + "';");
             //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User='" + email + "';");
            // java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAdmin WHERE MemberNo=" + mn + ";");
+           // java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAirports ");
             java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAircraft ");
 
             /*if (rs != null) {
@@ -287,6 +288,8 @@ public void setMakeModel(String makemodel) {
                     //this.pw = rs.getString("MemberPW");
                     //this.adminID = rs.getInt("AdministratorID");
                     //this.adminLev = rs.getString("AdminLevel");*/
+                    //ResultSetMetaData rsMetaData = rs.getMetaData();
+                    //System.out.print(rsMetaData);
                     ResultSetMetaData rsMetaData = rs.getMetaData();
                     System.out.print(rsMetaData);
                    /* this.eu = rs.getString("Email_Username");

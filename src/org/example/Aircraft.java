@@ -17,6 +17,8 @@ public class Aircraft {
     private int ownId;
     private String makeModel;
     private String airType;
+    private String airHome;
+    private String airCurr;
     private int rentFee;
     private int airAge;
     private double flightHrs;
@@ -101,6 +103,26 @@ public class Aircraft {
     //set Aircraft Type
     public void setAirType(String airType) {
         this.airType = airType;
+    }
+
+    //get Aircraft Home
+    public String getAirHome() {
+        return airHome;
+    }
+
+    //set Aircraft Home
+    public void setAirHome(String airHome) {
+        this.airHome = airHome;
+    }
+
+    //get Aircraft Current
+    public String getAirCurr() {
+        return airCurr;
+    }
+
+    //set Aircraft Current
+    public void setAirCurr(String airCurr) {
+        this.airCurr = airCurr;
     }
 
     //get Aircraft Rental fee
@@ -196,6 +218,8 @@ public class Aircraft {
                     this.ownId = rs.getInt("OwnerID");
                     this.makeModel = rs.getString("Make_Model");
                     this.airType = rs.getString("AircraftType");
+                    this.airHome = rs.getString("AirportHome");
+                    this.airCurr = rs.getString("AirportCurrent");
                     this.rentFee = rs.getInt("RentalFee");
                     this.airAge = rs.getInt("AircraftAge");
                     this.flightHrs = rs.getDouble("FlightHours");
@@ -217,8 +241,8 @@ public class Aircraft {
         }
     }
 
-    //admin update aircraft info
-    protected void updateAircraft(String oldReg, String registration, int ownID, String makemodel, String aircrafttype, int rentfee, int aircraftage, double flighthours, double flightdistance,
+    //admin add aircraft
+    protected void addAircraft(String registration, int ownID, String makemodel, String aircrafttype, String airhome, String aircurr, int rentfee, int aircraftage, double flighthours, double flightdistance,
                                   String lastmtype, String lastmdate, String aircomms) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -231,22 +255,63 @@ public class Aircraft {
         Class.forName(driver);
         connection = DriverManager.getConnection(url, username, password);
         try {
-            java.sql.Statement statement = connection.createStatement();
 
-            String updateMember = "UPDATE AscendDB.tblAircraft SET Registration = ?, OwnerID = ?, Make_Model = ?, AircraftType = ?, RentalFee = ?, AircraftAge = ?, FlightHours = ?, FlightDistance = ?, LastMaintenanceType = ?, LastMaintenanceDate = ?," +
-                    "AircraftComments = ? WHERE Registration='" + oldReg + "';";
-            PreparedStatement pstmt = connection.prepareStatement(updateMember);
+            String addAircraft = "INSERT INTO AscendDB.tblAircraft (Registration, OwnerID, Make_Model, AircraftType, AirportHome, AirportCurrent, RentalFee, AircraftAge, FlightHours, FlightDistance, " +
+                    "LastMaintenanceType, LastMaintenanceDate, AircraftComments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = connection.prepareStatement(addAircraft);
             pstmt.setString(1, registration);
             pstmt.setInt(2, ownID);
             pstmt.setString(3, makemodel);
             pstmt.setString(4, aircrafttype);
-            pstmt.setInt(5, rentfee);
-            pstmt.setInt(6, aircraftage);
-            pstmt.setDouble(7, flighthours);
-            pstmt.setDouble(8, flightdistance);
-            pstmt.setString(9, lastmtype);
-            pstmt.setDate(10, java.sql.Date.valueOf(lastmdate));
-            pstmt.setString(11, aircomms);
+            pstmt.setString(5, airhome);
+            pstmt.setString(6, aircurr);
+            pstmt.setInt(7, rentfee);
+            pstmt.setInt(8, aircraftage);
+            pstmt.setDouble(9, flighthours);
+            pstmt.setDouble(10, flightdistance);
+            pstmt.setString(11, lastmtype);
+            pstmt.setDate(12, java.sql.Date.valueOf(lastmdate));
+            pstmt.setString(13, aircomms);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        }
+    }
+
+    //admin update aircraft info
+    protected void updateAircraft(String oldReg, String registration, int ownID, String makemodel, String aircrafttype, String airhome, String aircurr, int rentfee, int aircraftage, double flighthours, double flightdistance,
+                                  String lastmtype, String lastmdate, String aircomms) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+
+            String updateAircraft = "UPDATE AscendDB.tblAircraft SET Registration = ?, OwnerID = ?, Make_Model = ?, AircraftType = ?, AirportHome = ?, AirportCurrent = ?, " +
+                    "RentalFee = ?, AircraftAge = ?, FlightHours = ?, FlightDistance = ?, LastMaintenanceType = ?, LastMaintenanceDate = ?," +
+                    "AircraftComments = ? WHERE Registration='" + oldReg + "';";
+            PreparedStatement pstmt = connection.prepareStatement(updateAircraft);
+            pstmt.setString(1, registration);
+            pstmt.setInt(2, ownID);
+            pstmt.setString(3, makemodel);
+            pstmt.setString(4, aircrafttype);
+            pstmt.setString(5, airhome);
+            pstmt.setString(6, aircurr);
+            pstmt.setInt(7, rentfee);
+            pstmt.setInt(8, aircraftage);
+            pstmt.setDouble(9, flighthours);
+            pstmt.setDouble(10, flightdistance);
+            pstmt.setString(11, lastmtype);
+            pstmt.setDate(12, java.sql.Date.valueOf(lastmdate));
+            pstmt.setString(13, aircomms);
             pstmt.executeUpdate();
 
         } catch (Exception e) {
@@ -257,7 +322,8 @@ public class Aircraft {
 
     @Override
     public String toString() {
-        return "<p>Registration: " + this.reg + "</p><p>Owner ID: " + this.ownId + "</p><p>Make/Model: " + this.makeModel + "</p><p>Aircraft Type: " + this.airType +"</p><p>Rental Fee: " + this.rentFee +
+        return "<p>Registration: " + this.reg + "</p><p>Owner ID: " + this.ownId + "</p><p>Make/Model: " + this.makeModel + "</p><p>Aircraft Type: " + this.airType +
+                "</p><p>Airport Home: " + this.airHome + "</p><p>Airport Current: " + this.airCurr + "</p><p>Rental Fee: " + this.rentFee +
                "</p><p>Aircraft Age: " + this.airAge + "</p><p>Flight Hours: " + this.flightHrs + "</p><p>Flight Distance: " + this.flightDist + "</p><p>Last Maintenance Type: " +
                 this.lastMaintType + "</p><p>Last Maintenance Date: " + this.lastMaintDate + "</p><p>Aircraft Comments: " + this.airCom  +"</p>";
     }

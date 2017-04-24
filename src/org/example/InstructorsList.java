@@ -73,7 +73,7 @@ public class InstructorsList extends Member{
 
 
 
-    public ArrayList<InstructorsList> populateResourcesReserved() throws Exception {
+    public ArrayList<InstructorsList> populateResources() throws Exception {
 
         java.sql.Connection connection;
         String username = "MasterAscend";

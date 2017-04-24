@@ -22,13 +22,13 @@ public class Reservations {
     private Time inTime;
     private String dest;
     private int instNo;
-    private boolean resStatus;
+    private String resStatus;
     private int resApprovedBy;
     private String resCom;
 
 
     //constructor
-    public Reservations(int resId, int resBy, String resType, String resourcesRes, String makemodel, Date resDate, Time outTime, Time inTime, String dest, int instNo, Boolean resStatus, int resApprovedBy, String resCom) {
+    public Reservations(int resId, int resBy, String resType, String resourcesRes, String makemodel, Date resDate, Time outTime, Time inTime, String dest, int instNo, String resStatus, int resApprovedBy, String resCom) {
         this.resId = resId;
         this.resBy = resBy;
         this.resType = resType;
@@ -56,7 +56,7 @@ public class Reservations {
         this.inTime = null;
         this.dest = null;
         this.instNo = 0;
-        this.resStatus = false;
+        this.resStatus = "PENDING";
         this.resApprovedBy = 0;
         this.resCom = null;
 
@@ -163,12 +163,12 @@ public class Reservations {
     }
 
     //get Reservation Status
-    public Boolean getResStatus() {
+    public String getResStatus() {
         return resStatus;
     }
 
     //set Reservation Status
-    public void setResStatus(Boolean resStatus) {
+    public void setResStatus(String resStatus) {
         this.resStatus = resStatus;
     }
 
@@ -217,7 +217,7 @@ public class Reservations {
                     this.inTime = rs.getTime("InTime");
                     this.dest = rs.getString("Destination");
                     this.instNo = rs.getInt("InstructorNo");
-                    this.resStatus = rs.getBoolean("ReservationStatus");
+                    this.resStatus = rs.getString("ReservationStatus");
                     this.resApprovedBy = rs.getInt("ReservationApprovedBy");
                     this.resCom = rs.getString("ReservationComments");
             }
@@ -405,7 +405,7 @@ public class Reservations {
     public String toString() {
         return "<p>Reservation ID: "+this.resId +"</p><p>Reserved by: "+this.resBy+"</p><p>Reservation Type: "+
                 this.resType+"</p><p>Resources Reserved: "+this.resourcesRes+"</p><p>Reservation Date: "+this.resDate+"</p><p>Reservation Out Time: "+
-                this.outTime+"</p><p>Reservation In Time: "+this.inTime+"</p><p>Destination: "+this.dest+"</p><p>Instrcutor Number: "+
+                this.outTime+"</p><p>Reservation In Time: "+this.inTime+"</p><p>Destination: "+this.dest+"</p><p>Instructor Number: "+
                 this.instNo+"</p><p>Reservation Satus: "+this.resStatus+"</p><p>Reservation Approved By: "+this.resApprovedBy+"</p><p>Reservation Comments: " + this.resCom;
     }
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class AdminManagementAirport extends HttpServlet {
 
@@ -15,23 +16,15 @@ public class AdminManagementAirport extends HttpServlet {
 
         response.setContentType("text/html");
 
-
         PrintWriter out = response.getWriter();
 
-
-        String username = request.getParameter("usr");
-
+        AirportList airportsL = new AirportList();
+        ArrayList<AirportList> airportsindb = new ArrayList<>();
 
         try{
-            //Member m = new Member();
-           // m.readFromDatabase(username);
-
-            //request.getSession().setAttribute("m", m);
-           // request.getSession().setAttribute("usr", username);
-
-
-               request.getRequestDispatcher("/airportmanagement.jsp").forward(request, response);
-
+            airportsindb = airportsL.populateResources();
+            request.getSession().setAttribute("airporttype", airportsindb);
+            request.getRequestDispatcher("/airportmanagement.jsp").forward(request, response);
 
         }catch (Exception e2)
 

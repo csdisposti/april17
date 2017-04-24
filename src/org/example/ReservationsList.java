@@ -21,13 +21,13 @@ public class ReservationsList extends Reservations {
     private Time inTime;
     private String dest;
     private int instNo;
-    private boolean resStatus;
+    private String resStatus;
     private int resApprovedBy;
     private String resCom;
     private String makemodel;
 
     //constructor
-    public ReservationsList(int resId, int resBy, String resType, String resourcesRes, String makemodel, Date resDate, Time outTime, Time inTime, String dest, int instNo, Boolean resStatus, int resApprovedBy, String resCom) {
+    public ReservationsList(int resId, int resBy, String resType, String resourcesRes, String makemodel, Date resDate, Time outTime, Time inTime, String dest, int instNo, String resStatus, int resApprovedBy, String resCom) {
         super(resId, resBy, resType, resourcesRes, makemodel, resDate, outTime, inTime, dest, instNo, resStatus, resApprovedBy, resCom);
     }
 
@@ -137,11 +137,11 @@ public class ReservationsList extends Reservations {
     }
 
     //get Reservation Status
-    public Boolean getResStatus() {
+    public String getResStatus() {
         return resStatus;
     }
     //set Reservation Status
-    public void setResStatus(Boolean resStatus) {
+    public void setResStatus(String resStatus) {
         this.resStatus = resStatus;
     }
 
@@ -197,7 +197,7 @@ public class ReservationsList extends Reservations {
                         reservation.setOutTime(rs.getTime("OutTime"));
                         reservation.setInTime(rs.getTime("InTime"));
                         reservation.setInstNo(rs.getInt("InstructorNo"));
-                        reservation.setResStatus(rs.getBoolean("ReservationStatus"));
+                        reservation.setResStatus(rs.getString("ReservationStatus"));
                         reservation.setResApprovedBy(rs.getInt("ReservationApprovedBy"));
                         reservation.setMakeModel(rs.getString("Make_Model"));
                         reservationsL.add(reservation);

@@ -30,8 +30,8 @@ public class FlyingLessonReservation extends HttpServlet {
         try{
 
             int mid = Integer.parseInt(memberid);
-            aircrafttype = aircrafts.populateResourcesReserved();
-            instructortype = instructors.populateResourcesReserved();
+            aircrafttype = aircrafts.populateResources();
+            instructortype = instructors.populateResources();
             request.getSession().setAttribute("aircrafttype", aircrafttype);
             request.getSession().setAttribute("instructortype", instructortype);
             request.getSession().setAttribute("memberid", mid);

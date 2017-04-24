@@ -97,7 +97,7 @@ public class FlightReservationSubmit extends HttpServlet {
             String rtype = res.getResType();  //not needed just for clarity
             Time rtime = res.getOutTime();//not needed just for clarity
             int insnum = res.getInstNo();//not needed just for clarity
-            Boolean resstat = res.getResStatus(); //not needed just for clarity
+            String resstat = res.getResStatus(); //not needed just for clarity
             System.out.println(rtype);
             System.out.println(rtime);
             System.out.println(insnum);

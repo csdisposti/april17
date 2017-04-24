@@ -24,11 +24,8 @@ public class ViewMyReservations extends HttpServlet {
         ReservationsList reservationsMy = new ReservationsList();
         ArrayList<ReservationsList> myResList;
 
-
         try{
-
             int mid = Integer.parseInt(memberid);
-
             myResList = reservationsMy.populateReservations(mid);
             request.getSession().setAttribute("myreservations", myResList);
             request.getSession().setAttribute("memberid", mid);

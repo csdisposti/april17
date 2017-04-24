@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+
 
 public class AirportUpdate extends HttpServlet {
 
@@ -18,22 +18,71 @@ public class AirportUpdate extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        AircraftList aircrafts = new AircraftList();
-        ArrayList<AircraftList> ResourcesReserved = new ArrayList<>();
-        InstructorsList instructors = new InstructorsList();
-        ArrayList<InstructorsList> InstructorReserved = new ArrayList<>();
+        String airport = request.getParameter("airporttype");
 
-        try{
+        String faa;
+        String airportName;
+        String airportType;
+        String streetAddress;
+        String city;
+        double latitude;
+        double longitude;
+        String contactName;
+        String contactPhone;
+        String ctaf;
+        String runwayType;
+        String towerFreq;
+        double fuel;
+        String storage;
+        String airportComms;
 
-            ResourcesReserved = aircrafts.populateResourcesReserved();
-            request.getSession().setAttribute("rr", ResourcesReserved);
 
-            InstructorReserved = instructors.populateResourcesReserved();
-            request.getSession().setAttribute("ir", InstructorReserved);
+        Airports apt = new Airports();
+
+        try {
+            String[] airportsplit = airport.split("\\s+");
+
+            faa = airportsplit[0];
+            System.out.println(faa);
+            apt.readFromDatabase(faa);
+
+            faa = apt.getFaaCode();
+            airportName = apt.getAirportName();
+            airportType = apt.getAirportType();
+            streetAddress = apt.getAirportSt();
+            city = apt.getAirportCity();
+            latitude = apt.getLatitude();
+            longitude = apt.getLongitude();
+            contactName = apt.getContactName();
+            contactPhone = apt.getContactPhone();
+            ctaf = apt.getCtaf();
+            runwayType = apt.getRunwayType();
+            towerFreq = apt.getTowerFreq();
+            fuel = apt.getFuel();
+            storage = apt.getStorage();
+            airportComms = apt.getAirportCom();
+
+            request.getSession().setAttribute("faa", faa);
+            request.getSession().setAttribute("airportName", airportName);
+            request.getSession().setAttribute("airportType", airportType);
+            request.getSession().setAttribute("streetAddress", streetAddress);
+            request.getSession().setAttribute("city", city);
+            request.getSession().setAttribute("latitude", latitude);
+            request.getSession().setAttribute("longitude", longitude);
+            request.getSession().setAttribute("contactName", contactName);
+            request.getSession().setAttribute("contactPhone", contactPhone);
+            request.getSession().setAttribute("ctaf", ctaf);
+            request.getSession().setAttribute("runwayType", runwayType);
+            request.getSession().setAttribute("towerFreq", towerFreq);
+            request.getSession().setAttribute("fuel", fuel);
+            request.getSession().setAttribute("storage", storage);
+            request.getSession().setAttribute("airportComms", airportComms);
+
 
             request.getRequestDispatcher("/airportinfo.jsp").forward(request, response);
+
         }
-            catch (Exception e2)
+        catch (Exception e2)
         {
             e2.printStackTrace();
         }

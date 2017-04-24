@@ -159,28 +159,20 @@
         <url-pattern>/MaintenanceUpdate</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AircraftManagement</servlet-name>
-        <servlet-class>org.example.AircraftManagement</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AircraftManagement</servlet-name>
-        <url-pattern>/AircraftManagement</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>AircraftManagementSubmit</servlet-name>
-        <servlet-class>org.example.AircraftManagementSubmit</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AircraftManagementSubmit</servlet-name>
-        <url-pattern>/AircraftManagementSubmit</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>AircraftAdd</servlet-name>
         <servlet-class>org.example.AircraftAdd</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AircraftAdd</servlet-name>
         <url-pattern>/AircraftAdd</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AircraftAddSubmit</servlet-name>
+        <servlet-class>org.example.AircraftAddSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AircraftAddSubmit</servlet-name>
+        <url-pattern>/AircraftAddSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AircraftUpdate</servlet-name>
@@ -191,20 +183,12 @@
         <url-pattern>/AircraftUpdate</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AirportManagement</servlet-name>
-        <servlet-class>org.example.AirportManagement</servlet-class>
+        <servlet-name>AircraftUpdateSubmit</servlet-name>
+        <servlet-class>org.example.AircraftUpdateSubmit</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AirportManagement</servlet-name>
-        <url-pattern>/AirportManagement</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>AirportManagementSubmit</servlet-name>
-        <servlet-class>org.example.AirportManagementSubmit</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AirportManagementSubmit</servlet-name>
-        <url-pattern>/AirportManagementSubmit</url-pattern>
+        <servlet-name>AircraftUpdateSubmit</servlet-name>
+        <url-pattern>/AircraftUpdateSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AirportAdd</servlet-name>
@@ -215,12 +199,28 @@
         <url-pattern>/AirportAdd</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>AirportAddSubmit</servlet-name>
+        <servlet-class>org.example.AirportAddSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AirportAddSubmit</servlet-name>
+        <url-pattern>/AirportAddSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>AirportUpdate</servlet-name>
         <servlet-class>org.example.AirportUpdate</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AirportUpdate</servlet-name>
         <url-pattern>/AirportUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AirportUpdateSubmit</servlet-name>
+        <servlet-class>org.example.AirportUpdateSubmit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AirportUpdateSubmit</servlet-name>
+        <url-pattern>/AirportUpdateSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Home</servlet-name>

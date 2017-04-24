@@ -1,7 +1,9 @@
 package org.example;
-import java.io.FileInputStream;
+
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.Properties;
 
 /**
@@ -20,13 +22,14 @@ public class Airports {
     private String ctaf;
     private String runwayType;
     private String towerFreq;
-    private long fuel; //error message from metadata unknown mySql type
+    private double fuel;
     private String storage;
     private String airportCom;
 
+    //constructor
     public Airports(String faaCode, String airportName, String airportType, String airportSt, String airportCity,
                     double latitude, double longitude, String contactName, String contactPhone, String ctaf,
-                    String runwayType, String towerFreq, long fuel, String storage, String airportCom) {
+                    String runwayType, String towerFreq, double fuel, String storage, String airportCom) {
         this.faaCode = faaCode;
         this.airportName = airportName;
         this.airportType = airportType;
@@ -42,6 +45,25 @@ public class Airports {
         this.fuel = fuel;
         this.storage = storage;
         this.airportCom = airportCom;
+    }
+
+    //empty constructor
+    public Airports() {
+        this.faaCode = null;
+        this.airportName = null;
+        this.airportType = null;
+        this.airportSt = null;
+        this.airportCity = null;
+        this.latitude = 0;
+        this.longitude = 0;
+        this.contactName = null;
+        this.contactPhone = null;
+        this.ctaf = null;
+        this.runwayType = null;
+        this.towerFreq = null;
+        this.fuel = 0;
+        this.storage = null;
+        this.airportCom = null;
     }
 
     //get Airport FAA Code
@@ -165,12 +187,12 @@ public class Airports {
     }
 
     //get Airport Fuel
-    public long getFuel() {
+    public double getFuel() {
         return fuel;
     }
 
     //set Airport Fuel
-    public void setFuel(long fuel) {
+    public void setFuel(double fuel) {
         this.fuel = fuel;
     }
 
@@ -208,7 +230,7 @@ public class Airports {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAirports WHERE FAACode="+FAACode+";");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAirports WHERE FAACode='"+FAACode+"';");
 
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
@@ -217,8 +239,8 @@ public class Airports {
                 this.faaCode = rs.getString("FAACode");
                 this.airportName = rs.getString("AirportName");
                 this.airportType = rs.getString("AirportType");
-                this.airportSt = rs.getString("Street");
-                this.airportCity = rs.getString("City");
+                this.airportSt = rs.getString("StreetAddress");
+                this.airportCity = rs.getString("ClosestCity");
                 this.latitude = rs.getDouble("Latitude");
                 this.longitude = rs.getDouble("Longitude");
                 this.contactName = rs.getString("ContactName");
@@ -226,7 +248,7 @@ public class Airports {
                 this.ctaf = rs.getString("CTAF_UNICOM");
                 this.runwayType = rs.getString("RunwayType");
                 this.towerFreq = rs.getString("TowerFreq");
-                this.fuel = rs.getLong("Fuel_100LL");
+                this.fuel = rs.getDouble("Fuel_100LL");
                 this.storage = rs.getString("Storage");
                 this.airportCom = rs.getString("AirportComments");
             }
@@ -236,8 +258,94 @@ public class Airports {
             e.printStackTrace();
         }
     }
-    public void writeToDatabase()
-    {
-        //java.sql.Connection c = AscendMain.conn;
+    //admin add airport
+    protected void addAirport(String faa, String apname, String aptype, String address, String city, double lat, double lon,
+                                 String conname, String conphone, String ct, String runway, String tower, double fuel, String storage, String apcomms) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+
+            String addAirport = "INSERT INTO AscendDB.tblAirports (FAACode, AirportName, AirportType, StreetAddress, ClosestCity, Latitude, Longitude, ContactName, " +
+                    "ContactPhone, CTAF_UNICOM, RunwayType, TowerFreq, Fuel_100LL, Storage, AirportComments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = connection.prepareStatement(addAirport);
+            pstmt.setString(1, faa);
+            pstmt.setString(2, apname);
+            pstmt.setString(3, aptype);
+            pstmt.setString(4, address);
+            pstmt.setString(5, city);
+            pstmt.setDouble(6, lat);
+            pstmt.setDouble(7, lon);
+            pstmt.setString(8, conname);
+            pstmt.setString(9, conphone);
+            pstmt.setString(10, ct);
+            pstmt.setString(11, runway);
+            pstmt.setString(12, tower);
+            pstmt.setDouble(13, fuel);
+            pstmt.setString(14, storage);
+            pstmt.setString(15, apcomms);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        }
+    }
+
+    //admin update airport info
+    protected void updateAirport(String oldfaa, String faa, String apname, String aptype, String address, String city, double lat, double lon,
+                                 String conname, String conphone, String ct, String runway, String tower, double fuel, String storage, String apcomms) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+
+            String updateAirport = "UPDATE AscendDB.tblAirports SET FAACode = ?, AirportName = ?, AirportType = ?, StreetAddress = ?, ClosestCity = ?, " +
+                    "Latitude = ?, Longitude = ?, ContactName = ?, ContactPhone = ?, CTAF_UNICOM = ?," +
+                    "RunwayType = ?, TowerFreq = ?, Fuel_100LL = ?, Storage = ?, AirportComments = ? WHERE FAACode='" + oldfaa + "';";
+            PreparedStatement pstmt = connection.prepareStatement(updateAirport);
+            pstmt.setString(1, faa);
+            pstmt.setString(2, apname);
+            pstmt.setString(3, aptype);
+            pstmt.setString(4, address);
+            pstmt.setString(5, city);
+            pstmt.setDouble(6, lat);
+            pstmt.setDouble(7, lon);
+            pstmt.setString(8, conname);
+            pstmt.setString(9, conphone);
+            pstmt.setString(10, ct);
+            pstmt.setString(11, runway);
+            pstmt.setString(12, tower);
+            pstmt.setDouble(13, fuel);
+            pstmt.setString(14, storage);
+            pstmt.setString(15, apcomms);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "<p>FAA Code: " + this.faaCode + "</p><p>Airport Name: " + this.airportName + "</p><p>Airport Type: " + this.airportType + "</p><p>Street Address: " + this.airportSt +
+                "</p><p>City: " + this.airportCity + "</p><p>Latitude: " + this.latitude + "</p><p>Longitude: " + this.longitude+ "</p><p>Contact Name: " + this.contactName +
+                "</p><p>Contact Phone: " + this.contactPhone + "</p><p>CTAF UNICOM: " + this.ctaf + "</p><p>Runway Type: " + this.runwayType  +"</p><p>Tower Frequency: " + this.towerFreq +
+                "</p><p>Fuel: " + this.fuel + "</p><p>Storage: " + this.storage + "</p><p>Airport Comments: " + this.airportCom;
     }
 }

@@ -1,9 +1,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Aircraft Management - Ascend</title>
+    <title>Airport Management - Ascend</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width">
     <!-- Latest compiled and minified CSS -->
@@ -20,31 +19,24 @@
     <!--begin main text-->
     <jsp:include page="adminnav.jsp" />
     <div class="row gray">
-        <h3 class="text-center">Aircraft Management</h3>
-        <hr>
-        <div class="col-sm-3">
+        <h3 class="text-center">The Airport has been added</h3>
+        <div class="col-sm-4">
         </div>
-        <div class="col-sm-3 text-center">
-            <h4>Add New Aircraft</h4>
-            <form action="AircraftAdd" method="post">
-                <input type="submit" class="btn btn-default btn-sp" value="Add New Aircraft"/>
+        <div class="col-sm-4">
+            <hr>
+            <h4>New Airport Info</h4>
+            <!--chnage-->
+            <p>${apnew}</p>
+            <hr>
+            <form action="AdminPortal" method="post">
+                <input type="hidden" id="username" name="username" value="${username}"/>
+                <input type="hidden" id="password" name="password" value="${password}"/>
+                <input type="submit" class="btn btn-default" value="Return to Admin Portal"/>
             </form>
+            <br>
             <hr>
         </div>
-        <div class="col-sm-3 text-center">
-            <form action="AircraftUpdate" method="post">
-                <h4>Choose Aircraft to edit</h4>
-                <input id="aircraft" type="hidden" value="${acftup}"/>
-                <select name="aircrafttype" id="aircrafttype" title="Aircraft" required>
-                    <c:forEach items="${acftup}"  var="airc">
-                        <option value="${airc}">${airc}</option>
-                    </c:forEach>
-                </select><br/>
-                <input type="submit" class="btn btn-default btn-sp" value="Update Existing Aircraft"/>
-            </form>
-            <hr>
-        </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
         </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>

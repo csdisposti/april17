@@ -283,17 +283,17 @@ public class Member {
             java.sql.Statement statement = connection.createStatement();
             this.acctNo = accountID;
             this.emailUsNa = email;
-            String newMem = "INSERT INTO tblMember (AccountNo, Email_User) VALUES (?, ?)";
+            String newMem = "INSERT INTO AscendDB.tblMember (AccountNo, Email_User) VALUES (?, ?)";
             PreparedStatement ps = connection.prepareStatement(newMem);
             ps.setInt(1, acctNo);
             ps.setString(2, emailUsNa);
             ps.executeUpdate();
 
-            java.sql.ResultSet rs = statement.executeQuery("SELECT MemberID FROM tblMember ORDER BY MemberID DESC LIMIT 1");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT AscendDB.MemberID FROM tblMember ORDER BY MemberID DESC LIMIT 1");
             rs.next();
             this.memId = rs.getInt("MemberID");
 
-            String updateMember = "UPDATE tblMember SET FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ? MemberComments = ? WHERE MemberID =" + memId + ";";
+            String updateMember = "UPDATE AscendDB.tblMember SET FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ? MemberComments = ? WHERE MemberID =" + memId + ";";
             PreparedStatement pstmt = connection.prepareStatement(updateMember);
             pstmt.setString(1, fname);
             pstmt.setString(2, lname);
