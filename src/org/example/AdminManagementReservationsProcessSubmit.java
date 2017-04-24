@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class AdminManagementMaintenance extends HttpServlet {
+public class AdminManagementReservationsProcessSubmit extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
 
@@ -17,9 +17,13 @@ public class AdminManagementMaintenance extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username");//admininfo
+        String password = request.getParameter("password");//admininfo
 
         try{
-            request.getRequestDispatcher("/maintenancemanagement.jsp").forward(request, response);
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
+            request.getRequestDispatcher("/reservationmanagement.jsp").forward(request, response);
 
         }
             catch (Exception e2)

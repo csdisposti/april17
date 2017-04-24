@@ -25,10 +25,10 @@
             </div>
             <div class="col-sm-3">
                 <hr>
-                <form action="AdminManagementReservation" method="post">
+                <form action="AdminManagementReservations" method="post">
                     <input type="hidden" id="usernameAMR" name="username" value="${username}"/>
                     <input type="hidden" id="passwordAWR" name="password" value="${password}"/>
-                    <input type="submit" class="btn btn-default btn-sp" value="Reservation Management"/>
+                    <input type="submit" class="btn btn-default btn-sp" value="Reservations Management"/>
                 </form>
                 <hr>
                 <form action="AdminManagementMember" method="post">

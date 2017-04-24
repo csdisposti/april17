@@ -32,7 +32,7 @@
                 <tr><td>Reservation ID</td><td>Reserved by</td><td>Reservation Type</td><td>Aircraft Reserved</td><td>Reservation Date</td><td>Start Time</td><td>End Time</td><td>Instructor Number
                     </td><td>Reservation Status</td><td>Approved By</td></tr>
                 </thead>
-                <tbody
+                <tbody>
             <c:forEach items="${myreservations}" var="myres">
                 <tr>${myres}</tr>
             </c:forEach>

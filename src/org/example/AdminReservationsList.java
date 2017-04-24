@@ -10,7 +10,7 @@ import java.util.Properties;
 /**
  * Created by cdisp on 3/15/2017.
  */
-public class ReservationsList extends Reservations {
+public class AdminReservationsList extends Reservations {
 
     private int resId;
     private int resBy;
@@ -27,12 +27,12 @@ public class ReservationsList extends Reservations {
     private String makemodel;
 
     //constructor
-    public ReservationsList(int resId, int resBy, String resType, String resourcesRes, String makemodel, Date resDate, Time outTime, Time inTime, String dest, int instNo, String resStatus, int resApprovedBy, String resCom) {
+    public AdminReservationsList(int resId, int resBy, String resType, String resourcesRes, String makemodel, Date resDate, Time outTime, Time inTime, String dest, int instNo, String resStatus, int resApprovedBy, String resCom) {
         super(resId, resBy, resType, resourcesRes, makemodel, resDate, outTime, inTime, dest, instNo, resStatus, resApprovedBy, resCom);
     }
 
     //empty constructor
-    public ReservationsList() {
+    public AdminReservationsList() {
         super();
     }
 
@@ -164,9 +164,7 @@ public class ReservationsList extends Reservations {
         this.makemodel = makemodel;
     }
 
-
-    //populate all reservations
-    public ArrayList<ReservationsList> populateReservations() throws Exception {
+    public ArrayList<AdminReservationsList> populateReservations() throws Exception {
         {
             java.sql.Connection connection;
             String username = "MasterAscend";
@@ -179,18 +177,16 @@ public class ReservationsList extends Reservations {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, username, password);
 
-            ArrayList<ReservationsList> reservationsL = new ArrayList<>();
+            ArrayList<AdminReservationsList> reservationsL = new ArrayList<>();
 
             try {
                 java.sql.Statement statement = connection.createStatement();
-                java.sql.ResultSet rs = statement.executeQuery("SELECT tblReservations.ReservationID, tblReservations.ReservedBy, tblReservations.ReservationType, tblReservations.ResourcesReserved, " +
-                        "tblReservations.ReservationDate, tblReservations.OutTime, tblReservations.InTime, tblReservations.InstructorNo, " +
-                        "tblReservations.ReservationStatus, tblReservations.ReservationApprovedBy, tblAircraft.Make_Model FROM tblReservations INNER JOIN tblAircraft ON tblAircraft.Registration = tblReservations.ResourcesReserved");
+                java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblReservations WHERE ReservationStatus=''");
 
                 if (rs != null) {
                     //makes sure the resultSet isn't in the header info
                     while (rs.next()) {
-                        ReservationsList reservation = new ReservationsList();
+                        AdminReservationsList reservation = new AdminReservationsList();
                         reservation.setResId(rs.getInt("ReservationID"));
                         reservation.setResBy(rs.getInt("ReservedBy"));
                         reservation.setResType(rs.getString("ReservationType"));
@@ -201,63 +197,6 @@ public class ReservationsList extends Reservations {
                         reservation.setInstNo(rs.getInt("InstructorNo"));
                         reservation.setResStatus(rs.getString("ReservationStatus"));
                         reservation.setResApprovedBy(rs.getInt("ReservationApprovedBy"));
-                        reservation.setMakeModel(rs.getString("Make_Model"));
-                        reservationsL.add(reservation);
-                    }
-                }
-            } catch (Exception e) {
-                System.err.println("err");
-                e.printStackTrace();
-            } finally {
-                try {
-                    connection.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-            return reservationsL;
-        }
-    }
-
-
-    //popultae sresrvations by member id
-    public ArrayList<ReservationsList> populateReservations(int mi) throws Exception {
-        {
-            java.sql.Connection connection;
-            String username = "MasterAscend";
-            String password = "AscendMasterKey";
-            InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
-            Properties prop = new Properties();
-            prop.load(inputStream);
-            String url = prop.getProperty("jdbc.url");
-            String driver = prop.getProperty("jdbc.driver");
-            Class.forName(driver);
-            connection = DriverManager.getConnection(url, username, password);
-
-            ArrayList<ReservationsList> reservationsL = new ArrayList<>();
-
-            try {
-                java.sql.Statement statement = connection.createStatement();
-                java.sql.ResultSet rs = statement.executeQuery("SELECT tblReservations.ReservationID, tblReservations.ReservedBy, tblReservations.ReservationType, tblReservations.ResourcesReserved, " +
-                        "tblReservations.ReservationDate, tblReservations.OutTime, tblReservations.InTime, tblReservations.InstructorNo, " +
-                        "tblReservations.ReservationStatus, tblReservations.ReservationApprovedBy, tblAircraft.Make_Model FROM tblReservations INNER JOIN tblAircraft ON tblAircraft.Registration = tblReservations.ResourcesReserved WHERE ReservedBy='" + mi + "'");
-
-                if (rs != null) {
-                    //makes sure the resultSet isn't in the header info
-                    while (rs.next()) {
-                        ReservationsList reservation = new ReservationsList();
-                        reservation.setResId(rs.getInt("ReservationID"));
-                        reservation.setResBy(rs.getInt("ReservedBy"));
-                        reservation.setResType(rs.getString("ReservationType"));
-                        reservation.setResourcesRes(rs.getString("ResourcesReserved"));
-                        reservation.setResDate(rs.getDate("ReservationDate"));
-                        reservation.setOutTime(rs.getTime("OutTime"));
-                        reservation.setInTime(rs.getTime("InTime"));
-                        reservation.setInstNo(rs.getInt("InstructorNo"));
-                        reservation.setResStatus(rs.getString("ReservationStatus"));
-                        reservation.setResApprovedBy(rs.getInt("ReservationApprovedBy"));
-                        reservation.setMakeModel(rs.getString("Make_Model"));
                         reservationsL.add(reservation);
                     }
                 }
@@ -279,8 +218,8 @@ public class ReservationsList extends Reservations {
     @Override
     public String toString() {
 
-        return "<td>"+this.resId +"</td><td>"+this.resBy+"</td><td>"+ this.resType+"</td><td>"+this.resourcesRes + " " + this.makemodel +"</td><td>"+this.resDate+"</td><td>"+
-                this.outTime+"</td><td>"+this.inTime+"</td><td>"+ this.instNo+"</td><td>" + this.resStatus + "</td><td>"+this.resApprovedBy+"</td>";
+        return this.resId +" "+this.resBy+" "+ this.resType+" "+this.resourcesRes + " " + this.makemodel +" "+this.resDate+" "+
+                this.outTime+" "+this.inTime+" "+ this.instNo+" " + this.resStatus + " "+this.resApprovedBy;
 
     }
 }

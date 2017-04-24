@@ -59,13 +59,6 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             //parse memberid to int
             int mi = Integer.parseInt(memberid);
 
-            //get resdate as yyyy-mmm-dd
-            //String[] reservationdate = resdate.split("\\-+");
-            //String month = reservationdate[0];
-            //String day = reservationdate[1];
-            //String year = reservationdate[2];
-           // String resdatenew = year + "-" + month + "-" + day;
-
             //add :00 to restime
             String fullouttime = restime + seconds;
 
@@ -81,16 +74,6 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             String intimehr = String.valueOf(hournew);
             String intime = intimehr + ":" + minute + seconds;
             String resintime = intimehr + ":" + minute;
-
-            //check availbility not working took me error page
-            //error page does not have dropdown values
-            //check availability
-            // available = reservationsubmit.checkAvailability(aircrafttype);
-            //thi is always true right now
-            // if (available == null){
-            //      request.getRequestDispatcher("/flyinglessonreservationnotavailable.jsp").forward(request, response);
-            //  }
-            // else {}
 
             int resID;
             //add reservation
@@ -130,7 +113,6 @@ public class FlyingLessonReservationSubmit extends HttpServlet {
             request.getSession().setAttribute("username", username);
             request.getSession().setAttribute("password", password);
             request.getRequestDispatcher("/flyinglessonreservationsubmit.jsp").forward(request, response);
-
 
         }
             catch (Exception e2)

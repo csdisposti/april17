@@ -233,53 +233,6 @@ public class Reservations {
         }
     }
 
-    /*
-    //read reservations from database
-    public void viewMyReservations(int memberID)throws Exception
-    {
-        java.sql.Connection connection;
-        String username = "MasterAscend";
-        String password = "AscendMasterKey";
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
-        Properties prop = new Properties();
-        prop.load(inputStream);
-        String url = prop.getProperty("jdbc.url");
-        String driver = prop.getProperty("jdbc.driver");
-        Class.forName(driver);
-        connection = DriverManager.getConnection(url, username, password);
-        try {
-            java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblReservations WHERE ReservedBy="+memberID+";");
-
-            if (rs != null) {
-                //makes sure the resultSet isn't in the header info
-                while (rs.next()) {
-                    this.resId = rs.getInt("ReservationID");
-                    this.resBy = rs.getInt("ReservedBy");
-                    this.resType = rs.getString("ReservationType");
-                    this.resourcesRes = rs.getString("ResourcesReserved");
-                    this.resDate = rs.getDate("ReservationDate");
-                    this.outTime = rs.getTime("OutTime");
-                    this.inTime = rs.getTime("InTime");
-                    this.dest = rs.getString("Destination");
-                    this.instNo = rs.getInt("InstructorNo");
-                    this.resStatus = rs.getBoolean("ReservationStatus");
-                    this.resApprovedBy = rs.getInt("ReservationApprovedBy");
-                    this.resCom = rs.getString("ReservationComments");
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("err");
-            e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-*/
     //member add flying lesson reservation to database as pending
     protected void addNewFlyingLessonReservation(int resBy, String resType, String resourcesRes, String resDate, String outTime, String inTime, int instNo) throws Exception {
         java.sql.Connection connection;
@@ -321,7 +274,7 @@ public class Reservations {
         }
     }
 
-    //member add flying lesson reservation to database as pending
+    //member add flight reservation to database as pending
     protected void addNewFlightReservation(int resBy, String resType, String resourcesRes, String resDate, String outTime, String inTime) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
@@ -362,9 +315,8 @@ public class Reservations {
         }
     }
 
-    /*
-    //check the availability of the member requested reservation
-    protected String checkAvailability(String reres) throws Exception {
+    //admin set reservation status
+    protected void updateReservationStatus(int resid, String reserstat, int adminid) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -375,32 +327,21 @@ public class Reservations {
         String driver = prop.getProperty("jdbc.driver");
         Class.forName(driver);
         connection = DriverManager.getConnection(url, username, password);
-
         try {
             java.sql.Statement statement = connection.createStatement();
 
-            java.sql.ResultSet rs = statement.executeQuery("SELECT ResourcesReserved, ReservationDate, OutTime FROM tblReservations WHERE ResourcesReserved ='" + reres + "'AND ReservationDate > CurDate() ORDER BY ReservationDate, OutTime");
-            if (rs != null) {
-                //makes sure the resultSet isn't in the header info
-                while (rs.next()) {
-                    return this.resourcesRes = rs.getString("ResourceReserved");
-                }
-            }
+            String updateMember = "UPDATE AscendDB.tblReservations SET ReservationStatus = ?, ReservationApprovedBy = ? WHERE ReservationID=" + resid + ";";
+            PreparedStatement pstmt = connection.prepareStatement(updateMember);
+            pstmt.setString(1, reserstat);
+            pstmt.setInt(2, adminid);
+            pstmt.executeUpdate();
+
         } catch (Exception e) {
             System.err.println("err");
             e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
-        return this.resourcesRes;
     }
 
-
-*/
     @Override
     public String toString() {
         return "<p>Reservation ID: "+this.resId +"</p><p>Reserved by: "+this.resBy+"</p><p>Reservation Type: "+

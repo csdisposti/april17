@@ -1,4 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 
@@ -6,7 +7,7 @@
 
 <head>
 
-    <title>Maintenance Add - Ascend</title>
+    <title>Admin Reservation Management - Ascend</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -25,43 +26,40 @@
 
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
-    <div class="row gray">
-        <h3 class="text-center">Schedule New Maintenance</h3>
-        <hr>
-<div class="col-sm-4"></div>
-        <form action="MaintenanceManagementSubmit" method="POST">
-        <div class="col-sm-4">
+    <jsp:include page="adminnav.jsp" />
+    <div class="row gray text-center">
 
+            <h3 class="text-center">Manage Reservations</h3>
+            <div class="col-sm-1">
+            </div>
 
-                <input type="hidden"  name="action" value="login">
-                <label for="scid">Service Contract ID:</label><br />
-                <input type="text" id="scid" name="scid" title="scid" value=""><br/>
-                <input type="hidden" id="email" name="email" title="email" value="">
-                <label for="contot">Contract Total:</label><br />
-                <input type="text" id="contot" name="contot" title="contot" value=""/><br />
-                <label for="constart">Contract Start Date:</label><br />
-                <input type="text" id="constart" name="constart" title="constart" value=""/><br />
-                <label for="conend">Contract End Date:</label><br />
-                <input type="text" id="conend" name="conend" title="conend" value=""/><br />
-                 <label for="paymeth">Payment Method:</label><br />
-                 <input type="text" id="paymeth" name="paymeth" title="paymeth" value=""/><br />
-            <label for="concomms">Contract Comments:</label><br />
-            <textarea rows="10" cols="30" id="concomms" name="concomms" value=" " title="concomms"></textarea> <br />
+            <div class="col-sm-10">
+                <h4>Enter Reservation ID</h4>
+                <form action="AdminManagementReservationsProcess" method="post">
+                    <label for="resid">Reservation ID:</label><br />
+                    <input type="text" id="resid" name="resid" title="Reservation ID" required/><br />
+                    <input type="submit" class="btn btn-default btn-sp" value="Edit Reservation"/>
+                </form>
+                <h4>All Reservations</h4>
+                <table class="table table-responsive table-striped table-condensed">
+                    <thead>
+                    <tr><td>Reservation ID</td><td>Reserved by</td><td>Reservation Type</td><td>Aircraft Reserved</td><td>Reservation Date</td><td>Start Time</td><td>End Time</td><td>Instructor Number
+                    </td><td>Reservation Status</td><td>Approved By</td></tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${allreservations}" var="allres">
+                        <tr>${allres}</tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
 
+            </div>
+            <div class="col-sm-1">
 
+            </div>
 
-            <input type="submit"  class="btn btn-default btn-sp" value="Schedule New Maintenance" />
-        </div>
-        </form>
-
-    <div class="col-sm-4">
-    </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
 

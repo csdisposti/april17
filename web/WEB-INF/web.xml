@@ -94,69 +94,28 @@
         <url-pattern>/FlightReservationSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ReservationsManagement</servlet-name>
-        <servlet-class>org.example.ReservationsManagement</servlet-class>
+        <servlet-name>AdminManagementReservations</servlet-name>
+        <servlet-class>org.example.AdminManagementReservations</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ReservationsManagement</servlet-name>
-        <url-pattern>/ReservationsManagement</url-pattern>
+        <servlet-name>AdminManagementReservations</servlet-name>
+        <url-pattern>/AdminManagementReservations</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ReservationsManagementSubmit</servlet-name>
-        <servlet-class>org.example.ReservationsManagementSubmit</servlet-class>
+        <servlet-name>AdminManagementReservationsProcess</servlet-name>
+        <servlet-class>org.example.AdminManagementReservationsProcess</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ReservationsManagementSubmit</servlet-name>
-        <url-pattern>/ReservationsManagementSubmit</url-pattern>
+        <servlet-name>AdminManagementReservationsProcess</servlet-name>
+        <url-pattern>/AdminManagementReservationsProcess</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ReservationsManagementPending</servlet-name>
-        <servlet-class>org.example.ReservationsManagementPending</servlet-class>
+        <servlet-name>AdminManagementReservationsProcessSubmit</servlet-name>
+        <servlet-class>org.example.AdminManagementReservationsProcessSubmit</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ReservationsManagementPending</servlet-name>
-        <url-pattern>/ReservationsManagementPending</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>ReservationsManagementPendingSubmit</servlet-name>
-        <servlet-class>org.example.ReservationsManagementPendingSubmit</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ReservationsManagementPendingSubmit</servlet-name>
-        <url-pattern>/ReservationsManagementPendingSubmit</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>MaintenanceManagement</servlet-name>
-        <servlet-class>org.example.MaintenanceManagement</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MaintenanceManagement</servlet-name>
-        <url-pattern>/MaintenanceManagement</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>MaintenanceManagementSubmit</servlet-name>
-        <servlet-class>org.example.MaintenanceManagementSubmit</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MaintenanceManagementSubmit</servlet-name>
-        <url-pattern>/MaintenanceManagementSubmit</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>MaintenanceAdd</servlet-name>
-        <servlet-class>org.example.MaintenanceAdd</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MaintenanceAdd</servlet-name>
-        <url-pattern>/MaintenanceAdd</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>MaintenanceUpdate</servlet-name>
-        <servlet-class>org.example.MaintenanceUpdate</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MaintenanceUpdate</servlet-name>
-        <url-pattern>/MaintenanceUpdate</url-pattern>
+        <servlet-name>AdminManagementReservationsProcessSubmit</servlet-name>
+        <url-pattern>/AdminManagementReservationsProcessSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AircraftAdd</servlet-name>
@@ -293,14 +252,6 @@
     <servlet-mapping>
         <servlet-name>AdminManagementReservation</servlet-name>
         <url-pattern>/AdminManagementReservation</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>AdminManagementMaintenance</servlet-name>
-        <servlet-class>org.example.AdminManagementMaintenance</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AdminManagementMaintenance</servlet-name>
-        <url-pattern>/AdminManagementMaintenance</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AdminManagementAircraft</servlet-name>
