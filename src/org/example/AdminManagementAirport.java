@@ -18,12 +18,17 @@ public class AdminManagementAirport extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
         AirportList airportsL = new AirportList();
         ArrayList<AirportList> airportsindb = new ArrayList<>();
 
         try{
             airportsindb = airportsL.populateResources();
             request.getSession().setAttribute("airporttype", airportsindb);
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/airportmanagement.jsp").forward(request, response);
 
         }catch (Exception e2)

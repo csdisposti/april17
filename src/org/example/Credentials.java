@@ -79,6 +79,40 @@ public class Credentials {
         }
     }
 
+    //admin get password from databse
+    protected String getPassword(String email) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblCredentials WHERE Email_Username='" + email + "';");
+            if (rs != null) {
+                //makes sure the resultSet isn't in the header info
+                while (rs.next()) {
+                    this.pass = rs.getString("MemberPW");
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return this.pass;
+        }
+    }
+
     //add new user to database
     protected void addToDatabase(String user, String pwd) throws Exception {
         java.sql.Connection connection;

@@ -18,12 +18,17 @@ public class AdminManagementAircraft extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username"); //admin info
+        String password = request.getParameter("password"); //admin info
+
         AircraftList aircrafts = new AircraftList();
         ArrayList<AircraftList> aircraftindb = new ArrayList<>();
 
         try{
             aircraftindb = aircrafts.populateResources();
             request.getSession().setAttribute("acftup", aircraftindb);
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/aircraftmanagement.jsp").forward(request, response);
 
         }catch (Exception e2)

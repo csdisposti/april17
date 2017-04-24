@@ -18,6 +18,9 @@ public class AirportUpdate extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username"); //admin info
+        String password = request.getParameter("password"); //admin info
+
         String airport = request.getParameter("airporttype");
 
         String faa;
@@ -78,7 +81,8 @@ public class AirportUpdate extends HttpServlet {
             request.getSession().setAttribute("storage", storage);
             request.getSession().setAttribute("airportComms", airportComms);
 
-
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/airportinfo.jsp").forward(request, response);
 
         }

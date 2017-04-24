@@ -20,6 +20,9 @@ public class AircraftUpdate extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username"); //admin info
+        String password = request.getParameter("password"); //admin info
+
         String aircraft = request.getParameter("aircrafttype");
 
         int ownerID;
@@ -72,6 +75,8 @@ public class AircraftUpdate extends HttpServlet {
             request.getSession().setAttribute("lastMaintDate", lastMaintDate);
             request.getSession().setAttribute("aircraftComms", aircraftComms);
 
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/aircraftinfo.jsp").forward(request, response);
 
         } catch (Exception e2) {

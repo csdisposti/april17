@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class AdminManagementMember extends HttpServlet {
 
@@ -18,20 +19,22 @@ public class AdminManagementMember extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username");//admin info
+        String password = request.getParameter("password");//admin info
 
-        String username = request.getParameter("usr");
-
+        MemberList memList = new MemberList();
+        ArrayList<MemberList> memnamenum;
 
         try{
-            //Member m = new Member();
-           // m.readFromDatabase(username);
-
-            //request.getSession().setAttribute("m", m);
-           // request.getSession().setAttribute("usr", username);
 
 
-               request.getRequestDispatcher("/membermanagement.jsp").forward(request, response);
+            memnamenum = memList.populateResources();
 
+            request.getSession().setAttribute("memnamenum", memnamenum);
+
+                request.getSession().setAttribute("username" , username);
+                request.getSession().setAttribute("password" , password);
+                request.getRequestDispatcher("/adminmembermanagement.jsp").forward(request, response);
 
         }catch (Exception e2)
 

@@ -263,7 +263,7 @@ public void setMakeModel(String makemodel) {
             //java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblMember WHERE Email_User='" + email + "';");
            // java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM tblAdmin WHERE MemberNo=" + mn + ";");
            // java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAirports ");
-            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAircraft ");
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAdmin ");
 
             /*if (rs != null) {
                 //makes sure the resultSet isn't in the header info

@@ -17,6 +17,9 @@ public class AirportAddSubmit extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username"); //admin info
+        String password = request.getParameter("password"); //admin info
+
         String faa  = request.getParameter("faa");
         String airportName = request.getParameter("airportName");
         String airportType = request.getParameter("airportType");
@@ -46,6 +49,9 @@ public class AirportAddSubmit extends HttpServlet {
             ap.addAirport(faa, airportName, airportType, streetAddress, city, lat, lon, contactName, contactPhone, ctaf, runwayType, towerFreq, fl, storage, airportComms);
             apnew.readFromDatabase(faa);
             request.getSession().setAttribute("apnew", apnew);
+
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/airportaddsubmit.jsp").forward(request, response);
         }
             catch (Exception e2)

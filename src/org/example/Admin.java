@@ -1,5 +1,7 @@
 package org.example;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.io.InputStream;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,14 +16,16 @@ public class Admin {
     private int memNo;
     private String adminLev;
     private String adminCom;
+    private Boolean adminStatus;
 
 
     //constructor
-    public Admin(int adminId, int memNo, String adminLev, String adminCom) {
+    public Admin(int adminId, int memNo, String adminLev, String adminCom, Boolean adminStatus) {
         this.adminId = adminId;
         this.memNo = memNo;
         this.adminLev = adminLev;
         this.adminCom = adminCom;
+        this.adminStatus = adminStatus;
     }
 
     //empty constructor
@@ -31,6 +35,7 @@ public class Admin {
         this.memNo = 0;
         this.adminLev = null;
         this.adminCom = null;
+        this.adminStatus = false;
     }
 
     //get Admin Id
@@ -73,6 +78,17 @@ public class Admin {
         this.adminCom = adminCom;
     }
 
+    //get Admin Status
+    public Boolean getAdminStatus() {
+        return adminStatus;
+    }
+
+    //set Admin Status
+    public void setAdminStatus(Boolean adminStatus) {
+        this.adminStatus = adminStatus;
+    }
+
+
     //read from database by member id
     public void readFromDatabase(int mn) throws Exception
     {
@@ -100,8 +116,8 @@ public class Admin {
                     this.memNo = rs2.getInt("MemberNo");
                     this.adminLev = rs2.getString("AdminLevel");
                     this.adminCom = rs2.getString("AdminComments");
+                    this.adminStatus = rs2.getBoolean("AdminStatus");
                 }
-
 
             }
         } catch (Exception e) {
@@ -116,8 +132,9 @@ public class Admin {
         }
     }
 
+
     //add member to admin table
-    protected void addToDatabase(int memNo, String adminLev, String adminCom) throws Exception {
+    protected void addToDatabase(int memNo, String adminLev, String adminCom, Boolean adminStatus) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -130,11 +147,12 @@ public class Admin {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            String newAdmin = "INSERT INTO AscendDB.tblAdmin (MemberNo, AdminLevel, AdminComments) VALUES (?, ?, ?, ?)";
+            String newAdmin = "INSERT INTO AscendDB.tblAdmin (MemberNo, AdminStatus, AdminLevel, AdminComments) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(newAdmin);
             ps.setInt(1, memNo);
-            ps.setString(2, adminLev);
-            ps.setString(3, adminCom);
+            ps.setBoolean(2, adminStatus);
+            ps.setString(3, adminLev);
+            ps.setString(4, adminCom);
             ps.executeUpdate();
 
 
@@ -151,7 +169,7 @@ public class Admin {
     }
 
     //update member entry in admin table
-    protected void updateAdminInfo(int memNo, String adminLev, String adminCom) throws Exception {
+    protected void updateAdminInfo(int memNo, String adminLev, String adminCom, Boolean adminStatus) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -170,10 +188,11 @@ public class Admin {
                 while (rs.next()) {
                     this.memNo = rs.getInt("MemberNo");
                 }
-                String updateMember = "UPDATE AscendDB.tblAdmin SET AdminLevel = ?, AdminComments = ? WHERE MemberNo =" + memNo + ";";
+                String updateMember = "UPDATE AscendDB.tblAdmin SET AdminStatus = ?, AdminLevel = ?, AdminComments = ? WHERE MemberNo =" + memNo + ";";
                 PreparedStatement pstmt = connection.prepareStatement(updateMember);
-                pstmt.setString(1, adminLev);
-                pstmt.setString(2, adminCom);
+                pstmt.setBoolean(1, adminStatus);
+                pstmt.setString(2, adminLev);
+                pstmt.setString(3, adminCom);
                 pstmt.executeUpdate();
             }
         } catch (Exception e) {
@@ -188,41 +207,6 @@ public class Admin {
         }
     }
 
-    //remove member as having "special admin status" as either, admin, mechanic, or instructor
-    protected void removeAdminStatus(int adminID, String adminLev, String adminCom) throws Exception {
-        java.sql.Connection connection;
-        String username = "MasterAscend";
-        String password = "AscendMasterKey";
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
-        Properties prop = new Properties();
-        prop.load(inputStream);
-        String url = prop.getProperty("jdbc.url");
-        String driver = prop.getProperty("jdbc.driver");
-        Class.forName(driver);
-        connection = DriverManager.getConnection(url, username, password);
-        try {
-            java.sql.Statement statement = connection.createStatement();
-            java.sql.ResultSet rs = statement.executeQuery("SELECT AdministratorID FROM AscendDB.tblAdmin WHERE AdministratorID=" + adminID);
-            rs.next();
-            this.adminId = rs.getInt("AdministratorID");
-
-            String updateMember = "UPDATE AscendDB.tblAdmin SET AdminLevel = ?, AdminComments = ? WHERE AdministratorID=" + adminId + ";";
-            PreparedStatement pstmt = connection.prepareStatement(updateMember);
-            pstmt.setString(1, adminLev);
-            pstmt.setString(2, adminCom);
-            pstmt.executeUpdate();
-
-        } catch (Exception e) {
-            System.err.println("err");
-            e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     //get instructor number
     public int getInstructorNumber(String fn, String ln) throws Exception
@@ -271,6 +255,83 @@ public class Admin {
         }
             return this.adminId;
     }
+
+    //read just member number
+    protected int readJustMemNo(int memnumber) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAdmin WHERE MemberNo='" + memnumber + "';");
+
+            memNo = 0;
+            if (rs != null) {
+                //makes sure the resultSet isn't in the header info
+                if (rs.next()) {
+
+                    return this.memNo = rs.getInt("MemberNo");
+
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return memNo;
+    }
+
+    //read just member number
+    protected String readJustAdminLev(int memnumber) throws Exception {
+        java.sql.Connection connection;
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+        try {
+            java.sql.Statement statement = connection.createStatement();
+            java.sql.ResultSet rs = statement.executeQuery("SELECT * FROM AscendDB.tblAdmin WHERE MemberNo='" + memnumber + "';");
+
+            adminLev = "N";
+            if (rs != null) {
+                //makes sure the resultSet isn't in the header info
+                if (rs.next()) {
+
+                    return this.adminLev = rs.getString("AdminLevel");
+
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return adminLev;
+    }
+
 
     @Override
     public String toString() {

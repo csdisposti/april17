@@ -24,24 +24,34 @@
             <div class="col-sm-3">
             </div>
             <div class="col-sm-3">
+                <hr>
                 <form action="AdminManagementReservation" method="post">
+                    <input type="hidden" id="usernameAMR" name="username" value="${username}"/>
+                    <input type="hidden" id="passwordAWR" name="password" value="${password}"/>
                     <input type="submit" class="btn btn-default btn-sp" value="Reservation Management"/>
                 </form>
-               <!-- <form action="AdminManagementMaintenance" method="post">
-                    <input type="submit" class="btn btn-default btn-sp" value="Maintenance Management"/>
-                </form>-->
+                <hr>
                 <form action="AdminManagementMember" method="post">
+                    <input type="hidden" id="usernameAMM" name="username" value="${username}"/>
+                    <input type="hidden" id="passwordAMM" name="password" value="${password}"/>
                     <input type="submit" class="btn btn-default btn-sp" value="Member Management"/>
                 </form>
-                <br>
+                <hr>
             </div>
         <div class="col-sm-3">
+            <hr>
                 <form action="AdminManagementAircraft" method="post">
+                    <input type="hidden" id="usernameAMAC" name="username" value="${username}"/>
+                    <input type="hidden" id="passwordAMAC" name="password" value="${password}"/>
                     <input type="submit" class="btn btn-default btn-sp" value="Aircraft Management"/>
                 </form>
+            <hr>
                 <form action="AdminManagementAirport" method="post">
+                    <input type="hidden" id="usernameAMAP" name="username" value="${username}"/>
+                    <input type="hidden" id="passwordAMAP" name="password" value="${password}"/>
                     <input type="submit" class="btn btn-default btn-sp" value="Airport Management"/>
                 </form>
+            <hr>
         </div>
         <div class="col-sm-3">
         </div>

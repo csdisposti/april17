@@ -17,6 +17,9 @@ public class AircraftAddSubmit extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username"); //admin info
+        String password = request.getParameter("password"); //admin info
+
         String registrationID = request.getParameter("registrationID");
         String ownerID = request.getParameter("ownerID");
         String makeModel = request.getParameter("makeModel");
@@ -46,6 +49,8 @@ public class AircraftAddSubmit extends HttpServlet {
             ac.addAircraft(registrationID, oi, makeModel, aircraftType, airportHome, airportCurrent, rf, aa, fh, fd, lastMaintType, lastMaintDate, aircraftComms);
             acnew.readFromDatabase(registrationID);
             request.getSession().setAttribute("acnew", acnew);
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/aircraftaddsubmit.jsp").forward(request, response);
         }
             catch (Exception e2)

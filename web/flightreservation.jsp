@@ -59,9 +59,9 @@
                     </c:forEach>
                 </select>
                 <span> (choose an Aircraft)</span><br>
-                <p>&nbsp;</p>
+                <hr>
                 <input type="submit" class="btn btn-default btn-sp" value="Submit Reservation Request"/>
-                <p>&nbsp;</p>
+                <hr>
             </div>
         </form>
         <div class="col-sm-2">

@@ -18,233 +18,280 @@ public class AdminManagementMemberProcess extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        //get input from form
+        String username = request.getParameter("username");//admin info
+        String password = request.getParameter("password");//admin info
+
+        String member = request.getParameter("memnamenum"); //member
+
+        //variables
+        int accountID;
+        int memberID;
         String email;
-        String id;
-        email = request.getParameter("mememail");
-        id = request.getParameter("memid");
-
-        //check for email
-        String emailCheck;
-
-        //member variables
-        int memIDCheck;
-        int mid;
-        String em;
-        String fn;
-        String ln;
-        String ph1;
-        String ph2;
-        String ecn;
-        String ecp;
-        String memcomms;
-
-        //account variables
-        int accid;
-        String accttype;
+        String pw;
+        String fname;
+        String lname;
+        String phoneone;
+        String phonetwo;
+        String emerconname;
+        String emerconphone;
         String street;
         String city;
         String state;
         String zip;
-        String payplan;
-        int totcharges;
-        int totpayments;
-        int creditreduc;
-        Date lastinvoicedate;
-        Date lastpaymentdate;
-        String accountstatus;
-        String acccomms;
 
-        //Admin level
-        int adminid;
-        String memberstatus;
-        String admincomms;
-
-        //new objects
-        Member m = new Member();
-        Account a = new Account();
-        Admin admin = new Admin();
-
-        CheckEmail ce = new CheckEmail();
-        CheckMemberId cmi = new CheckMemberId();
+        String accttype;
+        String checked = "checked=\"checked\"";
+        String selected = "selected";
 
 
+        Member medit = new Member();
+        Credentials cedit = new Credentials();
+        Account aedit = new Account();
+        Admin ad = new Admin();
 
         try {
 
+            //get memberid only
+            String[] memberinfo = member.split(":\\s+");
+            String memberid = memberinfo[1];
+            memberID = Integer.parseInt(memberid);
 
-            //if email entered
-            if (email != null && !email.isEmpty()) {
-                emailCheck = ce.readFromDatabase(email);
-                request.getSession().setAttribute("email", email);
-                if (emailCheck != null && !emailCheck.isEmpty()) {
-                    m.readFromDatabase(email);
-                    //set session member variable
-                    request.getSession().setAttribute("m", m);
+            medit.getMemberByMemID(memberID);
+            accountID = medit.getAcctNo();
+            aedit.readFromDatabase(accountID);
 
-                    //get member info
-                    mid = m.getMemId();
-                    em = m.getEmailUsNa();
-                    fn = m.getfName();
-                    ln = m.getlName();
-                    ph1 = m.getPhone1();
-                    ph2 = m.getPhone2();
-                    ecn = m.getEmerCoNa();
-                    ecp = m.getEmerCoNo();
-                    memcomms = m.getMemCom();
+            memberID = medit.getMemId();
+            fname = medit.getfName();
+            lname = medit.getlName();
+            email = medit.getEmailUsNa();
+            phoneone = medit.getPhone1();
+            phonetwo = medit.getPhone2();
+            emerconname = medit.getEmerCoNa();
+            emerconphone = medit.getEmerCoNo();
+            street = aedit.getStreet();
+            city = aedit.getCity();
+            zip = aedit.getZip();
 
-                    //get account info
-                    accid = m.getAcctNo();
-                    a.readFromDatabase(accid);
+            //get member password
+            pw = cedit.getPassword(email);
 
-                    //set account session variable
-                    request.getSession().setAttribute("a", a);
+            //check if member is an admin
+            int adminYN = ad.readJustMemNo(memberID);
 
-                    //get the rest of the account info
-                    accttype = a.getAcctType();
-                    street = a.getStreet();
-                    city = a.getCity();
-                    state = a.getState();
-                    zip = a.getZip();
-                    payplan = a.getPaymentPlan();
-                    totcharges = a.getTotalChgs();
-                    totpayments = a.getTotalPays();
-                    creditreduc = a.getCreditReds();
-                    lastinvoicedate = a.getLastInvDate();
-                    lastpaymentdate = a.getLastPayDate();
-                    accountstatus = a.getAcctStat();
-                    acccomms = a.getAcctCom();
-
-                    //get admin info
-                    admin.readFromDatabase(mid);
-                    //get member level
-                    memberstatus = admin.getAdminLev();
-                    if (memberstatus != null && !memberstatus.isEmpty()) {
-                        memberstatus = "N";
-                    }
-                    adminid = admin.getAdminId();
-                    admincomms = admin.getAdminCom();
-
-                    //set session variables
-                    request.getSession().setAttribute("mid", mid);
-                    request.getSession().setAttribute("em", em);
-                    request.getSession().setAttribute("fn", fn);
-                    request.getSession().setAttribute("ln", ln);
-                    request.getSession().setAttribute("ph1", ph1);
-                    request.getSession().setAttribute("ph2", ph2);
-                    request.getSession().setAttribute("ecn", ecn);
-                    request.getSession().setAttribute("ecp", ecp);
-                    request.getSession().setAttribute("memcomms", memcomms);
-                    request.getSession().setAttribute("accid", accid);
-                    request.getSession().setAttribute("accttype", accttype);
-                    request.getSession().setAttribute("street", street);
-                    request.getSession().setAttribute("city", city);
-                    request.getSession().setAttribute("state", state);
-                    request.getSession().setAttribute("zip", zip);
-                    request.getSession().setAttribute("payplan", payplan);
-                    request.getSession().setAttribute("totcharges", totcharges);
-                    request.getSession().setAttribute("totpayments", totpayments);
-                    request.getSession().setAttribute("creditreduc", creditreduc);
-                    request.getSession().setAttribute("lastinvoicedate", lastinvoicedate);
-                    request.getSession().setAttribute("lastpaymentdate", lastpaymentdate);
-                    request.getSession().setAttribute("accountstatus", accountstatus);
-                    request.getSession().setAttribute("acccomms", acccomms);
-                    request.getSession().setAttribute("adminid", adminid);
-                    request.getSession().setAttribute("memberstatus", memberstatus);
-                    request.getSession().setAttribute("admincomms", admincomms);
-                }
-                //if id entered
-            } else if (id != null && !id.isEmpty()) {
-                //parse int
-                int mi = Integer.parseInt(id.trim());
-                memIDCheck = cmi.readFromDatabase(mi);
-                request.getSession().setAttribute("memid", mi);
-                if (memIDCheck != 0) {
-                    m.getMemberByMemID(mi);
-                    //set session member variable
-                    request.getSession().setAttribute("m", m);
-
-                    //get member info
-                    mid = m.getMemId();
-                    em = m.getEmailUsNa();
-                    fn = m.getfName();
-                    ln = m.getlName();
-                    ph1 = m.getPhone1();
-                    ph2 = m.getPhone2();
-                    ecn = m.getEmerCoNa();
-                    ecp = m.getEmerCoNo();
-                    memcomms = m.getMemCom();
-
-                    //get account info
-                    accid = m.getAcctNo();
-                    a.readFromDatabase(accid);
-
-                    //set account session variable
-                    request.getSession().setAttribute("a", a);
-
-                    //get the rest of the account info
-                    accttype = a.getAcctType();
-                    street = a.getStreet();
-                    city = a.getCity();
-                    state = a.getState();
-                    zip = a.getZip();
-                    payplan = a.getPaymentPlan();
-                    totcharges = a.getTotalChgs();
-                    totpayments = a.getTotalPays();
-                    creditreduc = a.getCreditReds();
-                    lastinvoicedate = a.getLastInvDate();
-                    lastpaymentdate = a.getLastPayDate();
-                    accountstatus = a.getAcctStat();
-                    acccomms = a.getAcctCom();
-
-                    //get admin info
-                    admin.readFromDatabase(mid);
-                    //get member level
-                    memberstatus = admin.getAdminLev();
-                    if (memberstatus.isEmpty()) {
-                        memberstatus = "N";
-                    }
-                    adminid = admin.getAdminId();
-                    admincomms = admin.getAdminCom();
-
-                    //set session variables
-                    request.getSession().setAttribute("mid", mid);
-                    request.getSession().setAttribute("em", em);
-                    request.getSession().setAttribute("fn", fn);
-                    request.getSession().setAttribute("ln", ln);
-                    request.getSession().setAttribute("ph1", ph1);
-                    request.getSession().setAttribute("ph2", ph2);
-                    request.getSession().setAttribute("ecn", ecn);
-                    request.getSession().setAttribute("ecp", ecp);
-                    request.getSession().setAttribute("memcomms", memcomms);
-                    request.getSession().setAttribute("accid", accid);
-                    request.getSession().setAttribute("accttype", accttype);
-                    request.getSession().setAttribute("street", street);
-                    request.getSession().setAttribute("city", city);
-                    request.getSession().setAttribute("state", state);
-                    request.getSession().setAttribute("zip", zip);
-                    request.getSession().setAttribute("payplan", payplan);
-                    request.getSession().setAttribute("totcharges", totcharges);
-                    request.getSession().setAttribute("totpayments", totpayments);
-                    request.getSession().setAttribute("creditreduc", creditreduc);
-                    request.getSession().setAttribute("lastinvoicedate", lastinvoicedate);
-                    request.getSession().setAttribute("lastpaymentdate", lastpaymentdate);
-                    request.getSession().setAttribute("accountstatus", accountstatus);
-                    request.getSession().setAttribute("acccomms", acccomms);
-                    request.getSession().setAttribute("adminid", adminid);
-                    request.getSession().setAttribute("memberstatus", memberstatus);
-                    request.getSession().setAttribute("admincomms", admincomms);
-                }
+            if (adminYN == 0) {
+                request.getSession().setAttribute("asNO", checked);
             } else {
-                request.getRequestDispatcher("/membernotfound.jsp").forward(request, response);
+                request.getSession().setAttribute("asYES", checked);
             }
-            request.getRequestDispatcher("/memberinfo.jsp").forward(request, response);
+
+            //check what type of admin
+            String adminTYPE = ad.readJustAdminLev(memberID);
+            switch (adminTYPE) {
+                case "A": {
+                    request.getSession().setAttribute("A", checked);
+                    break;
+                }
+                case "I": {
+                    request.getSession().setAttribute("I", checked);
+                    break;
+                }
+                default: {
+                    request.getSession().setAttribute("N", checked);
+                    break;
+                }
+
+            }
+            request.getSession().setAttribute("mi" , memberID);
+            request.getSession().setAttribute("ai" , accountID);
+            request.getSession().setAttribute("fn" , fname);
+            request.getSession().setAttribute("ln" , lname);
+            request.getSession().setAttribute("email", email);
+            request.getSession().setAttribute("passwordcurrent", pw);
+            request.getSession().setAttribute("p1" , phoneone);
+            request.getSession().setAttribute("p2" , phonetwo);
+            request.getSession().setAttribute("ec" , emerconname);
+            request.getSession().setAttribute("ep" , emerconphone);
+            request.getSession().setAttribute("st" , street);
+            request.getSession().setAttribute("ct" , city);
+            request.getSession().setAttribute("zi" , zip);
+
+
+            //set state
+            state = aedit.getState();
+            switch(state) {
+                case "NC":
+                    request.getSession().setAttribute("NC" , selected);
+                    break;
+                case "SC":
+                    request.getSession().setAttribute("SC" , selected);
+                    break;
+                case "AL":
+                    request.getSession().setAttribute("AL" , selected);
+                    break;
+                case "AK":
+                    request.getSession().setAttribute("AK" , selected);
+                    break;
+                case "AZ":
+                    request.getSession().setAttribute("AZ" , selected);
+                    break;
+                case "AR":
+                    request.getSession().setAttribute("AR" , selected);
+                    break;
+                case "CA":
+                    request.getSession().setAttribute("CA" , selected);
+                    break;
+                case "CO":
+                    request.getSession().setAttribute("CO" , selected);
+                    break;
+                case "CT":
+                    request.getSession().setAttribute("CT" , selected);
+                    break;
+                case "DE":
+                    request.getSession().setAttribute("DE" , selected);
+                    break;
+                case "DC":
+                    request.getSession().setAttribute("DC" , selected);
+                    break;
+                case "FL":
+                    request.getSession().setAttribute("FL" , selected);
+                    break;
+                case "GA":
+                    request.getSession().setAttribute("GA" , selected);
+                    break;
+                case "HI":
+                    request.getSession().setAttribute("HI" , selected);
+                    break;
+                case "ID":
+                    request.getSession().setAttribute("ID" , selected);
+                    break;
+                case "IL":
+                    request.getSession().setAttribute("IL" , selected);
+                    break;
+                case "IN":
+                    request.getSession().setAttribute("IN" , selected);
+                    break;
+                case "IA":
+                    request.getSession().setAttribute("IA" , selected);
+                    break;
+                case "KS":
+                    request.getSession().setAttribute("KS" , selected);
+                    break;
+                case "KY":
+                    request.getSession().setAttribute("KY" , selected);
+                    break;
+                case "LA":
+                    request.getSession().setAttribute("LA" , selected);
+                    break;
+                case "ME":
+                    request.getSession().setAttribute("ME" , selected);
+                    break;
+                case "MD":
+                    request.getSession().setAttribute("MA" , selected);
+                    break;
+                case "MI":
+                    request.getSession().setAttribute("MN" , selected);
+                    break;
+                case "MS":
+                    request.getSession().setAttribute("MO" , selected);
+                    break;
+                case "MT":
+                    request.getSession().setAttribute("MT" , selected);
+                    break;
+                case "NE":
+                    request.getSession().setAttribute("NE" , selected);
+                    break;
+                case "NV":
+                    request.getSession().setAttribute("NV" , selected);
+                    break;
+                case "NH":
+                    request.getSession().setAttribute("NH" , selected);
+                    break;
+                case "NJ":
+                    request.getSession().setAttribute("NM" , selected);
+                    break;
+                case "NY":
+                    request.getSession().setAttribute("NY" , selected);
+                    break;
+                case "ND":
+                    request.getSession().setAttribute("ND" , selected);
+                    break;
+                case "OH":
+                    request.getSession().setAttribute("OH" , selected);
+                    break;
+                case "OK":
+                    request.getSession().setAttribute("OK" , selected);
+                    break;
+                case "OR":
+                    request.getSession().setAttribute("PA" , selected);
+                    break;
+                case "RI":
+                    request.getSession().setAttribute("RI" , selected);
+                    break;
+                case "SD":
+                    request.getSession().setAttribute("SD" , selected);
+                    break;
+                case "TN":
+                    request.getSession().setAttribute("TN" , selected);
+                    break;
+                case "TX":
+                    request.getSession().setAttribute("TX" , selected);
+                    break;
+                case "UT":
+                    request.getSession().setAttribute("UT" , selected);
+                    break;
+                case "VT":
+                    request.getSession().setAttribute("VT" , selected);
+                    break;
+                case "VA":
+                    request.getSession().setAttribute("VA" , selected);
+                    break;
+                case "WA":
+                    request.getSession().setAttribute("WA" , selected);
+                    break;
+                case "WV":
+                    request.getSession().setAttribute("WV" , selected);
+                    break;
+                case "WI":
+                    request.getSession().setAttribute("WI" , selected);
+                    break;
+                case "WY":
+                    request.getSession().setAttribute("WY" , selected);
+                    break;
+                default:
+                    break;
+            }
+
+            //set radio buttons
+            accttype = aedit.getAcctType();
+
+            switch (accttype) {
+                case "I":
+                    request.getSession().setAttribute("atic" , checked);
+                    break;
+                case "F":
+                    request.getSession().setAttribute("atfc" , checked);
+                    break;
+                case "D":
+                    request.getSession().setAttribute("atdc" , checked);
+                    break;
+                default:
+                    request.getSession().setAttribute("attc" , checked);
+                    break;
+            }
+
+
+            request.getSession().setAttribute("username" , username);//admin info
+            request.getSession().setAttribute("password" , password); //admin info
+            request.getRequestDispatcher("/adminmanagementmemberprocess.jsp").forward(request, response);
         }
-            catch (Exception e2)
+        catch (Exception e2)
         {
             e2.printStackTrace();
         }
         finally{out.close();
+
         }
+
     }
+
 }

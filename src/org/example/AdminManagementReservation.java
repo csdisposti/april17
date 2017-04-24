@@ -17,8 +17,12 @@ public class AdminManagementReservation extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username");//admininfo
+        String password = request.getParameter("password");//admininfo
 
         try{
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/reservationmanagement.jsp").forward(request, response);
 
         }

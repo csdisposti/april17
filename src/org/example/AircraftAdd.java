@@ -18,6 +18,9 @@ public class AircraftAdd extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
+        String username = request.getParameter("username"); //admin info
+        String password = request.getParameter("password"); //admin info
+
         AircraftList aircrafts = new AircraftList();
         ArrayList<AircraftList> ResourcesReserved = new ArrayList<>();
         InstructorsList instructors = new InstructorsList();
@@ -31,6 +34,8 @@ public class AircraftAdd extends HttpServlet {
             InstructorReserved = instructors.populateResources();
             request.getSession().setAttribute("ir", InstructorReserved);
 
+            request.getSession().setAttribute("username" , username);
+            request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/aircraftadd.jsp").forward(request, response);
         }
             catch (Exception e2)
