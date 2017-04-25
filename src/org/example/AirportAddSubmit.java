@@ -44,7 +44,7 @@ public class AirportAddSubmit extends HttpServlet {
 
            double lat = Double.parseDouble(latitude);
            double lon = Double.parseDouble(longitude);
-           double fl = Double.parseDouble(fuel);
+           int fl = Integer.parseInt(fuel);
 
             ap.addAirport(faa, airportName, airportType, streetAddress, city, lat, lon, contactName, contactPhone, ctaf, runwayType, towerFreq, fl, storage, airportComms);
             apnew.readFromDatabase(faa);

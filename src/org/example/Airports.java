@@ -1,7 +1,6 @@
 package org.example;
 
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Properties;
@@ -22,14 +21,14 @@ public class Airports {
     private String ctaf;
     private String runwayType;
     private String towerFreq;
-    private double fuel;
+    private int fuel;
     private String storage;
     private String airportCom;
 
     //constructor
     public Airports(String faaCode, String airportName, String airportType, String airportSt, String airportCity,
                     double latitude, double longitude, String contactName, String contactPhone, String ctaf,
-                    String runwayType, String towerFreq, double fuel, String storage, String airportCom) {
+                    String runwayType, String towerFreq, int fuel, String storage, String airportCom) {
         this.faaCode = faaCode;
         this.airportName = airportName;
         this.airportType = airportType;
@@ -187,12 +186,12 @@ public class Airports {
     }
 
     //get Airport Fuel
-    public double getFuel() {
+    public int getFuel() {
         return fuel;
     }
 
     //set Airport Fuel
-    public void setFuel(double fuel) {
+    public void setFuel(int fuel) {
         this.fuel = fuel;
     }
 
@@ -248,7 +247,7 @@ public class Airports {
                 this.ctaf = rs.getString("CTAF_UNICOM");
                 this.runwayType = rs.getString("RunwayType");
                 this.towerFreq = rs.getString("TowerFreq");
-                this.fuel = rs.getDouble("Fuel_100LL");
+                this.fuel = rs.getInt("Fuel_100LL");
                 this.storage = rs.getString("Storage");
                 this.airportCom = rs.getString("AirportComments");
             }
@@ -260,7 +259,7 @@ public class Airports {
     }
     //admin add airport
     protected void addAirport(String faa, String apname, String aptype, String address, String city, double lat, double lon,
-                                 String conname, String conphone, String ct, String runway, String tower, double fuel, String storage, String apcomms) throws Exception {
+                                 String conname, String conphone, String ct, String runway, String tower, int fuel, String storage, String apcomms) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -288,7 +287,7 @@ public class Airports {
             pstmt.setString(10, ct);
             pstmt.setString(11, runway);
             pstmt.setString(12, tower);
-            pstmt.setDouble(13, fuel);
+            pstmt.setInt(13, fuel);
             pstmt.setString(14, storage);
             pstmt.setString(15, apcomms);
             pstmt.executeUpdate();
@@ -301,7 +300,7 @@ public class Airports {
 
     //admin update airport info
     protected void updateAirport(String oldfaa, String faa, String apname, String aptype, String address, String city, double lat, double lon,
-                                 String conname, String conphone, String ct, String runway, String tower, double fuel, String storage, String apcomms) throws Exception {
+                                 String conname, String conphone, String ct, String runway, String tower, int fuel, String storage, String apcomms) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -330,7 +329,7 @@ public class Airports {
             pstmt.setString(10, ct);
             pstmt.setString(11, runway);
             pstmt.setString(12, tower);
-            pstmt.setDouble(13, fuel);
+            pstmt.setInt(13, fuel);
             pstmt.setString(14, storage);
             pstmt.setString(15, apcomms);
             pstmt.executeUpdate();
