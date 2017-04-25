@@ -221,7 +221,7 @@ public class ReservationsList extends Reservations {
     }
 
 
-    //popultae sresrvations by member id
+    //populate reservations by member id
     public ArrayList<ReservationsList> populateReservations(int mi) throws Exception {
         {
             java.sql.Connection connection;

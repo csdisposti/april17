@@ -26,7 +26,6 @@ public class AdminManagementReservationsProcess extends HttpServlet {
         int resBy;
         String resType;
         String resourcesRes;
-        String makemodel;
         Date resDate;
         Time outTime;
         Time inTime;
@@ -47,7 +46,6 @@ public class AdminManagementReservationsProcess extends HttpServlet {
             resBy = res.getResBy();
             resType = res.getResType();
             resourcesRes = res.getResourcesRes();
-            makemodel = res.getMakeModel();
             resDate = res.getResDate();
             outTime = res.getOutTime();
             inTime = res.getInTime();
@@ -59,16 +57,11 @@ public class AdminManagementReservationsProcess extends HttpServlet {
 
             adminmem.readFromDatabase(username);
             int mi = adminmem.getMemId();
+
             appby.readFromDatabase(mi);
             int adid = appby.getAdminId();
 
-            String showplane = resourcesRes + makemodel;
-
             String checked = "checked=\"checked\"";
-            String selected = "selected";
-
-            //set radio buttons
-            resStatus = res.getResType();
 
             switch (resStatus) {
                 case "PENDING":
@@ -87,8 +80,7 @@ public class AdminManagementReservationsProcess extends HttpServlet {
             request.getSession().setAttribute("ri" , ri);
             request.getSession().setAttribute("resBy" , resBy);
             request.getSession().setAttribute("resType" , resType);
-            request.getSession().setAttribute("showplane" , showplane);
-            request.getSession().setAttribute("makemodel" , makemodel);
+            request.getSession().setAttribute("resourcesRes" , resourcesRes);
             request.getSession().setAttribute("resDate" , resDate);
             request.getSession().setAttribute("outTime" , outTime);
             request.getSession().setAttribute("inTime" , inTime);
@@ -99,6 +91,7 @@ public class AdminManagementReservationsProcess extends HttpServlet {
             request.getSession().setAttribute("resCom" , resCom);
 
             request.getSession().setAttribute("adid" , adid);
+
             request.getSession().setAttribute("username" , username);
             request.getSession().setAttribute("password" , password);
             request.getRequestDispatcher("/adminreservationsmanagementprocess.jsp").forward(request, response);

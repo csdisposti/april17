@@ -25,45 +25,45 @@
         <div class="col-sm-2">
         </div>
 
-        <form action="AdminManagementMemberSubmit" method="POST">
+        <form action="AdminManagementReservationsSubmit" method="POST">
             <input type="hidden"  name="action" value="login">
             <input type="hidden" id="username" name="username" value="${username}"/>
             <input type="hidden" id="password" name="password" value="${password}"/>
+            <input type="hidden" id="ri" name="ri" value="${ri}"/>
         <div class="col-sm-3">
-
-
-            <label for="fname">Reserved by:</label><br />
-                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="fname" name="fname" title="First Name - Letters/Numbers/Apostrophes Only" value="${resBy}" required/> <br />
-            <label for="lname">Reservation Type:</label><br />
-                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="lname" name="lname" title="Last Name - Letters/Numbers/Apostrophes Only" value="${resType}" required/> <br />
-            <label for="phone1">Aircraft Reserved:</label><br />
-            <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="phone1" name="phone1" title="Phone 1 - Please enter in the following format: 555-555-5555" value="${resourcesRes}" required/><br>
-            <label for="resdate">Reservation Date: </label><br>
-            <input type="date" id="resdate" name="resdate" title="Reservation Date" required/> <br>
+            <label for="resBy">Reserved by:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="resBy" name="resBy" title="Reserved By" value="${resBy}" disabled/> <br />
+            <label for="resType">Reservation Type:</label><br />
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="resType" name="resType" title="Reservation Type" value="${resType}" required/> <br />
+            <span>F - Flight, L - Lesson</span><br>
+            <label for="resourcesRes">Aircraft Reserved:</label><br />
+            <input type="tel" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="resourcesRes" name="resourcesRes" title="Aircraft Reserved" value="${resourcesRes}" required/><br>
+            <label for="resDate">Reservation Date: </label><br>
+            <input type="date" id="resDate" name="resDate" title="Reservation Date" value="${resDate}" required/> <br>
             <span class="firefoxonly"> enter as YYYY-MM-DD</span><br>
         </div>
             <div class="col-sm-3">
                 <label for="outTime">Start Time: </label><br>
-                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0,1,3,4][0,5]"  id="outTime" name="outTime" title="Start Time"  value="${outTime}" required/><br>
-                <span> enter using 24 hour clock ex: 13:30</span><br>
-                <span> reservations are available at :00, :15, :30, and :45</span><br>
+                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0,1,3,4][0,5]:[0][0,0]"  id="outTime" name="outTime" title="Start Time"  value="${outTime}" required/><br>
+                <span> enter using 24 hour clock ex: 13:30:00</span><br>
+                <span> reservations are available at xx:00:00, xx:15:00, xx:30:00, and xx:45:00</span><br>
                 <label for="inTime">End Time: </label><br>
-                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0,1,3,4][0,5]"  id="inTime" name="inTime" title="End Time"  value="${inTime}" required/><br>
-                <span> enter using 24 hour clock ex: 13:30</span><br>
-                <span> reservations are available at :00, :15, :30, and :45</span><br>
+                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0,1,3,4][0,5]:[0][0,0]"   id="inTime" name="inTime" title="End Time"  value="${inTime}" required/><br>
+                <span> enter using 24 hour clock ex: 13:30:00</span><br>
+                <span> reservations are available at xx:00:00, xx:15:00, xx:30:00, and xx:45:00</span><br>
             </div>
             <div class="col-sm-3">
                 <label for="dest">Destination: </label><br>
-                <input type="text" pattern="([01]?[0-9]|2[0-3]):[0,1,3,4][0,5]"  id="dest" name="dest" title="Destination"  value="${dest}" required/><br>
+                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$"  id="dest" name="dest" title="Destination"  value="${dest}" /><br>
                 <label for="instNo">Instructor Number:</label><br />
-                <input type="text" pattern="[0-9]{5}" id="instNo" name="instNo" title="Instructor Number" value="${instNo}" required/> <br />
+                <input type="text" pattern="[0-9]{1,5}" id="instNo" name="instNo" title="Instructor Number" value="${instNo}" /> <br />
                 <label>Reservation Status:</label><br />
                 <input type="radio" name="resStatus" title="Account Type" value="PENDING" ${PENDING}> PENDING
                 <input type="radio" name="resStatus" title="Account Type" value="APPROVED" ${APPROVED}> APPROVED
                 <input type="radio" name="resStatus" title="Account Type" value="REJECTED" ${REJECTED}> REJECTED<BR>
 
-                <label for="emerconphone">Approved By:</label><br />
-                <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="emerconphone" name="emerconphone" title="Emergency Contact Phone - Please enter in the following format: 555-555-5555" value="${adid}" disabled/>
+                <label for="adid">Approved By:</label><br />
+                <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="adid" name="adid" title="Approved By" value="${adid}" disabled/>
                 <hr>
                 <input type="submit"  class="btn btn-default btn-sp" value="Update Reservation" />
                 <hr>

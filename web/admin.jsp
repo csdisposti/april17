@@ -27,11 +27,16 @@
             <h3>Admin Login</h3>
             <form action="AdminPortal" method="post">
                 <label for="username">Username:</label><br />
-                <input type="text" id="username" name="username" title="Login-Username" required/><br />
+                <input type="email" id="username" name="username" title="Login-Username" required/><br />
                 <label for="password">Password:</label><br />
                 <input type="password" id="password" name="password" title="Login-Password" required/><br />
                 <input type="submit" class="btn btn-default btn-sp" value="Login"/>
             </form>
+            <hr>
+            <h4>Test Account Admin Login Credentials</h4>
+            <p>Username: admin@admin.289</p>
+            <p>Password: P4ssw0rd</p>
+            <hr>
         </div>
         <div class="col-sm-3">
         </div>

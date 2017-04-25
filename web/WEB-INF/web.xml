@@ -110,12 +110,12 @@
         <url-pattern>/AdminManagementReservationsProcess</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AdminManagementReservationsProcessSubmit</servlet-name>
-        <servlet-class>org.example.AdminManagementReservationsProcessSubmit</servlet-class>
+        <servlet-name>AdminManagementReservationsSubmit</servlet-name>
+        <servlet-class>org.example.AdminManagementReservationsSubmit</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AdminManagementReservationsProcessSubmit</servlet-name>
-        <url-pattern>/AdminManagementReservationsProcessSubmit</url-pattern>
+        <servlet-name>AdminManagementReservationsSubmit</servlet-name>
+        <url-pattern>/AdminManagementReservationsSubmit</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AircraftAdd</servlet-name>

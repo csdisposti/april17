@@ -38,6 +38,8 @@
             <div class="col-sm-10">
                 <h4>Enter Reservation ID</h4>
                 <form action="AdminManagementReservationsProcess" method="post">
+                    <input type="hidden" id="username" name="username" value="${username}"/>
+                    <input type="hidden" id="password" name="password" value="${password}"/>
                     <label for="resid">Reservation ID:</label><br />
                     <input type="text" id="resid" name="resid" title="Reservation ID" required/><br />
                     <input type="submit" class="btn btn-default btn-sp" value="Edit Reservation"/>

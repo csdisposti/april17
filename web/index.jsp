@@ -32,6 +32,13 @@
                 <input type="password" id="password" name="password" title="Login-Password" required/><br />
                  <input type="submit" class="btn btn-default btn-sp" value="Login"/>
             </form>
+            <hr>
+            <h4>Test Account Member Login Credentials</h4>
+            <p>Username: member@member.289</p>
+            <p>Password: P4ssw0rd</p>
+            <hr>
+            <p class=text-center">For Admin Login, please scroll down to below image</p>
+            <hr>
         </div>
         <div class="col-sm-6">
             <h3>New Members</h3>
@@ -45,12 +52,11 @@
             <hr>
         </div>
 
-
-
-
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>
         <h3><a href="admin.jsp" class="btn btn-primary btn-sp">Admin Login</a></h3>
+        <p>(Test Account info available after button click)</p>
+        <hr>
     <footer class="text-center">
         <h4>Ascend, Inc. - <em>Soaring to New Heights</em></h4>
         <address>

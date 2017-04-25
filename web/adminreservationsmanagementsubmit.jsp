@@ -25,23 +25,25 @@
 
 <body>
 <div class="container-fluid">
-    <header class="text-center">
-
-        <img alt="ascend logo" class="img-responsive center-block" src="http://ascend.2ndmm.com/images/logo.png"/>
-        <hr>
-    </header>
+    <jsp:include page="header.jsp" />
     <!--begin main text-->
-    <div class="row gray">
-        <div class="col-sm-3">
+    <jsp:include page="adminnav.jsp" />
+    <!--begin main text-->
+    <div class="row gray text-center">
+        <h3 class="text-center">The Reservation info has been updated</h3>
+        <div class="col-sm-1">
         </div>
-        <div class="col-sm-6">
-            <h3 class="text-center">Your reservation has been submitted for Admin approval</h3>
-            <hr>
-            <p>${ressub}</p>
-            <a href="/member.jsp" class="btn btn-default btn-sp">Return to Member Page</a>
-        </div>
-        <div class="col-sm-3">
 
+        <div class="col-sm-10">
+            <form action="AdminPortal" method="post">
+                <input type="hidden" id="username" name="username" value="${username}"/>
+                <input type="hidden" id="password" name="password" value="${password}"/>
+                <hr>
+                <input type="submit" class="btn btn-default" value="Return to Admin Portal"/>
+                <hr>
+            </form>
+        </div>
+        <div class="col-sm-1">
 
         </div>
 

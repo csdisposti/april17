@@ -316,7 +316,7 @@ public class Reservations {
     }
 
     //admin set reservation status
-    protected void updateReservationStatus(int resid, String reserstat, int adminid) throws Exception {
+    protected void updateReservationStatus(int resid, String resType, String resourcesRes, String resDate, String outTime, String inTime, String dest, int instNo, String resStatus) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -330,10 +330,17 @@ public class Reservations {
         try {
             java.sql.Statement statement = connection.createStatement();
 
-            String updateMember = "UPDATE AscendDB.tblReservations SET ReservationStatus = ?, ReservationApprovedBy = ? WHERE ReservationID=" + resid + ";";
+            String updateMember = "UPDATE AscendDB.tblReservations SET ReservationType = ?, ResourcesReserved = ?, ReservationDate = ?, OutTime = ?, InTime = ?, Destination = ?," +
+                    "InstructorNo = ?, ReservationStatus = ? WHERE ReservationID=" + resid + ";";
             PreparedStatement pstmt = connection.prepareStatement(updateMember);
-            pstmt.setString(1, reserstat);
-            pstmt.setInt(2, adminid);
+            pstmt.setString(1, resType);
+            pstmt.setString(2, resourcesRes);
+            pstmt.setDate(3, java.sql.Date.valueOf(resDate));
+            pstmt.setTime(4, java.sql.Time.valueOf(outTime));
+            pstmt.setTime(5, java.sql.Time.valueOf(inTime));
+            pstmt.setString(6, dest);
+            pstmt.setInt(7, instNo);
+            pstmt.setString(8, resStatus);
             pstmt.executeUpdate();
 
         } catch (Exception e) {
