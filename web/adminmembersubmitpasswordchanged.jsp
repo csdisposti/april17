@@ -18,24 +18,21 @@
     <jsp:include page="header.jsp" />
     <!--begin main text-->
     <jsp:include page="adminnav.jsp" />
-    <div class="row gray text-center">
-        <h3>The Member's info &amp; Password has been updated</h3>
-        <hr>
-        <div class="col-sm-3">
+    <div class="row gray">
+        <h3 class="text-center">The Member's info has been updated</h3>
+        <div class="col-sm-4">
         </div>
-        <hr>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <p>${newmem}</p>
-        <form action="AdminPortal" method="post">
-            <input type="hidden" id="username" name="username" value="${username}"/>
-            <input type="hidden" id="password" name="password" value="${password}"/>
-            <input type="submit" class="btn btn-default" value="Return to Admin Portal"/>
-        </form>
-        <br>
-        <br>
+            <form action="AdminPortal" method="post">
+                <input type="hidden" id="username" name="username" value="${username}"/>
+                <input type="hidden" id="password" name="password" value="${password}"/>
+                <hr>
+                <input type="submit" class="btn btn-default" value="Return to Admin Portal"/>
+                <hr>
+            </form>
         </div>
-
-        <div class="col-sm-3">
+        <div class="col-sm-4">
         </div>
         <hr>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">

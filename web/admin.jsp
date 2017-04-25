@@ -34,7 +34,7 @@
             </form>
             <hr>
             <h4>Test Account Admin Login Credentials</h4>
-            <p>Username: admin@admin.289</p>
+            <p>Username: admin@ascend.289</p>
             <p>Password: P4ssw0rd</p>
             <hr>
         </div>

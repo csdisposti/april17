@@ -266,16 +266,16 @@ public class AdminManagementMemberProcess extends HttpServlet {
 
             switch (accttype) {
                 case "I":
-                    request.getSession().setAttribute("atic" , checked);
+                    request.getSession().setAttribute("I" , checked);
                     break;
                 case "F":
-                    request.getSession().setAttribute("atfc" , checked);
+                    request.getSession().setAttribute("F" , checked);
                     break;
                 case "D":
-                    request.getSession().setAttribute("atdc" , checked);
+                    request.getSession().setAttribute("D" , checked);
                     break;
                 default:
-                    request.getSession().setAttribute("attc" , checked);
+                    request.getSession().setAttribute("T" , checked);
                     break;
             }
 

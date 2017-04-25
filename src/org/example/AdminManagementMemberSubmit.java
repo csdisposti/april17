@@ -24,6 +24,7 @@ public class AdminManagementMemberSubmit extends HttpServlet {
         //get form values
         String accountID = request.getParameter("accountid");
         String memberID = request.getParameter("memberid");
+        String oldemail = request.getParameter("oldemail");
         String email = request.getParameter("email");
         String passwordcurrent = request.getParameter("passwordcurrent");
         String passwordnew = request.getParameter("passwordnew");
@@ -39,12 +40,8 @@ public class AdminManagementMemberSubmit extends HttpServlet {
         String state = request.getParameter("state");
         String zip = request.getParameter("zip");
         String accttype = request.getParameter("accttype");
-        String memcomms = request.getParameter("memcomms");
         String adminStatus = request.getParameter("adminStatus");
         String adminType = request.getParameter("adminType");
-        String admincomms = null;
-
-
 
         Credentials uc = new Credentials();
         Credentials newuc = new Credentials();
@@ -63,12 +60,12 @@ public class AdminManagementMemberSubmit extends HttpServlet {
                 String required = "required";
                 request.getSession().setAttribute("required", required);
                 uc.readFromDatabase(email, passwordcurrent);
-                uc.updatePassword(email, passwordnew);
+                uc.updateCredentials(oldemail, email, passwordnew);
 
                 int ai = Integer.parseInt(accountID);
                 ua.memberupdateAccount(ai, accttype, street, city, state, zip);
                 int mi = Integer.parseInt(memberID);
-                um.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, emerconname, emerconphone, memcomms);
+                um.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, emerconname, emerconphone);
 
                 //check if member is an admin
                 int adminYN = ad.readJustMemNo(mi);
@@ -77,7 +74,7 @@ public class AdminManagementMemberSubmit extends HttpServlet {
                 if (adminYN == 0) {
                     switch (adminStatus) {
                         case "asYES": {
-                            newad.addToDatabase(mi, adminType, admincomms, adminActive);
+                            newad.addToDatabase(mi, adminType, adminActive);
                             break;
                         }
                         default: {
@@ -87,11 +84,11 @@ public class AdminManagementMemberSubmit extends HttpServlet {
                 } else{
                         switch (adminStatus) {
                             case "asYES": {
-                                newad.updateAdminInfo(mi, adminType, admincomms, adminActive);
+                                newad.updateAdminInfo(mi, adminType, adminActive);
                                 break;
                             }
                             case "asNO": {
-                                newad.updateAdminInfo(mi, adminType, admincomms, adminInactive);
+                                newad.updateAdminInfo(mi, adminType, adminInactive);
                                 break;
                             }
                             default: {
@@ -109,10 +106,14 @@ public class AdminManagementMemberSubmit extends HttpServlet {
                 request.getRequestDispatcher("/adminmembersubmitpasswordchanged.jsp").forward(request, response);
 
             } else {
+                uc.updateCredentials(oldemail, email, passwordcurrent);
+                uc.readFromDatabase(email, passwordcurrent);
+
                 int ai = Integer.parseInt(accountID);
                 ua.memberupdateAccount(ai, accttype, street, city, state, zip);
+
                 int mi = Integer.parseInt(memberID);
-                um.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, emerconname, emerconphone, memcomms);
+                um.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, emerconname, emerconphone);
 
                 //check if member is an admin
                 int adminYN = ad.readJustMemNo(mi);
@@ -121,7 +122,7 @@ public class AdminManagementMemberSubmit extends HttpServlet {
                 if (adminYN == 0) {
                     switch (adminStatus) {
                         case "asYES": {
-                            newad.addToDatabase(mi, adminType, admincomms, adminActive);
+                            newad.addToDatabase(mi, adminType, adminActive);
                             break;
                         }
                         default: {
@@ -131,11 +132,11 @@ public class AdminManagementMemberSubmit extends HttpServlet {
                 } else{
                     switch (adminStatus) {
                         case "asYES": {
-                            newad.updateAdminInfo(mi, adminType, admincomms, adminActive);
+                            newad.updateAdminInfo(mi, adminType, adminActive);
                             break;
                         }
                         case "asNO": {
-                            newad.updateAdminInfo(mi, adminType, admincomms, adminInactive);
+                            newad.updateAdminInfo(mi, adminType, adminInactive);
                             break;
                         }
                         default: {
@@ -143,7 +144,6 @@ public class AdminManagementMemberSubmit extends HttpServlet {
                         }
                     }
                 }
-
 
                 newmem.readFromDatabase(email);
                 request.getSession().setAttribute("newmem", newmem);

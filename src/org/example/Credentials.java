@@ -173,4 +173,35 @@ public class Credentials {
             e.printStackTrace();
         }
     }
+
+
+    //admin update credentials
+    protected void updateCredentials(String oldem, String em, String pw) throws Exception
+    {
+        java.sql.Connection connection;
+
+        String username = "MasterAscend";
+        String password = "AscendMasterKey";
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("database.properties");
+        Properties prop = new Properties();
+        prop.load(inputStream);
+        String url = prop.getProperty("jdbc.url");
+        String driver = prop.getProperty("jdbc.driver");
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url, username, password);
+
+        try {
+            java.sql.Statement statement = connection.createStatement();
+
+            String updateMember = "UPDATE AscendDB.tblCredentials SET Email_Username = ?, MemberPW = ? WHERE Email_Username ='" + oldem + "'";
+            PreparedStatement pstmt = connection.prepareStatement(updateMember);
+            pstmt.setString(1, em);
+            pstmt.setString(2, pw);
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.err.println("err");
+            e.printStackTrace();
+        }
+    }
 }

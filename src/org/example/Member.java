@@ -19,10 +19,9 @@ public class Member {
     private String phone2;      //Phone2
     private String emerCoNa;    //EmergencyContactName
     private String emerCoNo;     //Emergency ContactNumber
-    private String memCom;      //MemberComments
 
     //constructor
-    public Member(int memId, int acctNo, String emailUsNa, String fName, String lName, String phone1, String phone2, String emerCoNa, String emerCoNo, String memCom) {
+    public Member(int memId, int acctNo, String emailUsNa, String fName, String lName, String phone1, String phone2, String emerCoNa, String emerCoNo) {
         this.memId = memId;
         this.acctNo = acctNo;
         this.emailUsNa = emailUsNa;
@@ -32,7 +31,6 @@ public class Member {
         this.phone2 = phone2;
         this.emerCoNa = emerCoNa;
         this.emerCoNo = emerCoNo;
-        this.memCom = memCom;
     }
 
     //empty constructor
@@ -46,7 +44,6 @@ public class Member {
         this.phone2 = null;
         this.emerCoNa = null;
         this.emerCoNo = null;
-        this.memCom = null;
     }
 
     //get Member's ID
@@ -139,15 +136,6 @@ public class Member {
         this.emerCoNo = emerCoNo;
     }
 
-    //get Member's Comments
-    public String getMemCom() {
-        return memCom;
-    }
-
-    //set Member's Comments
-    public void setMemCom(String memCom) {
-        this.memCom = memCom;
-    }
 
     //read member info from database
     protected void readFromDatabase(String user) throws Exception {
@@ -178,7 +166,6 @@ public class Member {
                     this.phone2 = rs.getString(7);
                     this.emerCoNa = rs.getString(8);
                     this.emerCoNo = rs.getString(9);
-                    this.memCom = rs.getString(10);
                 }
             }
         } catch (Exception e) {
@@ -268,7 +255,7 @@ public class Member {
     }
 
     //admin update member info
-    protected void updateMemberInfo(int memid, String email, String fname, String lname, String phoneone, String phonetwo, String emrconname, String emrconphone, String memcomms) throws Exception {
+    protected void updateMemberInfo(int memid, String email, String fname, String lname, String phoneone, String phonetwo, String emrconname, String emrconphone) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -282,7 +269,7 @@ public class Member {
         try {
             java.sql.Statement statement = connection.createStatement();
 
-            String updateMember = "UPDATE tblMember SET Email_User = ?, FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ?, MemberComments = ? WHERE MemberID =" + memid + ";";
+            String updateMember = "UPDATE tblMember SET Email_User = ?, FName = ?, LName = ?, Phone1 = ?, Phone2 = ?, EmergencyContactName = ?, EmergencyContactPhone = ? WHERE MemberID =" + memid + ";";
             PreparedStatement pstmt = connection.prepareStatement(updateMember);
             pstmt.setString(1, email);
             pstmt.setString(2, fname);
@@ -291,7 +278,6 @@ public class Member {
             pstmt.setString(5, phonetwo);
             pstmt.setString(6, emrconname);
             pstmt.setString(7, emrconphone);
-            pstmt.setString(8, memcomms);
             pstmt.executeUpdate();
 
         } catch (Exception e) {
@@ -366,7 +352,6 @@ public class Member {
                 this.phone2 = rs.getString(7);
                 this.emerCoNa = rs.getString(8);
                 this.emerCoNo = rs.getString(9);
-                this.memCom = rs.getString(10);
             }
         } catch (Exception e) {
             System.err.println("err");
@@ -380,12 +365,10 @@ public class Member {
         }
     }
 
-
-
     @Override
     public String toString() {
         return "<p>Member ID: "+this.memId+"</p><p>Account Number: "+this.acctNo+"</p><p>Email: "+
                 this.emailUsNa+"</p><p>First Name: "+this.fName+"</p><p>Last Name: "+this.lName+"</p><p>Phone 1: "+
-                this.phone1+"</p><p>Phone 2: "+this.phone2+"</p><p>Emergency Contact Name: "+this.emerCoNa+"</p><p>Emergency Contact Number: "+this.emerCoNo+"</p><p>Member Comments: "+this.memCom+"</p>";
+                this.phone1+"</p><p>Phone 2: "+this.phone2+"</p><p>Emergency Contact Name: "+this.emerCoNa+"</p><p>Emergency Contact Number: "+this.emerCoNo+"</p>";
     }
 }

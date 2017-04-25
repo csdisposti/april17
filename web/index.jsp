@@ -34,7 +34,7 @@
             </form>
             <hr>
             <h4>Test Account Member Login Credentials</h4>
-            <p>Username: member@member.289</p>
+            <p>Username: member@ascend.289</p>
             <p>Password: P4ssw0rd</p>
             <hr>
             <p class=text-center">For Admin Login, please scroll down to below image</p>

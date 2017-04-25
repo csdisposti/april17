@@ -27,7 +27,6 @@ public class AdminManagementMember extends HttpServlet {
 
         try{
 
-
             memnamenum = memList.populateResources();
 
             request.getSession().setAttribute("memnamenum", memnamenum);

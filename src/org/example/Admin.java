@@ -15,16 +15,14 @@ public class Admin {
     private int adminId;
     private int memNo;
     private String adminLev;
-    private String adminCom;
     private Boolean adminStatus;
 
 
     //constructor
-    public Admin(int adminId, int memNo, String adminLev, String adminCom, Boolean adminStatus) {
+    public Admin(int adminId, int memNo, String adminLev, Boolean adminStatus) {
         this.adminId = adminId;
         this.memNo = memNo;
         this.adminLev = adminLev;
-        this.adminCom = adminCom;
         this.adminStatus = adminStatus;
     }
 
@@ -34,7 +32,6 @@ public class Admin {
         this.adminId = 0;
         this.memNo = 0;
         this.adminLev = null;
-        this.adminCom = null;
         this.adminStatus = false;
     }
 
@@ -66,16 +63,6 @@ public class Admin {
     //set Admin Level
     public void setAdminLev(String adminLev) {
         this.adminLev = adminLev;
-    }
-
-    //get Admin Comments
-    public String getAdminCom() {
-        return adminCom;
-    }
-
-    //set Admin Comments
-    public void setAdminCom(String adminCom) {
-        this.adminCom = adminCom;
     }
 
     //get Admin Status
@@ -115,7 +102,6 @@ public class Admin {
                     this.adminId = rs2.getInt("AdministratorID");
                     this.memNo = rs2.getInt("MemberNo");
                     this.adminLev = rs2.getString("AdminLevel");
-                    this.adminCom = rs2.getString("AdminComments");
                     this.adminStatus = rs2.getBoolean("AdminStatus");
                 }
 
@@ -134,7 +120,7 @@ public class Admin {
 
 
     //add member to admin table
-    protected void addToDatabase(int memNo, String adminLev, String adminCom, Boolean adminStatus) throws Exception {
+    protected void addToDatabase(int memNo, String adminLev, Boolean adminStatus) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -147,12 +133,11 @@ public class Admin {
         connection = DriverManager.getConnection(url, username, password);
         try {
             java.sql.Statement statement = connection.createStatement();
-            String newAdmin = "INSERT INTO AscendDB.tblAdmin (MemberNo, AdminStatus, AdminLevel, AdminComments) VALUES (?, ?, ?, ?, ?)";
+            String newAdmin = "INSERT INTO AscendDB.tblAdmin (MemberNo, AdminStatus, AdminLevel) VALUES (?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(newAdmin);
             ps.setInt(1, memNo);
             ps.setBoolean(2, adminStatus);
             ps.setString(3, adminLev);
-            ps.setString(4, adminCom);
             ps.executeUpdate();
 
 
@@ -169,7 +154,7 @@ public class Admin {
     }
 
     //update member entry in admin table
-    protected void updateAdminInfo(int memNo, String adminLev, String adminCom, Boolean adminStatus) throws Exception {
+    protected void updateAdminInfo(int memNo, String adminLev, Boolean adminStatus) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -188,11 +173,10 @@ public class Admin {
                 while (rs.next()) {
                     this.memNo = rs.getInt("MemberNo");
                 }
-                String updateMember = "UPDATE AscendDB.tblAdmin SET AdminStatus = ?, AdminLevel = ?, AdminComments = ? WHERE MemberNo =" + memNo + ";";
+                String updateMember = "UPDATE AscendDB.tblAdmin SET AdminStatus = ?, AdminLevel = ? WHERE MemberNo =" + memNo + ";";
                 PreparedStatement pstmt = connection.prepareStatement(updateMember);
                 pstmt.setBoolean(1, adminStatus);
                 pstmt.setString(2, adminLev);
-                pstmt.setString(3, adminCom);
                 pstmt.executeUpdate();
             }
         } catch (Exception e) {
@@ -336,7 +320,6 @@ public class Admin {
     @Override
     public String toString() {
 
-            return "<p>Admin ID: " + this.adminId + "</p><p>Admin Level: " + this.adminLev + "</p><p>Date Set As Admin: " +
-                     "</p><p>Admin Comments: " + this.adminCom + "</p>";
+            return "<p>Admin ID: " + this.adminId + "</p><p>Admin Level: " + this.adminLev + "</p><p>Admin Status: " + this.adminStatus + "</p>";
         }
     }

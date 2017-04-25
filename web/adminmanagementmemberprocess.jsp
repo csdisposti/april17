@@ -30,6 +30,7 @@
             <input type="hidden" id="memberid" name="memberid" value="${mi}"/>
             <input type="hidden" id="username" name="username" value="${username}"/>
             <input type="hidden" id="password" name="password" value="${password}"/>
+            <input type="hidden" id="oldemail" name="oldemail" value="${email}"/>
         <div class="col-sm-3">
             <label for="fname">First Name:</label><br />
                 <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="fname" name="fname" title="First Name - Letters/Numbers/Apostrophes Only" value="${fn}" required/> <br />
@@ -118,14 +119,14 @@
         <div class="col-sm-3">
 
             <label>Account Type:</label><br />
-            <input type="radio" name="accttype" title="Account Type" value="I" ${atic}> I - Individual
-            <input type="radio" name="accttype" title="Account Type" value="F" ${atfc}> F = Family
-            <input type="radio" name="accttype" title="Account Type" value="D" ${atdc}> D = Donor
-            <input type="radio" name="accttype" title="Account Type" value="T" ${attc}> T = Trial<br>
+            <input type="radio" name="accttype" title="Account Type" value="I" ${I}> Individual
+            <input type="radio" name="accttype" title="Account Type" value="F" ${F}> Family
+            <input type="radio" name="accttype" title="Account Type" value="D" ${D}> Donor
+            <input type="radio" name="accttype" title="Account Type" value="T" ${T}> Trial<br>
             <hr>
             <label>Admin Status:</label><br />
-            <input type="radio" name="adminStatus" title="Admin Status" value="A" ${asYES}> Admin
-            <input type="radio" name="adminStatus" title="Admin Status" value="N" ${asNO}> Non-Admin
+            <input type="radio" name="adminStatus" title="Admin Status" value="asYES" ${asYES}> Admin
+            <input type="radio" name="adminStatus" title="Admin Status" value="asNO" ${asNO}> Non-Admin
             <hr>
             <label>Admin Type:</label><br />
             <input type="radio" name="adminType" title="Admin Type" value="A" ${A}> Admin
