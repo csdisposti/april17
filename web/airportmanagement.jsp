@@ -27,12 +27,16 @@
         <div class="col-sm-3 text-center">
             <h4>Add New Airport</h4>
             <form action="AirportAdd" method="post">
+                <input type="hidden" id="username" name="username" value="${username}"/>
+                <input type="hidden" id="password" name="password" value="${password}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Add New Airport"/>
             </form>
             <hr>
         </div>
         <div class="col-sm-3 text-center">
             <form action="AirportUpdate" method="post">
+                <input type="hidden" id="usernameau" name="username" value="${username}"/>
+                <input type="hidden" id="passwordau" name="password" value="${password}"/>
                 <h4>Choose Airport to edit</h4>
                 <input id="airport" type="hidden" value="${airporttype}"/>
                 <select name="airporttype" id="airporttype" title="Airport" required>

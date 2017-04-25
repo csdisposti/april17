@@ -27,12 +27,18 @@
         <div class="col-sm-3 text-center">
             <h4>Add New Aircraft</h4>
             <form action="AircraftAdd" method="post">
+                <input type="hidden" id="username" name="username" value="${username}"/>
+                <input type="hidden" id="password" name="password" value="${password}"/>
+                <input type="hidden" id="airporttype" name="airporttype" value="${airporttype}"/>
                 <input type="submit" class="btn btn-default btn-sp" value="Add New Aircraft"/>
             </form>
             <hr>
         </div>
         <div class="col-sm-3 text-center">
             <form action="AircraftUpdate" method="post">
+                <input type="hidden" id="usernameau" name="username" value="${username}"/>
+                <input type="hidden" id="passwordau" name="password" value="${password}"/>
+                <input type="hidden" id="airporttypeup" name="airporttype" value="${airporttype}"/>
                 <h4>Choose Aircraft to edit</h4>
                 <input id="aircraft" type="hidden" value="${acftup}"/>
                 <select name="aircrafttype" id="aircrafttype" title="Aircraft" required>

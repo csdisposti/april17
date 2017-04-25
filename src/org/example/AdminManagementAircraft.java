@@ -23,8 +23,13 @@ public class AdminManagementAircraft extends HttpServlet {
 
         AircraftList aircrafts = new AircraftList();
         ArrayList<AircraftList> aircraftindb = new ArrayList<>();
+        AirportList airportsL = new AirportList();
+        ArrayList<AirportList> airportsindb = new ArrayList<>();
 
         try{
+            airportsindb = airportsL.populateResources();
+            request.getSession().setAttribute("airporttype", airportsindb);
+
             aircraftindb = aircrafts.populateResources();
             request.getSession().setAttribute("acftup", aircraftindb);
             request.getSession().setAttribute("username" , username);

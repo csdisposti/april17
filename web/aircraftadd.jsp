@@ -1,4 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +22,11 @@
     <div class="row gray">
         <h3 class="text-center">Add New Aircraft</h3>
         <hr>
-<div class="col-sm-2"></div>
+<div class="col-sm-3"></div>
         <form action="AircraftAddSubmit" method="POST">
-            <div class="col-sm-4">
+            <input type="hidden" id="username" name="username" value="${username}"/>
+            <input type="hidden" id="password" name="password" value="${password}"/>
+            <div class="col-sm-3">
                 <input type="hidden"  name="action" value="login">
                 <input type="hidden" id="oldreg" name="oldreg" title="Registration ID" required/><br/>
                 <label for="registrationID">Registration ID:</label><br />
@@ -36,19 +39,30 @@
                 <span> Example: Cirrus SR20</span><br>
                 <label for="aircraftType">Aircraft Type:</label><br />
                 <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="aircraftType" name="aircraftType" title="Aircraft Type" required/><br />
-                <label for="airportHome">Airport Home:</label><br />
-                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="airportHome" name="airportHome" title="Airport Home" required/><br />
-                <label for="airportCurrent">Airport Current:</label><br />
-                <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="airportCurrent" name="airportCurrent" title="Airport Current" /><br />
                 <span> Example: Piston</span><br>
+                <label for="airportHome">Airport Home:</label><br />
+                <select name="airportHome" id="airportHome" title="Airport" required>
+                    <c:forEach items="${airporttype}"  var="airportHome">
+                        <option value="${airportHome}">${airportHome}</option>
+                    </c:forEach>
+                </select><br/>
+                <label for="airportCurrent">Airport Current:</label><br />
+                <select name="airportCurrent" id="airportCurrent" title="Airport" required>
+                    <c:forEach items="${airporttype}"  var="airportCurrent">
+                        <option value="${airportCurrent}">${airportCurrent}</option>
+                    </c:forEach>
+                </select><br/>
+
                 <label for="rentalFee">Rental Fee:</label><br />
                 <input type="number" id="rentalFee" pattern="{\d+(\.\d{2})?}" name="rentalFee" title="Rental Fee" required/><br />
                 <span> Numbers only, Example: 450</span><br>
+
+            </div>
+            <div class="col-sm-3">
+                <br>
                 <label for="aircraftAge">Aircraft Age:</label><br />
                 <input type="number" pattern="[0-9]{,3}" id="aircraftAge" name="aircraftAge" title="Aircraft Age" required/><br />
                 <span> Whole numbers only, Example: 5</span><br>
-            </div>
-            <div class="col-sm-4">
                 <label for="flightHours">Flight Hours:</label><br />
                 <input type="number" id="flightHours" name="flightHours" title="Flight Hours" required/><br />
                 <span> Whole numbers only, Example: 1250</span><br/>
@@ -61,14 +75,12 @@
                 <label for="lastMaintDate">Last Maintenance Date:</label><br />
                 <input type="date" id="lastMaintDate" name="lastMaintDate" title="Last Maintenance Date" required/><br />
                 <span class="firefoxonly"> Enter as YYYY-MM-DD </span>
-                <label for="aircraftComms">Aicraft Comments:</label><br />
-                <textarea rows="10" cols="30" id="aircraftComms" name="aircraftComms" title="Aircraft Comments"></textarea> <br />
                <hr>
                 <input type="submit"  class="btn btn-default btn-sp" value="Add Aircraft" />
                 <hr>
             </div>
         </form>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
     </div>
         <img src="http://ascend.2ndmm.com/images/plane1.jpg" class="img-responsive center-block">
         <hr>

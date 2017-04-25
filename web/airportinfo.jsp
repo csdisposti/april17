@@ -24,6 +24,8 @@
         <hr>
 <div class="col-sm-2"></div>
         <form action="AirportUpdateSubmit" method="POST">
+            <input type="hidden" id="username" name="username" value="${username}"/>
+            <input type="hidden" id="password" name="password" value="${password}"/>
             <div class="col-sm-3">
                 <input type="hidden"  name="action" value="login">
                 <input type="hidden" id="oldfaa" name="oldfaa" title="Old FAA" value="${faa}" required/><br/>
@@ -54,6 +56,7 @@
                 <input type="number" pattern="[0-9]{1,10}" id="fuel" name="fuel" title="Fuel" value="${fuel}" required/><br />
                 <label for="storage">Storage:</label><br />
                 <input type="text" pattern="^[a-zA-Z0-9-.-'\s]{1,24}$" id="storage" name="storage" title="Storage" value="${storage}" required/><br />
+                <p>&nbsp;</p>
             </div>
             <div class="col-sm-3">
                 <label for="contactName">Contact Name:</label><br />
@@ -61,8 +64,6 @@
                 <label for="contactPhone">Contact Phone:</label><br />
                 <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="contactPhone" name="contactPhone" title="Contact Phone" value="${contactPhone}" required/><br />
                 <span> Example: 555-555-5555</span><br>
-                <label for="airportComms">Airport Comments:</label><br />
-                <textarea rows="10" cols="30" id="airportComms" name="airportComms" title="Airport Comments">${airportComms}</textarea> <br />
                 <hr>
                 <input type="submit"  class="btn btn-default btn-sp" value="Update Existing Airport" />
                 <hr>

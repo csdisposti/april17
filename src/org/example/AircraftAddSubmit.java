@@ -37,7 +37,16 @@ public class AircraftAddSubmit extends HttpServlet {
         Aircraft ac = new Aircraft();
         Aircraft acnew = new Aircraft();
 
+        String ahome;
+        String acurrent;
+
         try{
+
+            String[] hom = airportHome.split("\\s+");
+            String[] cur = airportCurrent.split("\\s+");
+
+            ahome = hom[0];
+            acurrent = cur[0];
 
 
             int oi = Integer.parseInt(ownerID);
@@ -46,7 +55,7 @@ public class AircraftAddSubmit extends HttpServlet {
             double fh = Double.parseDouble(flightHours);
             double fd = Double.parseDouble(flightDistance);
 
-            ac.addAircraft(registrationID, oi, makeModel, aircraftType, airportHome, airportCurrent, rf, aa, fh, fd, lastMaintType, lastMaintDate, aircraftComms);
+            ac.addAircraft(registrationID, oi, makeModel, aircraftType, ahome, acurrent, rf, aa, fh, fd, lastMaintType, lastMaintDate, aircraftComms);
             acnew.readFromDatabase(registrationID);
             request.getSession().setAttribute("acnew", acnew);
             request.getSession().setAttribute("username" , username);

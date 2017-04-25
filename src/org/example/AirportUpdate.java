@@ -63,7 +63,7 @@ public class AirportUpdate extends HttpServlet {
             towerFreq = apt.getTowerFreq();
             fuel = apt.getFuel();
             storage = apt.getStorage();
-            airportComms = apt.getAirportCom();
+
 
             request.getSession().setAttribute("faa", faa);
             request.getSession().setAttribute("airportName", airportName);
@@ -79,7 +79,7 @@ public class AirportUpdate extends HttpServlet {
             request.getSession().setAttribute("towerFreq", towerFreq);
             request.getSession().setAttribute("fuel", fuel);
             request.getSession().setAttribute("storage", storage);
-            request.getSession().setAttribute("airportComms", airportComms);
+
 
             request.getSession().setAttribute("username" , username);
             request.getSession().setAttribute("password" , password);

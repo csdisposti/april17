@@ -36,7 +36,6 @@ public class AircraftUpdate extends HttpServlet {
         double flightDistance;
         String lastMaintType;
         Date lastMaintDate;
-        String aircraftComms;
 
         Aircraft act = new Aircraft();
 
@@ -59,7 +58,6 @@ public class AircraftUpdate extends HttpServlet {
             flightDistance = act.getFlightDist();
             lastMaintType = act.getLastMaintType();
             lastMaintDate = act.getLastMaintDate();
-            aircraftComms = act.getAirCom();
 
             request.getSession().setAttribute("registrationID", registrationID);
             request.getSession().setAttribute("ownerID", ownerID);
@@ -73,7 +71,6 @@ public class AircraftUpdate extends HttpServlet {
             request.getSession().setAttribute("flightDistance", flightDistance);
             request.getSession().setAttribute("lastMaintType", lastMaintType);
             request.getSession().setAttribute("lastMaintDate", lastMaintDate);
-            request.getSession().setAttribute("aircraftComms", aircraftComms);
 
             request.getSession().setAttribute("username" , username);
             request.getSession().setAttribute("password" , password);

@@ -37,7 +37,6 @@ public class AirportUpdateSubmit extends HttpServlet {
         String towerFreq = request.getParameter("towerFreq");
         String fuel = request.getParameter("fuel");
         String storage = request.getParameter("storage");
-        String airportComms = request.getParameter("airportComms");
 
         Airports ap = new Airports();
         Airports apnew = new Airports();
@@ -47,9 +46,9 @@ public class AirportUpdateSubmit extends HttpServlet {
 
            double lat = Double.parseDouble(latitude);
            double lon = Double.parseDouble(longitude);
-           int fl = Integer.parseInt(fuel);
+          double fl = Double.parseDouble(fuel);
 
-            ap.updateAirport(oldfaa, faa, airportName, airportType, streetAddress, city, lat, lon, contactName, contactPhone, ctaf, runwayType, towerFreq, fl, storage, airportComms);
+            ap.updateAirport(oldfaa, faa, airportName, airportType, streetAddress, city, lat, lon, contactName, contactPhone, ctaf, runwayType, towerFreq, fl, storage);
             apnew.readFromDatabase(faa);
             request.getSession().setAttribute("apnew", apnew);
 

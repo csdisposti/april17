@@ -21,14 +21,14 @@ public class Airports {
     private String ctaf;
     private String runwayType;
     private String towerFreq;
-    private int fuel;
+    private double fuel;
     private String storage;
-    private String airportCom;
+
 
     //constructor
     public Airports(String faaCode, String airportName, String airportType, String airportSt, String airportCity,
                     double latitude, double longitude, String contactName, String contactPhone, String ctaf,
-                    String runwayType, String towerFreq, int fuel, String storage, String airportCom) {
+                    String runwayType, String towerFreq, double fuel, String storage) {
         this.faaCode = faaCode;
         this.airportName = airportName;
         this.airportType = airportType;
@@ -43,7 +43,7 @@ public class Airports {
         this.towerFreq = towerFreq;
         this.fuel = fuel;
         this.storage = storage;
-        this.airportCom = airportCom;
+
     }
 
     //empty constructor
@@ -62,7 +62,7 @@ public class Airports {
         this.towerFreq = null;
         this.fuel = 0;
         this.storage = null;
-        this.airportCom = null;
+
     }
 
     //get Airport FAA Code
@@ -186,12 +186,12 @@ public class Airports {
     }
 
     //get Airport Fuel
-    public int getFuel() {
+    public double getFuel() {
         return fuel;
     }
 
     //set Airport Fuel
-    public void setFuel(int fuel) {
+    public void setFuel(double fuel) {
         this.fuel = fuel;
     }
 
@@ -205,15 +205,6 @@ public class Airports {
         this.storage = storage;
     }
 
-    //get Airport Comments
-    public String getAirportCom() {
-        return airportCom;
-    }
-
-    //set Airport Comments
-    public void setAirportCom(String airportCom) {
-        this.airportCom = airportCom;
-    }
 
     public void readFromDatabase(String FAACode) throws Exception
     {
@@ -249,7 +240,6 @@ public class Airports {
                 this.towerFreq = rs.getString("TowerFreq");
                 this.fuel = rs.getInt("Fuel_100LL");
                 this.storage = rs.getString("Storage");
-                this.airportCom = rs.getString("AirportComments");
             }
         } catch (Exception e)
         {
@@ -259,7 +249,7 @@ public class Airports {
     }
     //admin add airport
     protected void addAirport(String faa, String apname, String aptype, String address, String city, double lat, double lon,
-                                 String conname, String conphone, String ct, String runway, String tower, int fuel, String storage, String apcomms) throws Exception {
+                                 String conname, String conphone, String ct, String runway, String tower, double fuel, String storage) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -273,7 +263,7 @@ public class Airports {
         try {
 
             String addAirport = "INSERT INTO AscendDB.tblAirports (FAACode, AirportName, AirportType, StreetAddress, ClosestCity, Latitude, Longitude, ContactName, " +
-                    "ContactPhone, CTAF_UNICOM, RunwayType, TowerFreq, Fuel_100LL, Storage, AirportComments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "ContactPhone, CTAF_UNICOM, RunwayType, TowerFreq, Fuel_100LL, Storage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = connection.prepareStatement(addAirport);
             pstmt.setString(1, faa);
             pstmt.setString(2, apname);
@@ -287,9 +277,8 @@ public class Airports {
             pstmt.setString(10, ct);
             pstmt.setString(11, runway);
             pstmt.setString(12, tower);
-            pstmt.setInt(13, fuel);
+            pstmt.setDouble(13, fuel);
             pstmt.setString(14, storage);
-            pstmt.setString(15, apcomms);
             pstmt.executeUpdate();
 
         } catch (Exception e) {
@@ -300,7 +289,7 @@ public class Airports {
 
     //admin update airport info
     protected void updateAirport(String oldfaa, String faa, String apname, String aptype, String address, String city, double lat, double lon,
-                                 String conname, String conphone, String ct, String runway, String tower, int fuel, String storage, String apcomms) throws Exception {
+                                 String conname, String conphone, String ct, String runway, String tower, double fuel, String storage) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -315,7 +304,7 @@ public class Airports {
 
             String updateAirport = "UPDATE AscendDB.tblAirports SET FAACode = ?, AirportName = ?, AirportType = ?, StreetAddress = ?, ClosestCity = ?, " +
                     "Latitude = ?, Longitude = ?, ContactName = ?, ContactPhone = ?, CTAF_UNICOM = ?," +
-                    "RunwayType = ?, TowerFreq = ?, Fuel_100LL = ?, Storage = ?, AirportComments = ? WHERE FAACode='" + oldfaa + "';";
+                    "RunwayType = ?, TowerFreq = ?, Fuel_100LL = ?, Storage = ? WHERE FAACode='" + oldfaa + "';";
             PreparedStatement pstmt = connection.prepareStatement(updateAirport);
             pstmt.setString(1, faa);
             pstmt.setString(2, apname);
@@ -329,9 +318,8 @@ public class Airports {
             pstmt.setString(10, ct);
             pstmt.setString(11, runway);
             pstmt.setString(12, tower);
-            pstmt.setInt(13, fuel);
+            pstmt.setDouble(13, fuel);
             pstmt.setString(14, storage);
-            pstmt.setString(15, apcomms);
             pstmt.executeUpdate();
 
         } catch (Exception e) {
@@ -345,6 +333,6 @@ public class Airports {
         return "<p>FAA Code: " + this.faaCode + "</p><p>Airport Name: " + this.airportName + "</p><p>Airport Type: " + this.airportType + "</p><p>Street Address: " + this.airportSt +
                 "</p><p>City: " + this.airportCity + "</p><p>Latitude: " + this.latitude + "</p><p>Longitude: " + this.longitude+ "</p><p>Contact Name: " + this.contactName +
                 "</p><p>Contact Phone: " + this.contactPhone + "</p><p>CTAF UNICOM: " + this.ctaf + "</p><p>Runway Type: " + this.runwayType  +"</p><p>Tower Frequency: " + this.towerFreq +
-                "</p><p>Fuel: " + this.fuel + "</p><p>Storage: " + this.storage + "</p><p>Airport Comments: " + this.airportCom;
+                "</p><p>Fuel: " + this.fuel + "</p><p>Storage: " + this.storage;
     }
 }

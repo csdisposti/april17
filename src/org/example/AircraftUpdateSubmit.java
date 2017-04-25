@@ -40,7 +40,6 @@ public class AircraftUpdateSubmit extends HttpServlet {
         String flightDistance = request.getParameter("flightDistance");
         String lastMaintType = request.getParameter("lastMaintType");
         String lastMaintDate = request.getParameter("lastMaintDate");
-        String aircraftComms = request.getParameter("aircraftComms");
 
         Aircraft ac = new Aircraft();
         Aircraft acnew = new Aircraft();
@@ -54,7 +53,7 @@ public class AircraftUpdateSubmit extends HttpServlet {
             double fh = Double.parseDouble(flightHours);
             double fd = Double.parseDouble(flightDistance);
 
-            ac.updateAircraft(oldreg, registrationID, oi, makeModel, aircraftType, airportHome, airportCurrent, rf, aa, fh, fd, lastMaintType, lastMaintDate, aircraftComms);
+            ac.updateAircraft(oldreg, registrationID, oi, makeModel, aircraftType, airportHome, airportCurrent, rf, aa, fh, fd, lastMaintType, lastMaintDate);
             acnew.readFromDatabase(registrationID);
             request.getSession().setAttribute("acnew", acnew);
             request.getSession().setAttribute("username" , username);
