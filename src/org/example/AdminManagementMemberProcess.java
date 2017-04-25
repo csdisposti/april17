@@ -42,7 +42,7 @@ public class AdminManagementMemberProcess extends HttpServlet {
         String accttype;
         int adminYN;
         String adminTYPE;
-        Boolean active;
+
 
         String checked = "checked=\"checked\"";
         String selected = "selected";
@@ -84,7 +84,7 @@ public class AdminManagementMemberProcess extends HttpServlet {
             //check if member is an admin
             adminYN = adedit.readJustMemNo(memberID);
             adedit.readFromDatabase(memberID);
-            active = adedit.getAdminStatus();
+
 
             if (adminYN == 0) {
                 request.getSession().setAttribute("asNO", checked);
@@ -94,7 +94,7 @@ public class AdminManagementMemberProcess extends HttpServlet {
 
             //check if active admin
             adminTYPE = adedit.readJustAdminLev(memberID);
-            if (active) {
+
             //check what type of admin
             switch (adminTYPE) {
                 case "A": {
@@ -109,7 +109,6 @@ public class AdminManagementMemberProcess extends HttpServlet {
                     request.getSession().setAttribute("NA", checked);
                     break;
                 }
-            }
             }
 
             adedit.readFromDatabase(memberID);
