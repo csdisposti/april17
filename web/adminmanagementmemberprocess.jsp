@@ -111,27 +111,27 @@
                 <label for="emerconphone">Emergency Contact Phone:</label><br />
                 <input type="tel" pattern="^\d{3}-\d{3}-\d{4}$" id="emerconphone" name="emerconphone" title="Emergency Contact Phone - Please enter in the following format: 555-555-5555" value="${ep}" />
                 <span> Example: 555-555-5555</span><br>
-                <label for="memcomms">Member Comments:</label><br />
-                <textarea rows="10" cols="30" id="memcomms" name="memcomms" title="Member Comments">${memcomms}</textarea><br />
             <hr>
+                <label>Account Type:</label><br />
+                <input type="radio" name="accttype" title="Account Type" value="I" ${I}> Individual
+                <input type="radio" name="accttype" title="Account Type" value="F" ${F}> Family
+                <input type="radio" name="accttype" title="Account Type" value="D" ${D}> Donor
+                <input type="radio" name="accttype" title="Account Type" value="T" ${T}> Trial<br>
+                <hr>
 
             </div>
         <div class="col-sm-3">
 
-            <label>Account Type:</label><br />
-            <input type="radio" name="accttype" title="Account Type" value="I" ${I}> Individual
-            <input type="radio" name="accttype" title="Account Type" value="F" ${F}> Family
-            <input type="radio" name="accttype" title="Account Type" value="D" ${D}> Donor
-            <input type="radio" name="accttype" title="Account Type" value="T" ${T}> Trial<br>
-            <hr>
+
             <label>Admin Status:</label><br />
             <input type="radio" name="adminStatus" title="Admin Status" value="asYES" ${asYES}> Admin
-            <input type="radio" name="adminStatus" title="Admin Status" value="asNO" ${asNO}> Non-Admin
+            <input type="radio" name="adminStatus" title="Admin Status" value="asNO" ${asNO}> Non-Admin<br>
+            <span>Note: If member has ever been an admin, member will always show as an admin. Check below for admin type to see if active or inactive admin.</span>
             <hr>
             <label>Admin Type:</label><br />
-            <input type="radio" name="adminType" title="Admin Type" value="A" ${A}> Admin
-            <input type="radio" name="adminType" title="Admin Type" value="I" ${I}> Instructor
-            <input type="radio" name="adminType" title="Admin Type" value="N" ${N}> Non-Admin/Inactive Admin
+            <input type="radio" name="adminType" title="Admin Type" value="A" ${AA}> Admin
+            <input type="radio" name="adminType" title="Admin Type" value="I" ${IA}> Instructor
+            <input type="radio" name="adminType" title="Admin Type" value="N" ${NA}> Non-Admin/Inactive Admin
             <hr>
             <input type="email" id="email" name="email" title="Signup-Email" value="${email}" /><br />
             <label for="passwordcurrent">Current Password:</label><br />

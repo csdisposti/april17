@@ -29,7 +29,6 @@
             <form action="AdminManagementMemberProcess" method="post">
                 <input type="hidden" id="usernameAMM" name="username" value="${username}"/>
                 <input type="hidden" id="passwordAMM" name="password" value="${password}"/>
-                <input id="memberNameNum" type="hidden" value="${memnamenum}"/>
                 <select name="memnamenum" title="Member" required>
                     <c:forEach items="${memnamenum}" var="mnn">
                         <option value="${mnn}">${mnn}</option>

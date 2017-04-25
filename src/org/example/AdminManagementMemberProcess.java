@@ -21,7 +21,7 @@ public class AdminManagementMemberProcess extends HttpServlet {
         String username = request.getParameter("username");//admin info
         String password = request.getParameter("password");//admin info
 
-        String member = request.getParameter("memnamenum"); //member
+        String memnamenum = request.getParameter("memnamenum"); //member
 
         //variables
         int accountID;
@@ -40,6 +40,10 @@ public class AdminManagementMemberProcess extends HttpServlet {
         String zip;
 
         String accttype;
+        int adminYN;
+        String adminTYPE;
+        Boolean active;
+
         String checked = "checked=\"checked\"";
         String selected = "selected";
 
@@ -47,16 +51,17 @@ public class AdminManagementMemberProcess extends HttpServlet {
         Member medit = new Member();
         Credentials cedit = new Credentials();
         Account aedit = new Account();
-        Admin ad = new Admin();
+        Admin adedit = new Admin();
 
         try {
 
             //get memberid only
-            String[] memberinfo = member.split(":\\s+");
+            String[] memberinfo = memnamenum.split(":\\s+");
             String memberid = memberinfo[1];
             memberID = Integer.parseInt(memberid);
 
             medit.getMemberByMemID(memberID);
+
             accountID = medit.getAcctNo();
             aedit.readFromDatabase(accountID);
 
@@ -71,12 +76,15 @@ public class AdminManagementMemberProcess extends HttpServlet {
             street = aedit.getStreet();
             city = aedit.getCity();
             zip = aedit.getZip();
+            medit.readFromDatabase(email);
 
             //get member password
             pw = cedit.getPassword(email);
 
             //check if member is an admin
-            int adminYN = ad.readJustMemNo(memberID);
+            adminYN = adedit.readJustMemNo(memberID);
+            adedit.readFromDatabase(memberID);
+            active = adedit.getAdminStatus();
 
             if (adminYN == 0) {
                 request.getSession().setAttribute("asNO", checked);
@@ -84,23 +92,28 @@ public class AdminManagementMemberProcess extends HttpServlet {
                 request.getSession().setAttribute("asYES", checked);
             }
 
+            //check if active admin
+            adminTYPE = adedit.readJustAdminLev(memberID);
+            if (active) {
             //check what type of admin
-            String adminTYPE = ad.readJustAdminLev(memberID);
             switch (adminTYPE) {
                 case "A": {
-                    request.getSession().setAttribute("A", checked);
+                    request.getSession().setAttribute("AA", checked);
                     break;
                 }
                 case "I": {
-                    request.getSession().setAttribute("I", checked);
+                    request.getSession().setAttribute("IA", checked);
                     break;
                 }
                 default: {
-                    request.getSession().setAttribute("N", checked);
+                    request.getSession().setAttribute("NA", checked);
                     break;
                 }
-
             }
+            }
+
+            adedit.readFromDatabase(memberID);
+
             request.getSession().setAttribute("mi" , memberID);
             request.getSession().setAttribute("ai" , accountID);
             request.getSession().setAttribute("fn" , fname);

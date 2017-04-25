@@ -25,12 +25,11 @@ public class AdminManagementMember extends HttpServlet {
         MemberList memList = new MemberList();
         ArrayList<MemberList> memnamenum;
 
+
         try{
 
             memnamenum = memList.populateResources();
-
             request.getSession().setAttribute("memnamenum", memnamenum);
-
                 request.getSession().setAttribute("username" , username);
                 request.getSession().setAttribute("password" , password);
                 request.getRequestDispatcher("/adminmembermanagement.jsp").forward(request, response);

@@ -44,19 +44,15 @@ public class EditMyInfoSubmit extends HttpServlet {
 
 
         try {
-           // System.out.println(password);
-           // System.out.println(passwordcurrent);
+
             if (!passwordcurrent.equals(password)) {
                request.getRequestDispatcher("/editmyinfopasswordfail.jsp").forward(request, response);
            } else if (!passwordnew.isEmpty()){
                 String required = "required";
                 request.getSession().setAttribute("required", required);
-               // System.out.println(username);
-               // System.out.println(passwordnew);
+
                 uc.updatePassword(username, passwordnew);
-                //newuc.readFromDatabase(username, passwordnew);
-               // password = newuc.getPassword();
-               // System.out.println(password);
+
                 int ai = Integer.parseInt(accountID);
                 ua.memberupdateAccount(ai, accttype, street, city, state, zip);
                 int mi = Integer.parseInt(memberID);

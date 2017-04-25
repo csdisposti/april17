@@ -20,6 +20,7 @@ public class AdminPortal extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+
         String memInfo;
         int adminLogin;
         String adminCheck;

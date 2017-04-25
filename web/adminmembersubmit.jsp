@@ -23,10 +23,14 @@
         <div class="col-sm-4">
         </div>
         <div class="col-sm-4">
-            <p>${newmem}</p>
+            <p>${mnn}</p>
+            <p>${newad}</p>
             <form action="AdminPortal" method="post">
                 <input type="hidden" id="username" name="username" value="${username}"/>
                 <input type="hidden" id="password" name="password" value="${password}"/>
+                <input type="hidden" id="accttype" name="accttype" value="${accttypen}"/>
+                <input type="hidden" id="adminStatus" name="adminStatus" value="${adminStatusn}"/>
+                <input type="hidden" id="adminType" name="adminType" value="${adminTypen}"/>
                 <hr>
                 <input type="submit" class="btn btn-default" value="Return to Admin Portal"/>
                 <hr>

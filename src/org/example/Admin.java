@@ -1,11 +1,8 @@
 package org.example;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.io.InputStream;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -120,7 +117,7 @@ public class Admin {
 
 
     //add member to admin table
-    protected void addToDatabase(int memNo, String adminLev, Boolean adminStatus) throws Exception {
+    protected void addToDatabase(int memNo, String adminLev) throws Exception {
         java.sql.Connection connection;
         String username = "MasterAscend";
         String password = "AscendMasterKey";
@@ -136,7 +133,7 @@ public class Admin {
             String newAdmin = "INSERT INTO AscendDB.tblAdmin (MemberNo, AdminStatus, AdminLevel) VALUES (?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(newAdmin);
             ps.setInt(1, memNo);
-            ps.setBoolean(2, adminStatus);
+            ps.setBoolean(2, true);
             ps.setString(3, adminLev);
             ps.executeUpdate();
 
@@ -259,9 +256,9 @@ public class Admin {
             memNo = 0;
             if (rs != null) {
                 //makes sure the resultSet isn't in the header info
-                if (rs.next()) {
+                while (rs.next()) {
 
-                    return this.memNo = rs.getInt("MemberNo");
+                    this.memNo = rs.getInt("MemberNo");
 
                 }
             }

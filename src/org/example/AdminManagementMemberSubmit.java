@@ -22,6 +22,7 @@ public class AdminManagementMemberSubmit extends HttpServlet {
         String password = request.getParameter("password");//admin info
 
         //get form values
+
         String accountID = request.getParameter("accountid");
         String memberID = request.getParameter("memberid");
         String oldemail = request.getParameter("oldemail");
@@ -39,104 +40,60 @@ public class AdminManagementMemberSubmit extends HttpServlet {
         String city = request.getParameter("city");
         String state = request.getParameter("state");
         String zip = request.getParameter("zip");
-        String accttype = request.getParameter("accttype");
-        String adminStatus = request.getParameter("adminStatus");
-        String adminType = request.getParameter("adminType");
+        String accttypen = request.getParameter("accttype");
+        String adminStatusn = request.getParameter("adminStatus");
+        String adminTypen = request.getParameter("adminType");
+
+        System.out.println(adminTypen);
+
+        int adminYN;
 
         Credentials uc = new Credentials();
-        Credentials newuc = new Credentials();
         Account ua = new Account();
         Member um = new Member();
-        Member newmem = new Member();
-        Admin ad = new Admin();
+        Member mnn = new Member();
         Admin newad = new Admin();
-
 
         try {
 
-
-            // System.out.println(password);
+            int ai = Integer.parseInt(accountID);
+            int mi = Integer.parseInt(memberID);
+            //if password changing
             if (!passwordnew.isEmpty()) {
                 String required = "required";
                 request.getSession().setAttribute("required", required);
                 uc.readFromDatabase(email, passwordcurrent);
                 uc.updateCredentials(oldemail, email, passwordnew);
-
-                int ai = Integer.parseInt(accountID);
-                ua.memberupdateAccount(ai, accttype, street, city, state, zip);
-                int mi = Integer.parseInt(memberID);
-                um.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, emerconname, emerconphone);
-
-                //check if member is an admin
-                int adminYN = ad.readJustMemNo(mi);
-                Boolean adminActive = true;
-                Boolean adminInactive = false;
-                if (adminYN == 0) {
-                    switch (adminStatus) {
-                        case "asYES": {
-                            newad.addToDatabase(mi, adminType, adminActive);
-                            break;
-                        }
-                        default: {
-                            break;
-                        }
-                    }
-                } else{
-                        switch (adminStatus) {
-                            case "asYES": {
-                                newad.updateAdminInfo(mi, adminType, adminActive);
-                                break;
-                            }
-                            case "asNO": {
-                                newad.updateAdminInfo(mi, adminType, adminInactive);
-                                break;
-                            }
-                            default: {
-                                break;
-                            }
-                        }
-                    }
-
-
-                System.out.println(newad);
-                newmem.readFromDatabase(email);
-                request.getSession().setAttribute("newmem", newmem);
-                request.getSession().setAttribute("username", username);
-                request.getSession().setAttribute("password", password);
-                request.getRequestDispatcher("/adminmembersubmitpasswordchanged.jsp").forward(request, response);
-
+                //if password not changing
             } else {
                 uc.updateCredentials(oldemail, email, passwordcurrent);
                 uc.readFromDatabase(email, passwordcurrent);
-
-                int ai = Integer.parseInt(accountID);
-                ua.memberupdateAccount(ai, accttype, street, city, state, zip);
-
-                int mi = Integer.parseInt(memberID);
-                um.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, emerconname, emerconphone);
-
+            }
+            ua.memberupdateAccount(ai, accttypen, street, city, state, zip);
+            um.updateMemberInfo(mi, email, fname, lname, phoneone, phonetwo, emerconname, emerconphone);
                 //check if member is an admin
-                int adminYN = ad.readJustMemNo(mi);
-                Boolean adminActive = true;
-                Boolean adminInactive = false;
+                adminYN = newad.readJustMemNo(mi);
+                System.out.println(adminYN);
+                System.out.println(adminStatusn);
+
                 if (adminYN == 0) {
-                    switch (adminStatus) {
+                    switch (adminStatusn) {
                         case "asYES": {
-                            newad.addToDatabase(mi, adminType, adminActive);
+                            newad.addToDatabase(mi, adminTypen);
                             break;
                         }
                         default: {
                             break;
                         }
                     }
-                } else{
-                    switch (adminStatus) {
+                } else {
+                    switch (adminStatusn) {
                         case "asYES": {
-                            newad.updateAdminInfo(mi, adminType, adminActive);
+                            newad.updateAdminInfo(mi, adminTypen, true);
                             break;
                         }
                         case "asNO": {
-                            newad.updateAdminInfo(mi, adminType, adminInactive);
+                            newad.updateAdminInfo(mi, adminTypen, false);
                             break;
                         }
                         default: {
@@ -144,13 +101,20 @@ public class AdminManagementMemberSubmit extends HttpServlet {
                         }
                     }
                 }
+                newad.readFromDatabase(mi);
+                System.out.println(newad);
+                mnn.readFromDatabase(email);
+                request.getSession().setAttribute("mnn", mnn);
+                request.getSession().setAttribute("newad", newad);
 
-                newmem.readFromDatabase(email);
-                request.getSession().setAttribute("newmem", newmem);
+
                 request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("password", password);
+
+
                 request.getRequestDispatcher("/adminmembersubmit.jsp").forward(request, response);
-            }
+
+
         }
             catch (Exception e2)
         {
